@@ -9,7 +9,7 @@ Wir sind (alle Medieninformatiker):
 - Mohammad Zidane
 - Niklas Herzog
 
-*EVAmeG* ist eine *E-Government App*, die den deutschen Behördenalltag entschlakken will.
+_EVAmeG_ ist eine _E-Government App_, die den deutschen Behördenalltag entschlakken will.
 Features sollen sein:
 - Behördenmap mit Terminerstellfunktion
 - Formulare ausfüllen und abschicken (Backend wird lediglich simuliert)
