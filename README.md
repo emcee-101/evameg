@@ -2,15 +2,15 @@
 
 ## Willkommen!
 
-Das ist das Git-Repository für unser Projekt für das Modul **PME**, Programmierung mobiler Endgeräte.
+Das ist das **Git-Repository** für unser Projekt für das Modul **PME**, Programmierung mobiler Endgeräte.
 
-Wir sind (alle Medieninformatiker):
+**Wir** sind (alle Medieninformatiker):
 - Celina Ludwigs
 - Mohammad Zidane
 - Niklas Herzog
 
-## Projekt
-__EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag entschlakken will.
+## Projekt:
+__EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag entschlacken will.
 
 ### Features:
 - Behördenmap mit Terminerstellfunktion
