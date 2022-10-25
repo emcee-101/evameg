@@ -5,9 +5,9 @@
 Das ist das Git-Repository für unser Projekt für das Modul PME, Programmierung mobiler Endgeräte.
 
 Wir sind:
-    - Celina Ludwigs
-    - Mohammad Zidane
-    - Niklas Herzog
+- Celina Ludwigs
+- Mohammad Zidane
+- Niklas Herzog
 
 EVAmeG ist eine E-Government App, die den deutschen Behördenalltag entschlakken will.
 Features sollen sein:
