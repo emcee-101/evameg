@@ -4,10 +4,12 @@
 
 Das ist das **Git-Repository** für unser Projekt für das Modul **PME**, Programmierung mobiler Endgeräte.
 
-**Wir** sind (alle Medieninformatiker):
+**Wir** sind:
 - Celina Ludwigs
 - Mohammad Zidane
 - Niklas Herzog
+
+Wir nehmen alle am Studiengang Angewandte Informatik in der Vertiefungsrichtung "Medieninformatik" im 5. Semester teil.
 
 ## Projekt:
 __EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag entschlacken will. Sie wird zunächst nur für Android entwickelt.
