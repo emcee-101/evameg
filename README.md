@@ -10,7 +10,7 @@ Das ist das **Git-Repository** für unser Projekt für das Modul **PME**, Progra
 - Niklas Herzog
 
 ## Projekt:
-__EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag entschlacken will.
+__EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag entschlacken will. Sie wird zunächst nur für Android entwickelt.
 
 ### Features:
 - Behördenmap mit Terminerstellfunktion
