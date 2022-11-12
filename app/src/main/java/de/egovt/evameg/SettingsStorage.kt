@@ -32,4 +32,6 @@ class SettingsStorage {
 
     }
 
+    // TODO add for other types of data
+
 }
