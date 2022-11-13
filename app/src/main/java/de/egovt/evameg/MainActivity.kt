@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         // Log.i("a", "MESSAGE");
 
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -30,11 +28,10 @@ class MainActivity : AppCompatActivity() {
         Log.i("a", notFirstStart.toString());
 
         // if the app is started for the first time
-        // double negation to allow for a negative default value (ask Niklas, if you dont know what that means)
-        // THIS WORKS, BUT IS SAVED ACROSS REBUILDS! -> BLOCKS TESTS
+
+        // THIS WORKS, BUT IS SAVED ACROSS REBUILDS! -> BLOCKS TESTS -> THATS WHY I also have the "else" path (tautology)
         if (!notFirstStart) {
-                // TODO REMEMBER TO SET THE VALUE TO POSITIVE AFTER THAT
-                // store.writeIntValue(STORE_KEY_COUNTER, 42);
+
             // INTENT -> SetupActivity
             referToSetup();
 

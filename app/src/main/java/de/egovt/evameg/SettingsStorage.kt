@@ -11,7 +11,7 @@ class SettingsStorage {
 
     private var app: Application? = null
 
-    public fun KeyValueStore(application: Application) {
+    fun KeyValueStore(application: Application) {
         this.app = application;
     }
 
@@ -19,14 +19,14 @@ class SettingsStorage {
         return this.app?.getSharedPreferences(KEY_VALUE_STORE_FILE_NAME, Context.MODE_PRIVATE)
     }
 
-    public fun writeBool(key: String, value: Boolean){
+    fun writeBool(key: String, value: Boolean){
 
         this.getPreferences()!!.edit().putBoolean(key, value).apply();
 
 
     }
 
-    public fun getBool(key: String): Boolean {
+    fun getBool(key: String): Boolean {
 
         return this.getPreferences()!!.getBoolean(key, false)
 
