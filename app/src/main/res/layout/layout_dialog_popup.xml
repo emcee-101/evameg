@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edit_firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vorname" />
+
+    <EditText
+        android:id="@+id/edit_lastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_dateOfBirth"
+        android:layout_below="@+id/edit_firstName"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:hint="Nachname" />
+
+    <EditText
+        android:id="@+id/edit_dateOfBirth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_wohnort"
+        android:layout_marginBottom="1dp"
+        android:hint="Geburtstag" />
+
+    <EditText
+        android:id="@+id/edit_wohnort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_postalCode"
+        android:layout_marginBottom="1dp"
+        android:hint="Wohnort" />
+
+    <EditText
+        android:id="@+id/edit_postalCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_street"
+        android:layout_marginBottom="1dp"
+        android:hint="Postleitzahl" />
+
+    <EditText
+        android:id="@+id/edit_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="455dp"
+        android:hint="Straße" />
+</RelativeLayout>

@@ -1,13 +1,12 @@
 package de.egovt.evameg
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import de.egovt.evameg.databinding.ActivityProfileBinding
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -17,6 +16,21 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)}
+        setContentView(binding.root)
 
+        val textViewFirstName:TextView= findViewById(R.id.textView_firstName)
+        val textViewLastName:TextView= findViewById(R.id.textView_lastName)
+        val textViewDateOfBirth:TextView= findViewById(R.id.textView_dateOfBirth)
+        val textViewWohnort:TextView= findViewById(R.id.textView_wohnort)
+        val textViewPostalCode:TextView= findViewById(R.id.textView_postalCode)
+        val textViewStreet:TextView= findViewById(R.id.textView_street)
+        val dataEditButton:Button=findViewById(R.id.button_edit_Data)
+        dataEditButton.setOnClickListener(View.OnClickListener(){
+          openDialog()
+        })
+
+    }
+    fun openDialog(){
+
+    }
 }

@@ -47,11 +47,11 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/textView_firstName"
                         android:layout_width="93dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="Vorname des Users"
                         android:textColor="#8E8888"
                         android:textSize="20sp" />
 
@@ -75,11 +75,11 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/textView_lastName"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="Nachname des Users"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp" />
 
@@ -102,7 +102,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/textView_dateOfBirth"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -128,7 +128,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView19"
+                        android:id="@+id/textView_wohnort"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -154,7 +154,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView21"
+                        android:id="@+id/textView_postalCode"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -180,7 +180,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/textView_street"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -192,7 +192,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_edit_Data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
