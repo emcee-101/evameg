@@ -24,24 +24,25 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-      //vorher val textView...hier
+    }
+
+    override fun onStart() {
+        super.onStart()
         val dataEditButton: Button = findViewById(R.id.button_edit_Data)
         dataEditButton.setOnClickListener{
             showEditTextDialog()
         }
-
-
     }
     fun showEditTextDialog() {
 
         val builder=AlertDialog.Builder(this)
         val inflater:LayoutInflater=layoutInflater
         val dialogLayout:View=inflater.inflate(R.layout.layout_dialog_popup,null)
-        val editText1:EditText=dialogLayout.findViewById<EditText>(R.id.edit_firstName)
-        val editText2:EditText=dialogLayout.findViewById<EditText>(R.id.edit_lastName)
-        val editText3:EditText=dialogLayout.findViewById<EditText>(R.id.edit_dateOfBirth)
-        val editText4:EditText=dialogLayout.findViewById<EditText>(R.id.edit_wohnort)
-        val editText5:EditText=dialogLayout.findViewById<EditText>(R.id.edit_postalCode)
+        val editText1:EditText=dialogLayout.findViewById(R.id.edit_firstName)
+        val editText2:EditText=dialogLayout.findViewById(R.id.edit_lastName)
+        val editText3:EditText=dialogLayout.findViewById(R.id.edit_dateOfBirth)
+        val editText4:EditText=dialogLayout.findViewById(R.id.edit_wohnort)
+        val editText5:EditText=dialogLayout.findViewById(R.id.edit_postalCode)
         val editText6:EditText=dialogLayout.findViewById<EditText>(R.id.edit_street)
 
         val textViewFirstName: TextView = findViewById(R.id.textView_firstName)

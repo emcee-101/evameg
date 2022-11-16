@@ -11,8 +11,8 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="40dp">
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-139dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,9 +25,10 @@
                 android:layout_height="332dp"
                 android:background="@drawable/grey_background"
                 android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="202dp">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -37,21 +38,22 @@
 
                     <TextView
                         android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
+                        android:layout_width="20dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
+                        android:layout_marginLeft="11dp"
                         android:text="Vorname:"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:textColor="#52A855"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_firstName"
-                        android:layout_width="93dp"
+                        android:layout_width="140dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:text="Vorname des Users"
+                        android:text="UserVorname"
                         android:textColor="#8E8888"
                         android:textSize="20sp" />
 
@@ -65,21 +67,22 @@
 
                     <TextView
                         android:id="@+id/textView14"
-                        android:layout_width="82dp"
+                        android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:layout_marginLeft="11dp"
                         android:text="Nachname:"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_lastName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Nachname des Users"
+                        android:text="NachnameUser"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp" />
 
@@ -92,21 +95,22 @@
 
                     <TextView
                         android:id="@+id/textView16"
-                        android:layout_width="83dp"
+                        android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:layout_marginLeft="11dp"
                         android:text="Geburtstag:"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_dateOfBirth"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="Birthday"
                         android:textColor="#8F8D8D"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -118,21 +122,22 @@
 
                     <TextView
                         android:id="@+id/textView18"
-                        android:layout_width="wrap_content"
+                        android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:layout_marginLeft="11dp"
                         android:text="Wohnort:"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_wohnort"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="WohnortUser"
                         android:textColor="#959393"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -144,21 +149,22 @@
 
                     <TextView
                         android:id="@+id/textView20"
-                        android:layout_width="86dp"
+                        android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:layout_marginLeft="11dp"
                         android:text="PLZ:"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_postalCode"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="PLZ"
                         android:textColor="#9A9A9A"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -170,21 +176,22 @@
 
                     <TextView
                         android:id="@+id/textView22"
-                        android:layout_width="84dp"
+                        android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:layout_marginLeft="11dp"
                         android:text="Straße:"
-                        android:textAlignment="center"
+                        android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView_street"
-                        android:layout_width="wrap_content"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="TextView"
+                        android:text="StraßeUser"
                         android:textColor="#A1A1A1"
                         android:textSize="20sp" />
                 </LinearLayout>

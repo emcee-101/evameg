@@ -7,21 +7,23 @@
         android:id="@+id/edit_firstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Vorname"
+        android:layout_above="@+id/edit_lastName"
+        android:layout_marginBottom="1dp"
         android:autofillHints=""
-        android:inputType="text"/>
+        android:hint="Vorname"
+        android:inputType="text"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/edit_lastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/edit_dateOfBirth"
-        android:layout_below="@+id/edit_firstName"
-        android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
-        android:hint="Nachname"
         android:autofillHints=""
-        android:inputType="text"/>
+        android:hint="Nachname"
+        android:inputType="text"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/edit_dateOfBirth"
@@ -29,9 +31,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/edit_wohnort"
         android:layout_marginBottom="1dp"
-        android:hint="Geburtstag"
         android:autofillHints=""
-        android:inputType="date"/>
+        android:hint="Geburtstag"
+        android:inputType="date"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/edit_wohnort"
@@ -39,9 +42,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/edit_postalCode"
         android:layout_marginBottom="1dp"
-        android:hint="Wohnort"
         android:autofillHints=""
-        android:inputType="text"/>
+        android:hint="Wohnort"
+        android:inputType="text"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/edit_postalCode"
@@ -49,17 +53,19 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/edit_street"
         android:layout_marginBottom="1dp"
-        android:hint="Postleitzahl"
         android:autofillHints=""
-        android:inputType=""/>
+        android:hint="Postleitzahl"
+        android:inputType=""
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/edit_street"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="455dp"
-        android:hint="Straße"
+        android:layout_marginBottom="428dp"
         android:autofillHints=""
-        android:inputType="textPostalAddress"/>
+        android:hint="Straße"
+        android:inputType="textPostalAddress"
+        android:minHeight="48dp" />
 </RelativeLayout>
