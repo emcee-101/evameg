@@ -1,13 +1,15 @@
 package de.egovt.evameg
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import de.egovt.evameg.fragments.ScreenSlidePageFragment1
-import de.egovt.evameg.utility.viewPagerAdapterSetup
+import de.egovt.evameg.fragments.setup.ScreenSlidePageFragment1
+import de.egovt.evameg.fragments.setup.ScreenSlidePageFragment2
+import de.egovt.evameg.utility.customFragmentStateAdapter
 
 
 class SetupActivity : AppCompatActivity() {
@@ -22,22 +24,26 @@ class SetupActivity : AppCompatActivity() {
 
         // Resource: https://medium.com/@huseyinozkoc/hello-welcome-to-my-article-dear-android-developers-and-dear-fox-a4c483f8a4ac
 
-        val myAdapter: viewPagerAdapterSetup = viewPagerAdapterSetup(getSupportFragmentManager(), getLifecycle());
+        val myAdapter: customFragmentStateAdapter = customFragmentStateAdapter(supportFragmentManager, lifecycle
+        );
 
         myAdapter.addFragment(ScreenSlidePageFragment1());
-        myAdapter.addFragment(ScreenSlidePageFragment1());
+        myAdapter.addFragment(ScreenSlidePageFragment2());
 
         viewPagerInLayout.orientation = ViewPager2.ORIENTATION_HORIZONTAL;
 
         viewPagerInLayout.adapter = myAdapter;
 
-        // TODO more Activities for Interaction
+
         // TODO Intent  to refer back to main
 
     }
 
 
-
+    fun referToMain(){
+        val referrer: Intent = Intent(this, MainActivity::class.java)
+        startActivity(referrer)
+    }
 
 
     fun onLeaving(){
@@ -48,6 +54,8 @@ class SetupActivity : AppCompatActivity() {
         val sets:SettingsStorage = SettingsStorage();
         sets.KeyValueStore(application);
         sets.writeBool("notFirstStart", true);
+
+        referToMain();
 
     }
 }
