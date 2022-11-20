@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">EVamEg</string>
+    <string name="welcome_message">Welcome to EVamEg!</string>
+    <string name="welcome_button">Next</string>
+    <string name="back_button">Back</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ask_scan">Do you want to scan your ID?</string>
+    <string name="info_scan">Scanning your ID will make it possible to automatically retrieve commonly used Data for this App, that you will most likely need to input later.</string>
+    <string name="welcome_alert_no_caption">Are you sure?</string>
+    <string name="welcome_alert_no_text">As the Data will be needed for almost every functionality of the App, you will be asked again for this.</string>
+    <string name="welcome_alert_yes_caption">Scan failed</string>
+    <string name="welcome_alert_yes_text">Manually input data?</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
