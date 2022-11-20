@@ -1,10 +1,13 @@
 package de.egovt.evameg.fragments.setup
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.cont
@@ -27,5 +30,22 @@ class ScreenSlidePageFragment1 : Fragment()  {
 
     }
 
+    val backPressedCallback = object:OnBackPressedCallback(false){
+        override fun handleOnBackPressed() {
+            // do nothin'
+            Log.i("aaa", "THIS HAPPENED")
+            // TODO interception does not work
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        backPressedCallback.isEnabled=true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        backPressedCallback.isEnabled=false
+    }
 
 }
