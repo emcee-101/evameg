@@ -22,14 +22,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // CHECK IN KEY VALUE STORE IF FIRST START
         val sets:SettingsStorage = SettingsStorage();
         sets.KeyValueStore(application);
         val notFirstStart:Boolean = sets.getBool("notFirstStart");
         Log.i("a", notFirstStart.toString());
 
-        // if the app is started for the first time
+        // IF APP STARTED FOR FIRST TIME, referToSetup
 
-        // THIS WORKS, BUT IS SAVED ACROSS REBUILDS! -> BLOCKS TESTS -> THATS WHY I also have the "else" path (tautology)
+        // THIS WORKS, BUT IS SAVED ACROSS REBUILDS! -> MAY BLOCK TESTS
         if (!notFirstStart) {
 
             // INTENT -> SetupActivity
