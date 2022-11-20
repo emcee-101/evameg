@@ -35,8 +35,10 @@ class MainActivity : AppCompatActivity() {
             // INTENT -> SetupActivity
             referToSetup();
 
-            // TODO REMOVE ELSE CLAUSE WHEN NO TESTING IS NEEDED ANYMORE, TAUTOLOGY needed to guarantee testability
-        } else referToSetup();
+
+        }
+        // needed to test SETUP
+        // else referToSetup();
 
 
     }

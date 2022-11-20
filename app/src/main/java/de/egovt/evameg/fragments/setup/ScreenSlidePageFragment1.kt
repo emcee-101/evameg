@@ -30,22 +30,5 @@ class ScreenSlidePageFragment1 : Fragment()  {
 
     }
 
-    val backPressedCallback = object:OnBackPressedCallback(false){
-        override fun handleOnBackPressed() {
-            // do nothin'
-            Log.i("aaa", "THIS HAPPENED")
-            // TODO interception does not work
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        backPressedCallback.isEnabled=true
-    }
-
-    override fun onPause() {
-        super.onPause()
-        backPressedCallback.isEnabled=false
-    }
 
 }

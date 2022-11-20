@@ -35,27 +35,34 @@ class SetupActivity : AppCompatActivity() {
         viewPagerInLayout.adapter = myAdapter;
 
 
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed(){
+                back(viewPagerInLayout)
+            }
+        })
+
+
     }
 
-
-
-
     fun referToMain(){
+        onLeaving()
         val referrer: Intent = Intent(this, MainActivity::class.java)
         startActivity(referrer)
     }
 
 
-    fun onLeaving(){
-        // TODO Intent  to refer back to main
-
+    private fun onLeaving(){
 
         // set Value to indicate complete app Setup to true
-        val sets:SettingsStorage = SettingsStorage();
+        val sets: SettingsStorage = SettingsStorage();
         sets.KeyValueStore(application);
         sets.writeBool("notFirstStart", true);
 
-        referToMain();
+        Log.i("aaa", "notFirstStart Value was set to ${sets.getBool("notFirstStart").toString()}")
 
     }
+
+
+
+
 }
