@@ -17,36 +17,39 @@ import de.egovt.evameg.utility.customFragmentStateAdapter
 class SetupActivity : AppCompatActivity() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup)
 
-        Log.i("aaa", "Setup")
+        Log.i("aaa", "Setup started")
 
-        val viewPagerInLayout:ViewPager2 = findViewById(R.id.viewPagerSetup);
-        val myAdapter = customFragmentStateAdapter(supportFragmentManager, lifecycle);
+        val viewPagerInLayout:ViewPager2 = findViewById(R.id.viewPagerSetup)
+        val myAdapter = customFragmentStateAdapter(supportFragmentManager, lifecycle)
 
-        myAdapter.addFragment(ScreenSlidePageFragment1());
-        myAdapter.addFragment(ScreenSlidePageFragment2());
+        myAdapter.addFragment(ScreenSlidePageFragment1())
+        myAdapter.addFragment(ScreenSlidePageFragment2())
 
         // Prepare Slider
-        viewPagerInLayout.orientation = ViewPager2.ORIENTATION_HORIZONTAL;
-        viewPagerInLayout.adapter = myAdapter;
+        viewPagerInLayout.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        viewPagerInLayout.adapter = myAdapter
 
 
         onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
-            override fun handleOnBackPressed(){
-                back(viewPagerInLayout)
-            }
-        })
 
+            override fun handleOnBackPressed(){
+
+                back(viewPagerInLayout)
+
+            }
+
+        })
 
     }
 
     fun referToMain(){
         onLeaving()
-        val referrer: Intent = Intent(this, MainActivity::class.java)
+        val referrer = Intent(this, MainActivity::class.java)
         startActivity(referrer)
     }
 
@@ -54,9 +57,9 @@ class SetupActivity : AppCompatActivity() {
     private fun onLeaving(){
 
         // set Value to indicate complete app Setup to true
-        val sets: SettingsStorage = SettingsStorage();
-        sets.KeyValueStore(application);
-        sets.writeBool("notFirstStart", true);
+        val sets = SettingsStorage()
+        sets.KeyValueStore(application)
+        sets.writeBool("notFirstStart", true)
 
         Log.i("aaa", "notFirstStart Value was set to ${sets.getBool("notFirstStart").toString()}")
 
