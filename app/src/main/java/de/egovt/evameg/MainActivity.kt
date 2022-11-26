@@ -28,7 +28,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SetupActivity::class.java))
 
         }
-
+        val MapButton: Button =findViewById(R.id.mp_button)
+        MapButton.setOnClickListener {
+            //Navigate from one Activity to an other
+            startActivity(Intent(this, MapviewActivity::class.java))
+        }
 
         val profileButton: Button =findViewById(R.id.button)
         profileButton.setOnClickListener {
