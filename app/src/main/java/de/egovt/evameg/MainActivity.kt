@@ -2,11 +2,9 @@ package de.egovt.evameg
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import de.egovt.evameg.SettingsStorage
 
 import android.widget.Button
