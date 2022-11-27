@@ -8,8 +8,8 @@ import androidx.activity.OnBackPressedCallback
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import de.egovt.evameg.fragments.setup.ScreenSlidePageFragment1
-import de.egovt.evameg.fragments.setup.ScreenSlidePageFragment2
+import de.egovt.evameg.Fragments.setup.ScreenSlidePageFragment1
+import de.egovt.evameg.Fragments.setup.ScreenSlidePageFragment2
 import de.egovt.evameg.utility.back
 import de.egovt.evameg.utility.customFragmentStateAdapter
 

@@ -7,7 +7,6 @@ import android.util.Log
 
 import android.widget.Button
 
-
 class MainActivity : AppCompatActivity() {
 
 
