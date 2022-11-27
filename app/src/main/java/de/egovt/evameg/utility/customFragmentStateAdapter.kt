@@ -12,7 +12,7 @@ class customFragmentStateAdapter(fragmentManager: FragmentManager, lifecycle: Li
     private val fragmentList: ArrayList<Fragment> = ArrayList()
 
     override fun createFragment(position: Int): Fragment {
-        Log.i("a", "CREATED A FRAGMETN ON POSITION $position");
+        Log.i("a", "Created fragment in Position $position")
         return fragmentList[position]
     }
 

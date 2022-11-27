@@ -12,7 +12,7 @@ class SettingsStorage {
     private var app: Application? = null
 
     fun KeyValueStore(application: Application) {
-        this.app = application;
+        this.app = application
     }
 
     private fun  getPreferences(): SharedPreferences? {
@@ -21,7 +21,7 @@ class SettingsStorage {
 
     fun writeBool(key: String, value: Boolean){
 
-        this.getPreferences()!!.edit().putBoolean(key, value).apply();
+        this.getPreferences()!!.edit().putBoolean(key, value).apply()
 
 
     }
@@ -32,6 +32,5 @@ class SettingsStorage {
 
     }
 
-    // TODO add for other types of data
 
 }
