@@ -1,15 +1,10 @@
 package de.egovt.evameg
 
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import de.egovt.evameg.databinding.ActivityMapviewBinding
+import de.egovt.evameg.utility.activityIsPermissionGiven
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -18,52 +13,51 @@ import org.osmdroid.views.MapView
 
 class MapviewActivity  : AppCompatActivity() {
 
-    lateinit var mMap : MapView
+    lateinit var myMap : MapView
 
-    fun checkForPermissions( code : Manifest.permission){
+    private fun checkMapPermissions(): Boolean {
 
-        if (ContextCompat.checkSelfPermission(MapviewActivity.class, code) == PackageManager.PERMISSION_DENIED) {
-            // Requesting the permission
-            ActivityCompat.requestPermissions(MapviewActivity.class, arrayOf(code), 0L)
-        } else {
-            Toast.makeText(MapviewActivity.class, "Permission already granted", Toast.LENGTH_SHORT).show()
-        }
+        var neededPermissions = arrayOf(
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    android.Manifest.permission.ACCESS_NETWORK_STATE,
+                    android.Manifest.permission.INTERNET,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_WIFI_STATE,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)
 
+        return activityIsPermissionGiven(this, neededPermissions, this)
 
-        if ((checkSelfPermission(code) == PackageManager.PERMISSION_GRANTED)) {
-            Log.v("TAG", "Permission there yessss")
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO ask for permissions more gracefully
-        // TODO read about databinding, even though it shouldnt be needed here
-        // TODO make this thing wórk
-
-
+        checkMapPermissions()
 
         Configuration.getInstance().userAgentValue = packageName
 
         val binding = ActivityMapviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mMap = binding.coolMap
-        mMap.setTileSource(TileSourceFactory.MAPNIK)
+        myMap = binding.coolMap
+        myMap.setTileSource(TileSourceFactory.MAPNIK)
 
 
-        val longitude = intent.getDoubleExtra("longitude", 36.7783)
-        val latitude = intent.getDoubleExtra("latitude", 119.4179)
 
 
-        val controller = mMap.controller
+        val controller = myMap.controller
+        controller.setZoom(18.5)
 
-        val mapPoint = GeoPoint(latitude, longitude)
+        val mapPointFHErfurt = GeoPoint(50.985167884281026, 11.041366689707237)
+        controller.setCenter(mapPointFHErfurt)
 
-        controller.setZoom(9.5)
+        // TODO Interactive Pins
+        // "How do I place icons on the map with a click listener?"
+        // https://osmdroid.github.io/osmdroid/How-to-use-the-osmdroid-library.html
 
-        controller.animateTo(mapPoint)
+
 
     }
 
