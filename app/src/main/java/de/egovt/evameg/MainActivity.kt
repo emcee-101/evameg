@@ -41,11 +41,16 @@ class MainActivity : AppCompatActivity() {
         val notFirstStart:Boolean = sets.getBool("notFirstStart")
         Log.i("This is not the first start: ", notFirstStart.toString())
 
-        // saved value acroos rebuilds and restarts
+        // saved value across rebuilds and restarts
         if (!notFirstStart) {
 
             startActivity(Intent(this, SetupActivity::class.java))
 
+        }
+        val MapButton: Button =findViewById(R.id.mp_button)
+        MapButton.setOnClickListener {
+            //Navigate from one Activity to an other
+            startActivity(Intent(this, MapviewActivity::class.java))
         }
     }
 
