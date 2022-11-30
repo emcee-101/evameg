@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.util.Log
-
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.databinding.ActivityMainBinding
 
@@ -23,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFragment(Home())
+                R.id.mapview -> startActivity(Intent(this, MapviewActivity::class.java))
                 R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
                 else -> {}
             }
@@ -47,11 +46,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SetupActivity::class.java))
 
         }
-        val MapButton: Button =findViewById(R.id.mp_button)
-        MapButton.setOnClickListener {
-            //Navigate from one Activity to an other
-            startActivity(Intent(this, MapviewActivity::class.java))
-        }
+
     }
 
     private fun replaceFragment(fragment: Fragment){
