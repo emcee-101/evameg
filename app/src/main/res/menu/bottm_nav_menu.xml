@@ -5,6 +5,7 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_baseline_account_circle_24"
         android:title="Home" />
+
     <item
         android:id="@+id/history"
         android:icon="@drawable/ic_baseline_history_24"
@@ -13,4 +14,8 @@
         android:id="@+id/mapview"
         android:icon="@drawable/ic_baseline_map_24"
         android:title="Mapview" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="Profile" />
 </menu>

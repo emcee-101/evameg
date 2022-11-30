@@ -1,4 +1,4 @@
-package de.egovt.evameg.fragments.setup
+package de.egovt.evameg.Fragments.setup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +22,7 @@ class ScreenSlidePageFragment1 : Fragment()  {
         super.onViewCreated(view, savedInstanceState)
 
         // continue to next fragment object
-        val nextButton:Button? = getView()?.findViewById(R.id.welcome_button_1_next);
+        val nextButton:Button? = getView()?.findViewById(R.id.welcome_button_1_next)
         nextButton?.setOnClickListener { cont(activity?.findViewById(R.id.viewPagerSetup)) }
 
     }

@@ -1,4 +1,4 @@
-package de.egovt.evameg.fragments.setup
+package de.egovt.evameg.Fragments.setup
 
 import android.app.AlertDialog
 import android.content.DialogInterface
