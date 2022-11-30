@@ -13,11 +13,11 @@ import org.osmdroid.views.MapView
 
 class MapviewActivity  : AppCompatActivity() {
 
-    lateinit var myMap : MapView
+    private lateinit var myMap : MapView
 
     private fun checkMapPermissions(): Boolean {
 
-        var neededPermissions = arrayOf(
+        val neededPermissions = arrayOf(
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     android.Manifest.permission.ACCESS_NETWORK_STATE,
                     android.Manifest.permission.INTERNET,

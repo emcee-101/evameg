@@ -1,13 +1,10 @@
 package de.egovt.evameg.fragments.setup
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.cont
