@@ -14,6 +14,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // CHECK IN KEY VALUE STORE IF FIRST START
+        val sets = SettingsStorage()
+        sets.KeyValueStore(application)
+        val notFirstStart:Boolean = sets.getBool("notFirstStart")
+        Log.i("This is not the first start: ", notFirstStart.toString())
+
+        // saved value across rebuilds and restarts
+        if (!notFirstStart) {
+
+            startActivity(Intent(this, SetupActivity::class.java))
+
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(Home())
@@ -34,18 +48,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent)
         }
 
-        // CHECK IN KEY VALUE STORE IF FIRST START
-        val sets = SettingsStorage()
-        sets.KeyValueStore(application)
-        val notFirstStart:Boolean = sets.getBool("notFirstStart")
-        Log.i("This is not the first start: ", notFirstStart.toString())
 
-        // saved value across rebuilds and restarts
-        if (!notFirstStart) {
-
-            startActivity(Intent(this, SetupActivity::class.java))
-
-        }
 
     }
 
