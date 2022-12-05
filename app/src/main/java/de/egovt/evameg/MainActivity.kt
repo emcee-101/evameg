@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.util.Log
-
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.databinding.ActivityMainBinding
 
@@ -16,6 +14,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // CHECK IN KEY VALUE STORE IF FIRST START
+        val sets = SettingsStorage()
+        sets.KeyValueStore(application)
+        val notFirstStart:Boolean = sets.getBool("notFirstStart")
+        Log.i("This is not the first start: ", notFirstStart.toString())
+
+        // saved value across rebuilds and restarts
+        if (!notFirstStart) {
+
+            startActivity(Intent(this, SetupActivity::class.java))
+
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(Home())
@@ -23,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFragment(Home())
+                R.id.mapview -> startActivity(Intent(this, MapviewActivity::class.java))
                 R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
                 else -> {}
             }
@@ -35,18 +48,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent)
         }
 
-        // CHECK IN KEY VALUE STORE IF FIRST START
-        val sets = SettingsStorage()
-        sets.KeyValueStore(application)
-        val notFirstStart:Boolean = sets.getBool("notFirstStart")
-        Log.i("This is not the first start: ", notFirstStart.toString())
 
-        // saved value acroos rebuilds and restarts
-        if (!notFirstStart) {
 
-            startActivity(Intent(this, SetupActivity::class.java))
-
-        }
     }
 
     private fun replaceFragment(fragment: Fragment){
