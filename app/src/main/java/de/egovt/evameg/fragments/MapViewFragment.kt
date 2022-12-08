@@ -4,22 +4,46 @@ package de.egovt.evameg.fragments
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
-import de.egovt.evameg.databinding.ActivityMapviewBinding
 import de.egovt.evameg.utility.MapPin
 import de.egovt.evameg.utility.activityIsPermissionGiven
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.OverlayItem
 
-class MapViewFragment: Fragment(R.layout.activity_mapview) {
 
+class MapViewFragment(): Fragment() {
+
+    constructor(newPins : Array<MapPin>) : this() {
+
+        // todo add functionality to add them to map
+
+    }
+
+    private lateinit var thisView : View
     private lateinit var myMap : MapView
     private lateinit var mapPins : Array<MapPin>
     private lateinit var momentaryContext : Context
+    private var overlayItems : ArrayList<OverlayItem> = arrayListOf( OverlayItem("a", "b", GeoPoint(0,0)))
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        thisView = inflater.inflate(R.layout.activity_mapview, container, false)
+        return thisView
+    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,9 +59,8 @@ class MapViewFragment: Fragment(R.layout.activity_mapview) {
 
         Configuration.getInstance().userAgentValue = activity?.packageName
 
-        val binding = ActivityMapviewBinding.inflate(layoutInflater)
 
-        myMap = requireView().findViewById(R.id.mapview)
+        myMap = thisView.findViewById(R.id.coolMap)
         myMap.setTileSource(TileSourceFactory.MAPNIK)
 
 
@@ -50,15 +73,30 @@ class MapViewFragment: Fragment(R.layout.activity_mapview) {
         // "How do I place icons on the map with a click listener?"
         // https://osmdroid.github.io/osmdroid/How-to-use-the-osmdroid-library.html
 
+        overlayItems.add(OverlayItem("aa", "a fish", mapPointFHErfurt))
 
+        val mOverlay = ItemizedOverlayWithFocus(overlayItems,
+            object : OnItemGestureListener<OverlayItem?> {
+                override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
+                    //do something
+
+                    Log.i("aaa", "hello the icon was clicked on the map")
+
+
+                    return true
+                }
+
+                override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
+                    return false
+                }
+            }, context
+        )
+        mOverlay.setFocusItemsOnTap(true)
+
+        myMap.getOverlays().add(mOverlay)
 
     }
 
-    fun addPins(points : Array<MapPin>){
-
-        // todo logic for adding pin  + callback
-
-    }
 
     private fun checkMapPermissions(): Boolean {
 

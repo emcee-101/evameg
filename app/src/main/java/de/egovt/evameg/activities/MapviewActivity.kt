@@ -1,4 +1,4 @@
-package de.egovt.evameg
+package de.egovt.evameg.activities
 
 
 import android.os.Bundle

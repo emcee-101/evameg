@@ -6,7 +6,10 @@ import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import android.util.Log
 import androidx.fragment.app.Fragment
+import de.egovt.evameg.activities.SetupActivity
 import de.egovt.evameg.databinding.ActivityMainBinding
+import de.egovt.evameg.fragments.MapViewFragment
+import de.egovt.evameg.utility.SettingsStorage
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFragment(Home())
-                R.id.mapview -> startActivity(Intent(this, MapviewActivity::class.java))
+                R.id.mapview -> replaceFragment(MapViewFragment())
                 R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
                 else -> {}
             }

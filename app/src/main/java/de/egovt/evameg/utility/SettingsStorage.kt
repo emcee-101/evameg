@@ -1,4 +1,4 @@
-package de.egovt.evameg
+package de.egovt.evameg.utility
 
 import android.app.Application
 import android.content.Context

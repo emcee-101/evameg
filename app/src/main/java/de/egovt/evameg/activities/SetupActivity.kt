@@ -1,4 +1,4 @@
-package de.egovt.evameg
+package de.egovt.evameg.activities
 
 
 import android.content.Intent
@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import de.egovt.evameg.Fragments.setup.ScreenSlidePageFragment1
 import de.egovt.evameg.Fragments.setup.ScreenSlidePageFragment2
+import de.egovt.evameg.MainActivity
+import de.egovt.evameg.R
+import de.egovt.evameg.utility.SettingsStorage
 import de.egovt.evameg.utility.back
 import de.egovt.evameg.utility.customFragmentStateAdapter
 

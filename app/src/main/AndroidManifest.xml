@@ -35,7 +35,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SetupActivity"
+            android:name=".activities.SetupActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -64,7 +64,7 @@
         </activity>
 
         <activity
-            android:name=".MapviewActivity"
+            android:name=".activities.MapviewActivity"
             android:exported="false">
 
 
