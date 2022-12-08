@@ -34,7 +34,7 @@ class MapViewFragment(): Fragment() {
     private lateinit var myMap : MapView
     private lateinit var mapPins : Array<MapPin>
     private lateinit var momentaryContext : Context
-    private var overlayItems : ArrayList<OverlayItem> = arrayListOf( OverlayItem("a", "b", GeoPoint(0,0)))
+    private var overlayItems : ArrayList<OverlayItem> = arrayListOf( OverlayItem("a", "b", GeoPoint(0.0,0.0)))
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -103,7 +103,7 @@ class MapViewFragment(): Fragment() {
         // todo look of pin
         // change look startMarker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
         // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
-        startMarker.setTitle("Start point");
+        startMarker.title = "Start point"
     }
 
 
