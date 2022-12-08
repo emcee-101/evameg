@@ -18,6 +18,7 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.OverlayItem
 
 
@@ -78,7 +79,7 @@ class MapViewFragment(): Fragment() {
         val mOverlay = ItemizedOverlayWithFocus(overlayItems,
             object : OnItemGestureListener<OverlayItem?> {
                 override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
-                    //do something
+                    //todo react appropriately
 
                     Log.i("aaa", "hello the icon was clicked on the map")
 
@@ -93,8 +94,16 @@ class MapViewFragment(): Fragment() {
         )
         mOverlay.setFocusItemsOnTap(true)
 
-        myMap.getOverlays().add(mOverlay)
+       // myMap.getOverlays().add(mOverlay)
 
+        val startMarker = Marker(myMap)
+        startMarker.position = mapPointFHErfurt
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        myMap.overlays.add(startMarker)
+        // todo look of pin
+        // change look startMarker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
+        // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
+        startMarker.setTitle("Start point");
     }
 
 
