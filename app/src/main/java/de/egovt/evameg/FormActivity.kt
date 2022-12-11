@@ -22,6 +22,7 @@ class FormActivity : AppCompatActivity() {
             for (item in requiredFields[key]!!){
                 addItem(item)
             }
+            break
         }
     }
     private fun addItem(hint : String){
