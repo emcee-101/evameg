@@ -15,6 +15,7 @@ import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_
 import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_STREET
 import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_WOHNORT
 import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.TABLE_NAME
+import de.egovt.evameg.Utility.UserProfileData
 
 private const val Tag="DataBaseHelper"
 fun logging(){
@@ -123,7 +124,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val result=db.rawQuery(query,null)
         if (result.moveToLast()){
             do {
-                var userProfileData=UserProfileData()
+                var userProfileData= UserProfileData()
                 userProfileData.id=result.getString(result.getColumnIndex(BaseColumns._ID)).toInt()
                 userProfileData.firstName=result.getString(result.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME))
                 userProfileData.lastName=result.getString(result.getColumnIndex(COLUMN_NAME_USER_LASTNAME))
