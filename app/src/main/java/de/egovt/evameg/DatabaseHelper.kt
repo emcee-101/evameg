@@ -116,7 +116,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         }
     }
     @SuppressLint("Range")
-    fun readData() :MutableList<UserProfileData>{
+    fun readUserData() :MutableList<UserProfileData>{
         var list: MutableList<UserProfileData> =ArrayList()
         val db= this.readableDatabase
         val query="Select * from " + TABLE_NAME

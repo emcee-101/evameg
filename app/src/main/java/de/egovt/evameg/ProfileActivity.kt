@@ -10,19 +10,23 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import de.egovt.evameg.databinding.ActivityProfileBinding
 
 
 class ProfileActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityProfileBinding
+    val context = this
+    var db = DbHelper(context)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
     }
 
@@ -33,7 +37,7 @@ class ProfileActivity : AppCompatActivity() {
             showEditTextDialog()
         }
     }
-    @SuppressLint("InflateParams")
+
     fun showEditTextDialog() {
 
         val builder=AlertDialog.Builder(this)
@@ -62,6 +66,15 @@ class ProfileActivity : AppCompatActivity() {
                 textViewWohnort.text=editText4.text.toString()
                 textViewPostalCode.text=editText5.text.toString()
                 textViewStreet.text=editText6.text.toString()
+
+                var userProfileData=UserProfileData(textViewFirstName.toString(),
+                                textViewLastName.toString(),
+                                textViewDateOfBirth.toString(),
+                                textViewWohnort.toString(),
+                                textViewPostalCode.toString(),
+                                textViewStreet.toString())
+
+                db.insertUserData(userProfileData)
             }
             setNegativeButton("cancel"){dialog,which->
                 Log.d("Main","Negative button clicked")
@@ -71,4 +84,3 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 }
-
