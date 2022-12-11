@@ -8,15 +8,24 @@ import android.widget.LinearLayout
 
 
 class FormActivity : AppCompatActivity() {
-
+    private lateinit var matter_of_concern : String;
+    private val requiredFields = mapOf(
+        "new_id_card"                   to arrayOf("office_location", "body_height", "eye_color"),
+        "register_marriage"             to arrayOf("office_location","partner_firstname", "partner_lastname"),
+        "driving_licence_replacement"   to arrayOf(""),
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form)
-
+        for (key in requiredFields.keys){
+            if (key != matter_of_concern) continue
+            for (item in requiredFields[key]!!){
+                addItem(item)
+            }
+        }
     }
     private fun addItem(hint : String){
         val editLinearLayout = findViewById<LinearLayout>(R.id.container)
-        val view = findViewById<LinearLayout>(R.id.dynamic_edit_text)
         val editText = EditText(this)
         editText.layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -24,7 +33,5 @@ class FormActivity : AppCompatActivity() {
         editText.setPadding(20, 20, 20, 20)
         editText.hint = hint
         editLinearLayout?.addView(editText)
-        view.addView(editText)
-
     }
 }

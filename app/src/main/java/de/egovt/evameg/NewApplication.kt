@@ -17,11 +17,15 @@ class NewApplication : AppCompatActivity() {
         binding = ActivityNewApplicationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val applicationsList = arrayOf("Wohnsitz melden","Einbürgerung beantragen","Personalausweis beantragen","Reisepass beantragen","Reisepass verlängern","Einwohnerangelegenheiten","Heirat beantragen","Befreiung von der Ausweispflicht beantragen", "Kindergeld beantragen","Abschiebung beantragen", "Aufenthaltstitel verlängern","Ersatzführerschein beantragen", "Fahrerlaubnis - Begleitetes Fahren ab 17", "Fahrerlaubnis - Bus - Klassen D1, D1E, D, DE", "Fahrerqualifikationsnachweis", "Kfz-Zulassung", "eiD-Karte", )
-
+        val applicationsList = mapOf(
+            getString(R.string.register_new_residence)  to "register_new_residence",
+            getString(R.string.new_id_card)             to "new_id_card",
+            getString(R.string.new_passport)            to "new_passport",
+            getString(R.string.extend_passport)         to "extend_passport",
+            getString(R.string.register_marriage)       to "register_marriage")
         val appListAdapter : ArrayAdapter<String> = ArrayAdapter(
             this,android.R.layout.simple_list_item_1,
-            applicationsList
+            applicationsList.keys.toList()
         )
         binding.applicationList.adapter = appListAdapter;
         val appList: ListView = findViewById(R.id.applicationList)
