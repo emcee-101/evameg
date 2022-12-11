@@ -1,4 +1,4 @@
-package de.egovt.evameg
+package de.egovt.evameg.Utility
 
 class UserProfileData {
     var id: Int=0
