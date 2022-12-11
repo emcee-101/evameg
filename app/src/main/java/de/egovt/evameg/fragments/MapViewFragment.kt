@@ -10,31 +10,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
-import de.egovt.evameg.utility.MapPin
 import de.egovt.evameg.utility.activityIsPermissionGiven
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener
-import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
 import org.osmdroid.views.overlay.Marker
-import org.osmdroid.views.overlay.OverlayItem
 
 
 class MapViewFragment(): Fragment() {
 
-    constructor(newPins : Array<MapPin>) : this() {
+    constructor(newMarkers : Array<Marker>) : this() {
 
-        // todo add functionality to add them to map
+        // todo add functionality to add them to map, correctly configured
+        myMarkers = newMarkers
 
     }
 
     private lateinit var thisView : View
     private lateinit var myMap : MapView
-    private lateinit var mapPins : Array<MapPin>
+    private lateinit var myMarkers : Array<Marker>
     private lateinit var momentaryContext : Context
-    private var overlayItems : ArrayList<OverlayItem> = arrayListOf( OverlayItem("a", "b", GeoPoint(0.0,0.0)))
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,31 +70,15 @@ class MapViewFragment(): Fragment() {
         // "How do I place icons on the map with a click listener?"
         // https://osmdroid.github.io/osmdroid/How-to-use-the-osmdroid-library.html
 
-        overlayItems.add(OverlayItem("aa", "a fish", mapPointFHErfurt))
-
-        val mOverlay = ItemizedOverlayWithFocus(overlayItems,
-            object : OnItemGestureListener<OverlayItem?> {
-                override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
-                    //todo react appropriately
-
-                    Log.i("aaa", "hello the icon was clicked on the map")
-
-
-                    return true
-                }
-
-                override fun onItemLongPress(index: Int, item: OverlayItem?): Boolean {
-                    return false
-                }
-            }, context
-        )
-        mOverlay.setFocusItemsOnTap(true)
-
-       // myMap.getOverlays().add(mOverlay)
 
         val startMarker = Marker(myMap)
+
+        startMarker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
         startMarker.position = mapPointFHErfurt
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+
+
+
         myMap.overlays.add(startMarker)
         // todo look of pin
         // change look startMarker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
@@ -106,6 +86,16 @@ class MapViewFragment(): Fragment() {
         startMarker.title = "Start point"
     }
 
+    private fun onMarkerClickety(marker:Marker, map: MapView):Boolean{
+
+        Log.i("aaaaaaaaaaaaaa", "hallo marker 1111111111111111111")
+
+        // todo do something useful
+
+        return true
+    }
+
+    // todo call onPause and OnResume
 
     private fun checkMapPermissions(): Boolean {
 

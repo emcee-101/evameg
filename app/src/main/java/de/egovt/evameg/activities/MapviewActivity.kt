@@ -53,11 +53,6 @@ class MapviewActivity  : AppCompatActivity() {
         val mapPointFHErfurt = GeoPoint(50.985167884281026, 11.041366689707237)
         controller.setCenter(mapPointFHErfurt)
 
-        // TODO Interactive Pins
-        // "How do I place icons on the map with a click listener?"
-        // https://osmdroid.github.io/osmdroid/How-to-use-the-osmdroid-library.html
-
-
 
     }
 
