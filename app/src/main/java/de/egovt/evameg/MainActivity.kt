@@ -44,15 +44,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        val newApplication = findViewById<FloatingActionButton>(R.id.new_application)
-        newApplication.setOnClickListener {
-            val Intent = Intent(this, NewApplication::class.java)
-            startActivity(Intent)
-        }
-
-
-
     }
 
     private fun replaceFragment(fragment: Fragment){
