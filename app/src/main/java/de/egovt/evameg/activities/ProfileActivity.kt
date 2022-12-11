@@ -12,7 +12,9 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import de.egovt.evameg.DbHelper
 import de.egovt.evameg.R
+import de.egovt.evameg.Utility.UserProfileData
 import de.egovt.evameg.databinding.ActivityProfileBinding
 
 
@@ -68,7 +70,7 @@ class ProfileActivity : AppCompatActivity() {
                 textViewPostalCode.text=editText5.text.toString()
                 textViewStreet.text=editText6.text.toString()
 
-                var userProfileData=UserProfileData(textViewFirstName.toString(),
+                var userProfileData= UserProfileData(textViewFirstName.toString(),
                                 textViewLastName.toString(),
                                 textViewDateOfBirth.toString(),
                                 textViewWohnort.toString(),
