@@ -1,4 +1,4 @@
-package de.egovt.evameg
+package de.egovt.evameg.activities
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import de.egovt.evameg.R
 import de.egovt.evameg.databinding.ActivityProfileBinding
 
 

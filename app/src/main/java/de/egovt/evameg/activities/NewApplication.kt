@@ -1,4 +1,4 @@
-package de.egovt.evameg
+package de.egovt.evameg.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
+import de.egovt.evameg.R
 import de.egovt.evameg.databinding.ActivityNewApplicationBinding
 
 class NewApplication : AppCompatActivity() {
