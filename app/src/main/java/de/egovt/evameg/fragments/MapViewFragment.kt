@@ -36,7 +36,7 @@ class MapViewFragment(): Fragment() {
 
     // to manage State better
     lateinit var myMap : MapView
-    lateinit var myMapPoints : Array<MapPoint>
+    var myMapPoints : Array<MapPoint> = arrayOf()
 
     // for Permissions
     private lateinit var thisView : View
