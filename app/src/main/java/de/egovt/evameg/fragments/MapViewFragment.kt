@@ -18,7 +18,7 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
 
-data class mapPoint (val latX:Double, val latY:Double, val name:String, val id:String){
+data class mapPoint (val latitude:Double, val longitude:Double, val name:String, val id:String){
 
     constructor(latitude:Double, longitude:Double, name:String, id:String, map:MapView) : this(latitude,  longitude,  name,  id) {
         marker = Marker(map)
@@ -26,12 +26,6 @@ data class mapPoint (val latX:Double, val latY:Double, val name:String, val id:S
         marker.position = location
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         marker.title = name
-
-        // todo add listener, title and add to map overlay
-        /*
-        startMarker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
-        myMap.overlays.add(startMarker)
-         */
 
     }
 
@@ -41,17 +35,14 @@ data class mapPoint (val latX:Double, val latY:Double, val name:String, val id:S
 class MapViewFragment(): Fragment() {
 
     lateinit var myMap : MapView
+    lateinit var myMapPoints : Array<mapPoint>
+
+    // todo ask Mo what to get here
+    lateinit var myFunk:Function<mapPoint>
 
     private lateinit var thisView : View
-    private lateinit var myMapPoints : Array<mapPoint>
     private lateinit var momentaryContext : Context
 
-
-    constructor(newMapPoints:Array<mapPoint>) : this() {
-
-        myMapPoints = newMapPoints
-
-    }
 
 
     override fun onCreateView(
@@ -96,13 +87,43 @@ class MapViewFragment(): Fragment() {
         // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
 
         myMap.setMultiTouchControls(true);
+
+        if(myMapPoints.isNotEmpty()){
+
+            // add Point to Map Overlay
+            for(point in myMapPoints){
+
+                point.marker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
+                myMap.overlays.add(point.marker)
+
+            }
+        } else {
+
+            val startMarker = Marker(myMap)
+            startMarker.position = mapPointFHErfurt
+            startMarker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
+            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            myMap.overlays.add(startMarker)
+
+        }
+
+
+    }
+
+    private fun identifyMapPoint(marker: Marker): mapPoint? {
+        val myMapPoint:mapPoint? = myMapPoints.find {it.marker == marker}
+        return myMapPoint
     }
 
     private fun onMarkerClickety(marker:Marker, map: MapView):Boolean{
 
-        Log.i("aaaaaaaaaaaaaa", "hallo marker 1111111111111111111")
+        val mapPoint:mapPoint? = identifyMapPoint(marker)
 
-        // todo do something useful
+        if (mapPoint != null) {
+            Log.i("a", "Point with ID of ${mapPoint.id} was clicked")
+        }
+
+        // todo myFunk(mapPoint)
 
         return true
     }
