@@ -2,7 +2,9 @@ package de.egovt.evameg.fragments
 
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -129,15 +131,30 @@ class MapViewFragment(): Fragment() {
 
         if (myMapPoint != null) {
             Log.i("a", "Point with ID of ${myMapPoint.id} was clicked")
+
+
+            val builder = AlertDialog.Builder(context)
+            builder
+                .setCancelable(true)
+                .setTitle(myMapPoint.name)
+
+                // TODO add further information to Dialog
+                .setMessage("OMG ES FUNCITONIERT OMGOMGOMG")
+                .setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
+                    run {
+
+                        if(funcThere){
+
+                            // If a Function to Return a Value was given, return a MapPoint? with it
+                            retFunk(myMapPoint)
+                            Log.i("a", "The passed Function was called")
+                        } else Log.i("a", "The passed Function was not called since there isnt one")
+
+                    }
+                }
+                .create()
+                .show()
         }
-
-        // TODO add ALERT-BOX for confirmation
-
-        // If a Function to Return a Value was given, return a MapPoint? with it
-        if(funcThere)
-
-            retFunk(myMapPoint)
-
 
         return true
     }
