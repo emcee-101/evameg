@@ -18,7 +18,7 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
 
-data class mapPoint (val latitude:Double, val longitude:Double, val name:String, val id:String){
+data class MapPoint (val latitude:Double, val longitude:Double, val name:String, val id:String){
 
     constructor(latitude:Double, longitude:Double, name:String, id:String, map:MapView) : this(latitude,  longitude,  name,  id) {
         marker = Marker(map)
@@ -34,60 +34,71 @@ data class mapPoint (val latitude:Double, val longitude:Double, val name:String,
 
 class MapViewFragment(): Fragment() {
 
+    // to manage State better
     lateinit var myMap : MapView
-    lateinit var myMapPoints : Array<mapPoint>
+    lateinit var myMapPoints : Array<MapPoint>
 
-    // todo ask Mo what to get here
-    lateinit var myFunk:Function<mapPoint>
-
+    // for Permissions
     private lateinit var thisView : View
     private lateinit var momentaryContext : Context
 
+    // Call retFunk and destroy the fragment
+    private lateinit var retFunk:(MapPoint?)-> MapPoint?
+    private var funcThere:Boolean = false
 
 
+    // For when the Mapview is used as a Location picker
+    constructor(newMapPoints: Array<MapPoint>, returnFunction: (MapPoint?)-> MapPoint?) : this(){
+
+        retFunk = returnFunction
+        funcThere = true
+
+        myMapPoints = newMapPoints
+    }
+
+    // STANDARD STUFF
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // save View for Permissions
         thisView = inflater.inflate(R.layout.activity_mapview, container, false)
         return thisView
     }
 
-
+    // gather Context for Permissions
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         momentaryContext = context
 
     }
 
+    // Set up Map
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         checkMapPermissions()
 
+        // Map Configuration
         Configuration.getInstance().userAgentValue = activity?.packageName
-
-
         myMap = thisView.findViewById(R.id.coolMap)
         myMap.setTileSource(TileSourceFactory.MAPNIK)
 
-
+        // Set Controls for Map
         val controller = myMap.controller
         controller.setZoom(18.5)
-
         val mapPointFHErfurt = GeoPoint(50.985167884281026, 11.041366689707237)
         controller.setCenter(mapPointFHErfurt)
+        myMap.setMultiTouchControls(true)
 
 
-
-        // todo look of pin
+        // todo CHANGE LOOK OF PIN FINALLY
         // change look startMarker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
         // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
 
-        myMap.setMultiTouchControls(true);
 
+        // Draw the Marker on the Map
         if(myMapPoints.isNotEmpty()){
 
             // add Point to Map Overlay
@@ -98,32 +109,35 @@ class MapViewFragment(): Fragment() {
 
             }
         } else {
-
-            val startMarker = Marker(myMap)
-            startMarker.position = mapPointFHErfurt
-            startMarker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
-            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            myMap.overlays.add(startMarker)
+            // Draw Standard Marker
+            myMapPoints = arrayOf(MapPoint(50.985167884281026, 11.041366689707237, "FH ERFURT", "1", myMap))
+            myMapPoints[0].marker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
+            myMap.overlays.add(myMapPoints[0].marker)
 
         }
 
 
     }
 
-    private fun identifyMapPoint(marker: Marker): mapPoint? {
-        val myMapPoint:mapPoint? = myMapPoints.find {it.marker == marker}
-        return myMapPoint
+    private fun identifyMapPoint(marker: Marker): MapPoint? {
+        return myMapPoints.find { it.marker == marker }
     }
 
     private fun onMarkerClickety(marker:Marker, map: MapView):Boolean{
 
-        val mapPoint:mapPoint? = identifyMapPoint(marker)
+        val myMapPoint:MapPoint? = identifyMapPoint(marker)
 
-        if (mapPoint != null) {
-            Log.i("a", "Point with ID of ${mapPoint.id} was clicked")
+        if (myMapPoint != null) {
+            Log.i("a", "Point with ID of ${myMapPoint.id} was clicked")
         }
 
-        // todo myFunk(mapPoint)
+        // TODO add ALERT-BOX for confirmation
+
+        // If a Function to Return a Value was given, return a MapPoint? with it
+        if(funcThere)
+
+            retFunk(myMapPoint)
+
 
         return true
     }
@@ -147,20 +161,14 @@ class MapViewFragment(): Fragment() {
 
     override fun onResume() {
         super.onResume()
-        //this will refresh the osmdroid configuration on resuming.
-        //if you make changes to the configuration, use
-        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
-        myMap.onResume() //needed for compass, my location overlays, v6.0.0 and up
+
+        myMap.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        //this will refresh the osmdroid configuration on resuming.
-        //if you make changes to the configuration, use
-        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //Configuration.getInstance().save(this, prefs);
-        myMap.onPause() //needed for compass, my location overlays, v6.0.0 and up
+
+        myMap.onPause()
     }
 
 }
