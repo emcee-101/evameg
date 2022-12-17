@@ -18,19 +18,41 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
 
-class MapViewFragment(): Fragment() {
+data class mapPoint (val latX:Double, val latY:Double, val name:String, val id:String){
 
-    constructor(newMarkers : Array<Marker>) : this() {
+    constructor(latitude:Double, longitude:Double, name:String, id:String, map:MapView) : this(latitude,  longitude,  name,  id) {
+        marker = Marker(map)
+        val location = GeoPoint(latitude, longitude)
+        marker.position = location
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker.title = name
 
-        // todo add functionality to add them to map, correctly configured
-        myMarkers = newMarkers
+        // todo add listener, title and add to map overlay
+        /*
+        startMarker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
+        myMap.overlays.add(startMarker)
+         */
 
     }
 
+    lateinit var marker:Marker
+}
+
+class MapViewFragment(): Fragment() {
+
+    lateinit var myMap : MapView
+
     private lateinit var thisView : View
-    private lateinit var myMap : MapView
-    private lateinit var myMarkers : Array<Marker>
+    private lateinit var myMapPoints : Array<mapPoint>
     private lateinit var momentaryContext : Context
+
+
+    constructor(newMapPoints:Array<mapPoint>) : this() {
+
+        myMapPoints = newMapPoints
+
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,23 +89,13 @@ class MapViewFragment(): Fragment() {
         val mapPointFHErfurt = GeoPoint(50.985167884281026, 11.041366689707237)
         controller.setCenter(mapPointFHErfurt)
 
-        // "How do I place icons on the map with a click listener?"
-        // https://osmdroid.github.io/osmdroid/How-to-use-the-osmdroid-library.html
 
 
-        val startMarker = Marker(myMap)
-
-        startMarker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
-        startMarker.position = mapPointFHErfurt
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-
-
-
-        myMap.overlays.add(startMarker)
         // todo look of pin
         // change look startMarker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
         // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
-        startMarker.title = "Start point"
+
+        myMap.setMultiTouchControls(true);
     }
 
     private fun onMarkerClickety(marker:Marker, map: MapView):Boolean{
@@ -95,7 +107,6 @@ class MapViewFragment(): Fragment() {
         return true
     }
 
-    // todo call onPause and OnResume
 
     private fun checkMapPermissions(): Boolean {
 
@@ -111,6 +122,24 @@ class MapViewFragment(): Fragment() {
 
         return activityIsPermissionGiven(momentaryContext, neededPermissions, momentaryContext as Activity)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //this will refresh the osmdroid configuration on resuming.
+        //if you make changes to the configuration, use
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
+        myMap.onResume() //needed for compass, my location overlays, v6.0.0 and up
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //this will refresh the osmdroid configuration on resuming.
+        //if you make changes to the configuration, use
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Configuration.getInstance().save(this, prefs);
+        myMap.onPause() //needed for compass, my location overlays, v6.0.0 and up
     }
 
 }
