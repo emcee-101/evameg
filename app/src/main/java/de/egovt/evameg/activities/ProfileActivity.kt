@@ -1,6 +1,5 @@
 package de.egovt.evameg.activities
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 
 import android.os.Bundle
@@ -10,11 +9,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import de.egovt.evameg.DbHelper
+import de.egovt.evameg.utility.DbHelper
 import de.egovt.evameg.R
-import de.egovt.evameg.Utility.UserProfileData
+import de.egovt.evameg.utility.UserProfileData
 import de.egovt.evameg.databinding.ActivityProfileBinding
 
 
@@ -23,12 +21,23 @@ class ProfileActivity : AppCompatActivity() {
     val context = this
     var db = DbHelper(context)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//if-Abfrage?
+        var data=db.readUserData()
+        for (i in 0..(data.size-1)){
 
+            binding.textViewFirstName.append(data.get(1).firstName)
+            binding.textViewLastName.append(data.get(2).lastName)
+            binding.textViewDateOfBirth.append(data.get(3).dateOfBirth)
+            binding.textViewWohnort.append(data.get(4).wohnort)
+            binding.textViewPostalCode.append(data.get(5).postalCode)
+            binding.textViewStreet.append(data.get(6).street)
+        }
 
 
     }
@@ -46,12 +55,12 @@ class ProfileActivity : AppCompatActivity() {
         val builder=AlertDialog.Builder(this)
         val inflater:LayoutInflater=layoutInflater
         val dialogLayout:View=inflater.inflate(R.layout.layout_dialog_popup,null)
-        val editText1:EditText=dialogLayout.findViewById(R.id.edit_firstName)
-        val editText2:EditText=dialogLayout.findViewById(R.id.edit_lastName)
-        val editText3:EditText=dialogLayout.findViewById(R.id.edit_dateOfBirth)
-        val editText4:EditText=dialogLayout.findViewById(R.id.edit_wohnort)
-        val editText5:EditText=dialogLayout.findViewById(R.id.edit_postalCode)
-        val editText6:EditText=dialogLayout.findViewById<EditText>(R.id.edit_street)
+        val editTextFirstName:EditText=dialogLayout.findViewById(R.id.edit_firstName)
+        val editTextLastName:EditText=dialogLayout.findViewById(R.id.edit_lastName)
+        val editTextDateOfBirth:EditText=dialogLayout.findViewById(R.id.edit_dateOfBirth)
+        val editTextWohnort:EditText=dialogLayout.findViewById(R.id.edit_wohnort)
+        val editTextPostalCode:EditText=dialogLayout.findViewById(R.id.edit_postalCode)
+        val editTextStreet:EditText=dialogLayout.findViewById(R.id.edit_street)
 
         val textViewFirstName: TextView = findViewById(R.id.textView_firstName)
         val textViewLastName: TextView = findViewById(R.id.textView_lastName)
@@ -60,15 +69,16 @@ class ProfileActivity : AppCompatActivity() {
         val textViewPostalCode: TextView = findViewById(R.id.textView_postalCode)
         val textViewStreet: TextView = findViewById(R.id.textView_street)
 
+
         with(builder){
             setTitle("Daten bearbeiten")
             setPositiveButton("Ok") { dialog, which ->
-                textViewFirstName.text=editText1.text.toString()
-                textViewLastName.text=editText2.text.toString()
-                textViewDateOfBirth.text=editText3.text.toString()
-                textViewWohnort.text=editText4.text.toString()
-                textViewPostalCode.text=editText5.text.toString()
-                textViewStreet.text=editText6.text.toString()
+                textViewFirstName.text=editTextFirstName.text.toString()
+                textViewLastName.text=editTextLastName.text.toString()
+                textViewDateOfBirth.text=editTextDateOfBirth.text.toString()
+                textViewWohnort.text=editTextWohnort.text.toString()
+                textViewPostalCode.text=editTextPostalCode.text.toString()
+                textViewStreet.text=editTextStreet.text.toString()
 
                 var userProfileData= UserProfileData(textViewFirstName.toString(),
                                 textViewLastName.toString(),

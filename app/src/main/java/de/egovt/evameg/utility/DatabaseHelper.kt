@@ -1,4 +1,4 @@
-package de.egovt.evameg
+package de.egovt.evameg.utility
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
@@ -8,14 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.Toast
-import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
-import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_FIRSTNAME
-import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_LASTNAME
-import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_POSTAL_CODE
-import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_STREET
-import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_WOHNORT
-import de.egovt.evameg.UserProfileDataContract.UserProfileDataEntry.TABLE_NAME
-import de.egovt.evameg.Utility.UserProfileData
+import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
+import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_FIRSTNAME
+import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_LASTNAME
+import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_POSTAL_CODE
+import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_STREET
+import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_WOHNORT
+import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.TABLE_NAME
 
 private const val Tag="DataBaseHelper"
 fun logging(){
@@ -75,6 +74,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
+
+
     companion object {
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "UserProfileData.db"
@@ -87,14 +88,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
 
-    fun insertUserData(userProfileData: UserProfileData)/*(alt:
-        FirstName: String,
-        LastName: String,
-        DateOfBirth:String,
-        Wohnort: String,
-        PostalCode: Int,
-        Street: String
-    )*/ {
+    fun insertUserData(userProfileData: UserProfileData) {
         //writing in database
         val db = this.writableDatabase
         //new map with values, column names are keys
@@ -120,7 +114,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     fun readUserData() :MutableList<UserProfileData>{
         var list: MutableList<UserProfileData> =ArrayList()
         val db= this.readableDatabase
-        val query="Select * from " + TABLE_NAME
+        val query="Select * from $TABLE_NAME "/*where $COLUMN_NAME_USER_LASTNAME='${lastname.userProfilData.lastName}'"*/
         val result=db.rawQuery(query,null)
         if (result.moveToLast()){
             do {
