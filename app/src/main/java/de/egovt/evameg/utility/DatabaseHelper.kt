@@ -93,7 +93,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val db = this.writableDatabase
         //new map with values, column names are keys
         var values = ContentValues()
-        values.put(COLUMN_NAME_USER_FIRSTNAME, userProfileData.firstName)//UserProfileData.firstName
+        values.put(COLUMN_NAME_USER_FIRSTNAME, userProfileData.firstName)
         values.put(COLUMN_NAME_USER_LASTNAME, userProfileData.lastName)
         values.put(COLUMN_NAME_DATE_OF_BIRTH, userProfileData.dateOfBirth)
         values.put(COLUMN_NAME_USER_WOHNORT, userProfileData.wohnort)
@@ -114,7 +114,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     fun readUserData() :MutableList<UserProfileData>{
         var list: MutableList<UserProfileData> =ArrayList()
         val db= this.readableDatabase
-        val query="Select * from $TABLE_NAME "/*where $COLUMN_NAME_USER_LASTNAME='${lastname.userProfilData.lastName}'"*/
+        val query="SELECT * FROM $TABLE_NAME WHERE $COLUMN_NAME_USER_LASTNAME=? ORDER BY ${BaseColumns._ID}"
         val result=db.rawQuery(query,null)
         if (result.moveToLast()){
             do {

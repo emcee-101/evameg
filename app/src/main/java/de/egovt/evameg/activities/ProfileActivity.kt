@@ -27,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//if-Abfrage?
+//if-Abfrage? Ziel:immer die Daten in Textviev anzeigen lassen, wenn sie in der DBsind
         var data=db.readUserData()
         for (i in 0..(data.size-1)){
 
