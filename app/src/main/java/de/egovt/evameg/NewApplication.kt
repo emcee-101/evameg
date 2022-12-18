@@ -18,11 +18,11 @@ class NewApplication : AppCompatActivity() {
         setContentView(binding.root)
 
         val applicationsList = mapOf(
-            getString(R.string.register_new_residence)  to "register_new_residence",
-            getString(R.string.new_id_card)             to "new_id_card",
-            getString(R.string.new_passport)            to "new_passport",
+            getString(R.string.register_new_residence)              to "register_new_residence",
+            getString(R.string.new_id_card)   to "new_id_card",
+            getString(R.string.new_passport)         to "new_passport",
             getString(R.string.extend_passport)         to "extend_passport",
-            getString(R.string.register_marriage)       to "register_marriage")
+            getString(R.string.register_marriage)            to "register_marriage")
         val appListAdapter : ArrayAdapter<String> = ArrayAdapter(
             this,android.R.layout.simple_list_item_1,
             applicationsList.keys.toList()
