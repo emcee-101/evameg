@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(Home())
+        
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){

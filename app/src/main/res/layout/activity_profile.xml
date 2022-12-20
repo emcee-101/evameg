@@ -55,7 +55,8 @@
                         android:layout_weight="1"
                         android:text="UserVorname"
                         android:textColor="#8E8888"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:viewBindingType="TextView"/>
 
 
                 </LinearLayout>
@@ -84,7 +85,8 @@
                         android:layout_weight="1"
                         android:text="NachnameUser"
                         android:textColor="#8E8B8B"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:viewBindingType="TextView"/>
 
                 </LinearLayout>
 
@@ -112,7 +114,8 @@
                         android:layout_weight="1"
                         android:text="Birthday"
                         android:textColor="#8F8D8D"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:viewBindingType="TextView"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -139,7 +142,8 @@
                         android:layout_weight="1"
                         android:text="WohnortUser"
                         android:textColor="#959393"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:viewBindingType="TextView"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,7 +170,8 @@
                         android:layout_weight="1"
                         android:text="PLZ"
                         android:textColor="#9A9A9A"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:viewBindingType="TextView"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -193,7 +198,36 @@
                         android:layout_weight="1"
                         android:text="StraßeUser"
                         android:textColor="#A1A1A1"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:viewBindingType="TextView"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="11dp"
+                        android:text="ID:"
+                        android:textAlignment="viewStart"
+                        android:textColor="#4CAF50"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/textViewId"
+                        android:layout_width="140dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="IDUser"
+                        android:textColor="#8E8B8B"
+                        android:textSize="20sp"
+                        tools:viewBindingType="TextView" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -221,6 +255,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.634"
                 app:srcCompat="@drawable/ic_baseline_account_circle_grey" />
+
+            <Button
+                android:id="@+id/button_view_Data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daten ansehen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_edit_Data" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -114,8 +114,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     fun readUserData() :MutableList<UserProfileData>{
         var list: MutableList<UserProfileData> =ArrayList()
         val db= this.readableDatabase
-        val query="SELECT * FROM $TABLE_NAME WHERE $COLUMN_NAME_USER_LASTNAME=? ORDER BY ${BaseColumns._ID} DESC LIMIT 1"
-        //limit for order by ?
+        val query="SELECT * FROM $TABLE_NAME ORDER BY ${BaseColumns._ID} DESC LIMIT 1"
+        //limit vor order by ?
         val result=db.rawQuery(query,null)//statt where and order by in selection args?
         if (result.moveToLast()){
             do {

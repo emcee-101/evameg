@@ -12,6 +12,7 @@ class UserProfileData {
     constructor(
         firstName:String, lastName:String, dateOfBirth: String,
         wohnort: String, postalCode: String, street: String){
+        this.id=id
         this.firstName=firstName
         this.lastName=lastName
         this.dateOfBirth=dateOfBirth
