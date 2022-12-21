@@ -3,6 +3,7 @@ package de.egovt.evameg.activities
 import android.app.AlertDialog
 import android.app.ProgressDialog.show
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,14 +25,14 @@ class ProfileActivity : AppCompatActivity() {
     var db = DbHelper(this)
 
 
+    //?
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        //if-Abfrage? Ziel:immer die Daten in Textview anzeigen lassen, wenn sie in der DB sind
 
 
 
@@ -43,24 +44,33 @@ class ProfileActivity : AppCompatActivity() {
         dataEditButton.setOnClickListener{
             showEditTextDialog()
         }
-
-
-    }
-
-    override fun onResume() {
-        super.onResume()
+        val ViewDataButton: Button = findViewById(R.id.button_view_Data)
+        ViewDataButton.setOnClickListener{
         var data=db.readUserData()
-        for (i in 0..(data.size - 1)) {
-            binding.textViewId.append(data[i].id.toString())
-            binding.textViewFirstName.append(data[i].firstName)
-            binding.textViewLastName.append(data[i].lastName)
-            binding.textViewDateOfBirth.append(data[i].dateOfBirth)
-            binding.textViewWohnort.append(data[i].wohnort)
-            binding.textViewPostalCode.append(data[i].postalCode)
-            binding.textViewStreet.append(data[i].street)
+
+            if(data.isNotEmpty())
+            {
+                for (i in 0..(data.size - 1)) {
+
+                    binding.textViewId.append(data[i].id.toString())
+                    binding.textViewFirstName.append(data[i].firstName)
+                    binding.textViewLastName.append(data[i].lastName)
+                    binding.textViewDateOfBirth.append(data[i].dateOfBirth)
+                    binding.textViewWohnort.append(data[i].wohnort)
+                    binding.textViewPostalCode.append(data[i].postalCode)
+                    binding.textViewStreet.append(data[i].street)
+                }
+            }
+
         }
 
+
     }
+
+   /* override fun onResume() {
+        super.onResume()
+
+    }*/
     fun showEditTextDialog() {
 
        val builder = AlertDialog.Builder(this)
@@ -79,54 +89,42 @@ class ProfileActivity : AppCompatActivity() {
        val textViewWohnort: TextView = findViewById(R.id.textView_wohnort)
        val textViewPostalCode: TextView = findViewById(R.id.textView_postalCode)
        val textViewStreet: TextView = findViewById(R.id.textView_street)
-       val textViewId: TextView = findViewById(R.id.textViewId)
-
 
         var userProfileData = UserProfileData(
-            editTextFirstName.toString(),
-            editTextLastName.toString(),
-            editTextDateOfBirth.toString(),
-            editTextWohnort.toString(),
-            editTextPostalCode.toString(),
-            editTextStreet.toString()
+            editTextFirstName.text.toString(),
+            editTextLastName.text.toString(),
+            editTextDateOfBirth.text.toString(),
+            editTextWohnort.text.toString(),
+            editTextPostalCode.text.toString(), //oder hinter toString().toInt?
+            editTextStreet.text.toString()
+
         )
+
 
        with(builder) {
            setTitle("Daten bearbeiten")
            setPositiveButton("Ok") { dialog, which ->
+               textViewFirstName.text=editTextFirstName.text.toString()
+               textViewLastName.text=editTextLastName.text.toString()
+               textViewDateOfBirth.text=editTextDateOfBirth.text.toString()
+               textViewWohnort.text=editTextWohnort.text.toString()
+               textViewPostalCode.text=editTextPostalCode.text.toString()
+               textViewStreet.text=editTextStreet.text.toString()
+//userProfilData und TextView tauschen?
+               userProfileData.firstName=textViewFirstName.text.toString()
+               userProfileData.lastName=textViewLastName.text.toString()
+               userProfileData.dateOfBirth=textViewDateOfBirth.text.toString()
+               userProfileData.wohnort=textViewWohnort.text.toString()
+               userProfileData.postalCode=textViewPostalCode.text.toString()
+               userProfileData.street=textViewStreet.text.toString()
 
-               if (editTextFirstName.text.toString().isNotEmpty() &&
-                   editTextLastName.text.toString().isNotEmpty() &&
-                   editTextDateOfBirth.text.toString().isNotEmpty() &&
-                   editTextWohnort.text.toString().isNotEmpty() &&
-                   editTextPostalCode.text.toString().isNotEmpty() &&
-                   editTextStreet.text.toString().isNotEmpty()
-               ) {
+               Toast.makeText(context, "Data inserted", Toast.LENGTH_SHORT).show()
+               db.insertUserData(userProfileData)
 
-
-
-                   /* userProfileData.firstName=editTextFirstName.text.toString()
-                userProfileData.lastName=editTextLastName.text.toString()
-                userProfileData.dateOfBirth=editTextDateOfBirth.text.toString()
-                userProfileData.wohnort=editTextWohnort.text.toString()
-                userProfileData.postalCode=editTextPostalCode.text.toString()
-                userProfileData.street=editTextStreet.text.toString()*/
-
-
-                   textViewFirstName.text = userProfileData.firstName
-                   textViewLastName.text = userProfileData.lastName
-                   textViewDateOfBirth.text = userProfileData.dateOfBirth
-                   textViewWohnort.text = userProfileData.wohnort
-                   textViewPostalCode.text = userProfileData.postalCode
-                   textViewStreet.text = userProfileData.street
-                   textViewId.text = userProfileData.id.toString()
+           }
 
 
-                   db.insertUserData(userProfileData)
-               } else {
-                   Toast.makeText(context, "Please Fill all Data´s", Toast.LENGTH_SHORT).show()
-               }
-               setNegativeButton("cancel") { dialog, which ->
+           setNegativeButton("cancel") { dialog, which ->
                    Log.d("Main", "Negative button clicked")
                }
                setView(dialogLayout)
@@ -134,4 +132,4 @@ class ProfileActivity : AppCompatActivity() {
            }
        }
    }
-}
+

@@ -53,10 +53,11 @@
                         android:layout_width="140dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:text="UserVorname"
+                        android:hint="UserVorname"
                         android:textColor="#8E8888"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"/>
+                        tools:viewBindingType="TextView"
+                        android:autofillHints=" " />
 
 
                 </LinearLayout>
@@ -83,10 +84,11 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="NachnameUser"
+                        android:hint="NachnameUser"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"/>
+                        tools:viewBindingType="TextView"
+                        android:autofillHints=" " />
 
                 </LinearLayout>
 
@@ -112,10 +114,11 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Birthday"
+                        android:hint="Birthday"
                         android:textColor="#8F8D8D"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"/>
+                        tools:viewBindingType="TextView"
+                        android:autofillHints=" "/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -140,10 +143,11 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="WohnortUser"
+                        android:hint="WohnortUser"
                         android:textColor="#959393"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"/>
+                        tools:viewBindingType="TextView"
+                        android:autofillHints=" "/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -168,10 +172,12 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="PLZ"
+                        android:hint="PLZ"
                         android:textColor="#9A9A9A"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"/>
+                        tools:viewBindingType="TextView"
+                        android:autofillHints=" "/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -196,10 +202,12 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="StraßeUser"
+                        android:hint="StraßeUser"
                         android:textColor="#A1A1A1"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"/>
+                        tools:viewBindingType="TextView"
+                        android:autofillHints=" "/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -224,10 +232,12 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="IDUser"
+                        android:hint="IDUser"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView" />
+                        tools:viewBindingType="TextView"
+                        android:autofillHints=" "/>
+
                 </LinearLayout>
 
             </LinearLayout>
