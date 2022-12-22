@@ -44,33 +44,49 @@ class ProfileActivity : AppCompatActivity() {
         dataEditButton.setOnClickListener{
             showEditTextDialog()
         }
-        val ViewDataButton: Button = findViewById(R.id.button_view_Data)
+        /*val ViewDataButton: Button = findViewById(R.id.button_view_Data)
         ViewDataButton.setOnClickListener{
         var data=db.readUserData()
 
-            if(data.isNotEmpty())
-            {
-                for (i in 0..(data.size - 1)) {
+            when {
+                data.isNotEmpty() -> {
+                    for (i in 0..(data.size - 1)) {
 
-                    binding.textViewId.append(data[i].id.toString())
-                    binding.textViewFirstName.append(data[i].firstName)
-                    binding.textViewLastName.append(data[i].lastName)
-                    binding.textViewDateOfBirth.append(data[i].dateOfBirth)
-                    binding.textViewWohnort.append(data[i].wohnort)
-                    binding.textViewPostalCode.append(data[i].postalCode)
-                    binding.textViewStreet.append(data[i].street)
+                        binding.textViewId.append(data[i].id.toString())
+                        binding.textViewFirstName.append(data[i].firstName)
+                        binding.textViewLastName.append(data[i].lastName)
+                        binding.textViewDateOfBirth.append(data[i].dateOfBirth)
+                        binding.textViewWohnort.append(data[i].wohnort)
+                        binding.textViewPostalCode.append(data[i].postalCode)
+                        binding.textViewStreet.append(data[i].street)
+                    }
                 }
             }
 
-        }
+        }*/
 
 
     }
 
-   /* override fun onResume() {
+   override fun onResume() {
         super.onResume()
 
-    }*/
+       var data=db.readUserData()
+       when {
+           data.isNotEmpty() -> {
+               for (i in 0..(data.size - 1)) {
+
+                   binding.textViewId.append(data[i].id.toString())
+                   binding.textViewFirstName.append(data[i].firstName)
+                   binding.textViewLastName.append(data[i].lastName)
+                   binding.textViewDateOfBirth.append(data[i].dateOfBirth)
+                   binding.textViewWohnort.append(data[i].wohnort)
+                   binding.textViewPostalCode.append(data[i].postalCode)
+                   binding.textViewStreet.append(data[i].street)
+               }
+           }
+       }
+    }
     fun showEditTextDialog() {
 
        val builder = AlertDialog.Builder(this)
