@@ -25,8 +25,6 @@ class ProfileActivity : AppCompatActivity() {
     var db = DbHelper(this)
 
 
-    //?
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,26 +42,7 @@ class ProfileActivity : AppCompatActivity() {
         dataEditButton.setOnClickListener{
             showEditTextDialog()
         }
-        /*val ViewDataButton: Button = findViewById(R.id.button_view_Data)
-        ViewDataButton.setOnClickListener{
-        var data=db.readUserData()
 
-            when {
-                data.isNotEmpty() -> {
-                    for (i in 0..(data.size - 1)) {
-
-                        binding.textViewId.append(data[i].id.toString())
-                        binding.textViewFirstName.append(data[i].firstName)
-                        binding.textViewLastName.append(data[i].lastName)
-                        binding.textViewDateOfBirth.append(data[i].dateOfBirth)
-                        binding.textViewWohnort.append(data[i].wohnort)
-                        binding.textViewPostalCode.append(data[i].postalCode)
-                        binding.textViewStreet.append(data[i].street)
-                    }
-                }
-            }
-
-        }*/
 
 
     }

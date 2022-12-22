@@ -54,7 +54,7 @@
                         android:layout_height="40dp"
                         android:layout_weight="1"
                         android:hint="UserVorname"
-                        android:textColor="#8E8888"
+                        android:textColor="#8E8B8B"
                         android:textSize="20sp"
                         tools:viewBindingType="TextView"
                         android:autofillHints=" " />
@@ -115,7 +115,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="Birthday"
-                        android:textColor="#8F8D8D"
+                        android:textColor="#8E8B8B"
                         android:textSize="20sp"
                         tools:viewBindingType="TextView"
                         android:autofillHints=" "/>
@@ -144,7 +144,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="WohnortUser"
-                        android:textColor="#959393"
+                        android:textColor="#8E8B8B"
                         android:textSize="20sp"
                         tools:viewBindingType="TextView"
                         android:autofillHints=" "/>
@@ -173,7 +173,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="PLZ"
-                        android:textColor="#9A9A9A"
+                        android:textColor="#8E8B8B"
                         android:textSize="20sp"
                         tools:viewBindingType="TextView"
                         android:autofillHints=" "/>
@@ -203,7 +203,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:hint="StraßeUser"
-                        android:textColor="#A1A1A1"
+                        android:textColor="#8E8B8B"
                         android:textSize="20sp"
                         tools:viewBindingType="TextView"
                         android:autofillHints=" "/>
@@ -266,15 +266,7 @@
                 app:layout_constraintVertical_bias="0.634"
                 app:srcCompat="@drawable/ic_baseline_account_circle_grey" />
 
-            <Button
-                android:id="@+id/button_view_Data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Daten ansehen"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_edit_Data" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
