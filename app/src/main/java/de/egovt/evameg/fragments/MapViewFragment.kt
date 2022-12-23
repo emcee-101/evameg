@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
-import de.egovt.evameg.utility.MapPoint
+import de.egovt.evameg.utility.DB.DbHelper
 import de.egovt.evameg.utility.Office
 import de.egovt.evameg.utility.activityIsPermissionGiven
 import org.osmdroid.config.Configuration
@@ -108,7 +108,7 @@ class MapViewFragment(): Fragment() {
             } else {
 
                 // Add Standard Marker
-                myMapPoints = arrayOf(Office(50.985167884281026, 11.041366689707237, "FH ERFURT", "1", myMap))
+                myMapPoints = arrayOf(Office("0", "FH", "Altonare Strass", "School", 50.985167884281026, 11.041366689707237, myMap))
 
             }
 
@@ -133,8 +133,8 @@ class MapViewFragment(): Fragment() {
 
     private fun readMarkerData(IDs : Array<String>):Array<Office>{
 
-        // Example return
-        return arrayOf(Office(0.0,0.0,"Buxtehude","aaa"))
+
+        return arrayOf(Office("2","Buxtehude Main Office","aaa", "odd", 0.0,0.0,))
     }
 
     private fun identifyMapPoint(marker: Marker): Office? {

@@ -26,7 +26,7 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 // Map the Values for Input in DB to their collumns
 private fun mapInValues(data:DataStructure):ContentValues {
 
-    var values = ContentValues()
+    val values = ContentValues()
 
 
     if(data is UserProfileData){
@@ -58,7 +58,7 @@ private fun mapInValues(data:DataStructure):ContentValues {
 // Map the Values for Output out of the DB to their collumns
 private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure> {
 
-    var values: MutableList<DataStructure>
+    val values: MutableList<DataStructure>
 
     // CREATE VARIABLE AS TYPE OF QUERY
     when (type){
@@ -88,9 +88,9 @@ private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure
                 // if "profile" is the type, make the internal type of values a array of UserProfileData and so on....
                 "profile" -> {
 
-                                                        // Thats why "queryObjects" in the read...Data() functions needs to match the constructors
+                                            // Thats why "queryObjects" in the read...Data() functions needs to match the constructors
                                             // COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET
-                    var userProfileData = UserProfileData(data.getString(0), data.getString(1), data.getString(2), data.getString(3), data.getString(4), data.getString(5))
+                    val userProfileData = UserProfileData(data.getString(0), data.getString(1), data.getString(2), data.getString(3), data.getString(4), data.getString(5))
 
                     values.add(userProfileData)
 
@@ -99,8 +99,8 @@ private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure
 
                 "office" -> {
 
-                    // BaseColumns._ID          COLUMN_NAME_NAME, ADDRESS, COLUMN_NAME_TYPE, COLUMN_NAME_LAT, COLUMN_NAME_LONG
-                    val officeData = Office(BaseColumns._ID, data.getString(0), data.getString(1), data.getString(2), data.getDouble(3), data.getDouble(4))
+                                            // BaseColumns._ID, COLUMN_NAME_NAME, ADDRESS, COLUMN_NAME_TYPE, COLUMN_NAME_LAT, COLUMN_NAME_LONG
+                    val officeData = Office(data.getString(0), data.getString(1), data.getString(2), data.getString(3), data.getDouble(4), data.getDouble(5))
 
                     values.add(officeData)
                 }
@@ -163,7 +163,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val values = mapInValues(userProfileData)
 
         //new row insert,primary key value return
-        var result = db.insert(UserProfileDataContract.UserProfileDataEntry.TABLE_NAME, null, values)
+        val result = db.insert(UserProfileDataContract.UserProfileDataEntry.TABLE_NAME, null, values)
 
         if (result == 1.toLong()) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
@@ -198,36 +198,38 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val queryObjects : Array<String> = arrayOf(COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET)
 
 
-        val query="SELECT ${queryObjects.joinToString(separator = ",")} FROM ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} DESC LIMIT 1"
+        val query="SELECT ${queryObjects.joinToString(separator = ",")} " +
+                "FROM ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} DESC LIMIT 1"
 
         Log.i("DB", "SQL call with following query is executed: $query")
 
         val resultCursor = db.rawQuery(query,null)
 
-        var list = mapOutValues(resultCursor, "profile") as MutableList<UserProfileData>
+        val list = mapOutValues(resultCursor, "profile") as MutableList<UserProfileData>
 
         db.close()
 
         return list
     }
 
-    fun readOfficeData(ids:Array<String>) : Array<Office> {
+    fun readOfficeData(ids:Array<String>) : List<Office> {
 
         val db = this.readableDatabase
 
 
         // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
         // -> val id:String, val name:String, val address:String, val type:String, val latitude:Double, val longitude:Double
-        var queryObjects : Array<String> = arrayOf(COLUMN_NAME_NAME,  COLUMN_NAME_ADDRESS, COLUMN_NAME_TYPE,  COLUMN_NAME_LAT, COLUMN_NAME_LONG)
+        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_NAME,  COLUMN_NAME_ADDRESS, COLUMN_NAME_TYPE,  COLUMN_NAME_LAT, COLUMN_NAME_LONG)
 
 
-        val query="SELECT ${queryObjects.joinToString(separator = ",")} FROM ${OfficesDataContract.OfficeDataEntry.TABLE_NAME} ASC"
+        val query="SELECT ${ queryObjects.joinToString(separator = ",") } FROM ${ OfficesDataContract.OfficeDataEntry.TABLE_NAME } " +
+                "WHERE ${ BaseColumns._ID }=${ ids.joinToString(separator = " OR ${BaseColumns._ID}=") }"
 
         Log.i("DB", "SQL call with following query is executed: $query")
 
         val officesCursor:Cursor = db.rawQuery(query, null)
 
-        val list = mapOutValues(officesCursor, "office") as Array<Office>
+        val list = mapOutValues(officesCursor, "office") as List<Office>
 
         db.close()
 
