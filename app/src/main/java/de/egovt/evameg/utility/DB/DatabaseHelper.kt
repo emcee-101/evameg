@@ -88,12 +88,12 @@ private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure
                 // if "profile" is the type, make the internal type of values a array of UserProfileData and so on....
                 "profile" -> {
 
-                                            // Thats why "queryObjects" in the read...Data() functions needs to match the constructors
-                                            // COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET
-                    val userProfileData = UserProfileData(data.getString(0), data.getString(1), data.getString(2), data.getString(3), data.getString(4), data.getString(5))
+                                            // Map to constructor and Data objects
+                                            // rowid, COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET
+                    val userProfileData = UserProfileData(data.getString(1), data.getString(2), data.getString(3), data.getString(4), data.getString(5), data.getString(6))
+                    userProfileData.id = data.getInt(0)
 
                     values.add(userProfileData)
-
 
                 }
 
@@ -196,7 +196,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
         // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
-        val queryObjects : Array<String> = arrayOf(COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET)
+        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET)
 
 
         val query="SELECT ${queryObjects.joinToString(separator = ",")} " +
