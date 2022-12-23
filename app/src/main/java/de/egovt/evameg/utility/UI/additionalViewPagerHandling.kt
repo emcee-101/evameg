@@ -1,4 +1,4 @@
-package de.egovt.evameg.utility
+package de.egovt.evameg.utility.UI
 
 import androidx.viewpager2.widget.ViewPager2
 

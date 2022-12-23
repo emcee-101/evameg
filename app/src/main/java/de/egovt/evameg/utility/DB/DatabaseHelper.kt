@@ -1,6 +1,5 @@
-package de.egovt.evameg.utility
+package de.egovt.evameg.utility.DB
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -9,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.Toast
+import de.egovt.evameg.utility.*
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_ADDRESS
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_LAT
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_LONG
@@ -20,7 +20,7 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_POSTAL_CODE
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_STREET
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_WOHNORT
-import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.TABLE_NAME
+
 
 
 // Map the Values for Input in DB to their collumns
@@ -40,11 +40,11 @@ private fun mapInValues(data:DataStructure):ContentValues {
 
     } else if (data is Office){
 
-        values.put(COLUMN_NAME_LAT, data.latitude)
-        values.put(COLUMN_NAME_LONG, data.longitude)
         values.put(COLUMN_NAME_NAME, data.name)
         values.put(COLUMN_NAME_TYPE, data.type)
         values.put(COLUMN_NAME_ADDRESS, data.address)
+        values.put(COLUMN_NAME_LAT, data.latitude)
+        values.put(COLUMN_NAME_LONG, data.longitude)
 
     } else {
 
@@ -56,20 +56,20 @@ private fun mapInValues(data:DataStructure):ContentValues {
 }
 
 // Map the Values for Output out of the DB to their collumns
-private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure>? {
+private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure> {
 
-    var values:MutableList<DataStructure>?
+    var values: MutableList<DataStructure>
 
     // CREATE VARIABLE AS TYPE OF QUERY
     when (type){
 
         // if "profile" is the type, make the internal type of values a array of UserProfileData and so on....
         "profile" -> {
-            values = arrayOf<UserProfileData>() as MutableList<DataStructure>
+            values = mutableListOf<UserProfileData>() as MutableList<DataStructure>
         }
 
         "office" -> {
-            values = arrayOf<Office>() as MutableList<DataStructure>
+            values = mutableListOf<Office>() as MutableList<DataStructure>
         }
 
         else -> {
@@ -78,34 +78,45 @@ private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure
         }
     }
 
-    // iterate the cursor to read the data
+    // iterate the cursor to read the data if moveToFirst returns true
     if(data.moveToFirst()){
 
         do {
 
+            when (type){
 
-            var userProfileData = UserProfileData(
+                // if "profile" is the type, make the internal type of values a array of UserProfileData and so on....
+                "profile" -> {
 
-                // TODO MAKE COMMUNINDEX AVAILABLE FROM THE QUERY ON AND THUS GENERIC-ISH
-                data.getString(data.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME)),
-                data.getString(data.getColumnIndex(COLUMN_NAME_USER_LASTNAME)),
-                data.getString(data.getColumnIndex(COLUMN_NAME_DATE_OF_BIRTH)),
-                data.getString(data.getColumnIndex(COLUMN_NAME_USER_WOHNORT)),
-                data.getString(data.getColumnIndex(COLUMN_NAME_USER_POSTAL_CODE)),
-                data.getString(data.getColumnIndex(COLUMN_NAME_USER_STREET))
+                                                        // Thats why "queryObjects" in the read...Data() functions needs to match the constructors
+                                            // COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET
+                    var userProfileData = UserProfileData(data.getString(0), data.getString(1), data.getString(2), data.getString(3), data.getString(4), data.getString(5))
 
-            )
-
-            userProfileData.id = data.getString(data.getColumnIndex(BaseColumns._ID)).toInt()
-            values.add(userProfileData)
+                    values.add(userProfileData)
 
 
+                }
+
+                "office" -> {
+
+                    // BaseColumns._ID          COLUMN_NAME_NAME, ADDRESS, COLUMN_NAME_TYPE, COLUMN_NAME_LAT, COLUMN_NAME_LONG
+                    val officeData = Office(BaseColumns._ID, data.getString(0), data.getString(1), data.getString(2), data.getDouble(3), data.getDouble(4))
+
+                    values.add(officeData)
+                }
+
+                else -> {
+                    Log.w("DB", "unrecognised type was tried to be read from the data")
+                    return null!!
+                }
+            }
+
+        // while theres still data
         } while (data.moveToNext())
 
     }
+
     data.close()
-
-
     return values
 }
 
@@ -152,8 +163,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val values = mapInValues(userProfileData)
 
         //new row insert,primary key value return
-        var result =
-            db.insert(UserProfileDataContract.UserProfileDataEntry.TABLE_NAME, null, values)
+        var result = db.insert(UserProfileDataContract.UserProfileDataEntry.TABLE_NAME, null, values)
+
         if (result == 1.toLong()) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
         } else {
@@ -177,38 +188,24 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
-    @SuppressLint("Range")
-    fun readUserData() :MutableList<UserProfileData> {
 
-        var list: MutableList<UserProfileData> =ArrayList()
-        val db= this.readableDatabase
+    fun readUserData() : MutableList<UserProfileData> {
 
-        // TODO ADD CORRECT QUERY WITH VALUES TO BE ASKED FOR
-        val query="SELECT * FROM $TABLE_NAME ORDER BY ${BaseColumns._ID} DESC LIMIT 1" //vorher nach Ids sortiert absteigend limit 1 , mit nachnamen*/
-        //limit vor order by ?
-        val result=db.rawQuery(query,null)//statt where and order by in selection args?
-        if (result.moveToLast()){
+        val db = this.readableDatabase
 
-            do {
 
-                var userProfileData= UserProfileData(
+        // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
+        val queryObjects : Array<String> = arrayOf(COLUMN_NAME_USER_FIRSTNAME, COLUMN_NAME_USER_LASTNAME, COLUMN_NAME_DATE_OF_BIRTH, COLUMN_NAME_USER_WOHNORT, COLUMN_NAME_USER_POSTAL_CODE, COLUMN_NAME_USER_STREET)
 
-                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME)),
-                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_LASTNAME)),
-                    result.getString(result.getColumnIndex(COLUMN_NAME_DATE_OF_BIRTH)),
-                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_WOHNORT)),
-                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_POSTAL_CODE)),
-                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_STREET))
 
-                )
+        val query="SELECT ${queryObjects.joinToString(separator = ",")} FROM ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} DESC LIMIT 1"
 
-                userProfileData.id=result.getString(result.getColumnIndex(BaseColumns._ID)).toInt()
-                list.add(userProfileData)
+        Log.i("DB", "SQL call with following query is executed: $query")
 
-            }while (result.moveToNext())
-        }
+        val resultCursor = db.rawQuery(query,null)
 
-        result.close()
+        var list = mapOutValues(resultCursor, "profile") as MutableList<UserProfileData>
+
         db.close()
 
         return list
@@ -218,11 +215,23 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         val db = this.readableDatabase
 
-        // TODO update to correct query
-        val officesCursor:Cursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
 
-        return mapOutValues(officesCursor, "office") as Array<Office>
+        // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
+        // -> val id:String, val name:String, val address:String, val type:String, val latitude:Double, val longitude:Double
+        var queryObjects : Array<String> = arrayOf(COLUMN_NAME_NAME,  COLUMN_NAME_ADDRESS, COLUMN_NAME_TYPE,  COLUMN_NAME_LAT, COLUMN_NAME_LONG)
 
+
+        val query="SELECT ${queryObjects.joinToString(separator = ",")} FROM ${OfficesDataContract.OfficeDataEntry.TABLE_NAME} ASC"
+
+        Log.i("DB", "SQL call with following query is executed: $query")
+
+        val officesCursor:Cursor = db.rawQuery(query, null)
+
+        val list = mapOutValues(officesCursor, "office") as Array<Office>
+
+        db.close()
+
+        return list
     }
 
 

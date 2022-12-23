@@ -28,14 +28,15 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 
     }
 
+    // val id:String, val name:String, val address:String, val type:String, val latitude:Double, val longitude:Double
     object OfficesDataContract{
         object OfficeDataEntry: BaseColumns {
             const val TABLE_NAME = "OFFICES_DATA_TABLE"
+            const val COLUMN_NAME_NAME = "office_name"
+            const val COLUMN_NAME_ADDRESS = "office_address"
+            const val COLUMN_NAME_TYPE = "office_type"
             const val COLUMN_NAME_LAT = "latitude"
             const val COLUMN_NAME_LONG = "longitude"
-            const val COLUMN_NAME_NAME= "office_name"
-            const val COLUMN_NAME_TYPE = "office_type"
-            const val COLUMN_NAME_ADDRESS = "office_address"
         }
     }
 
@@ -52,11 +53,11 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 
      const val SQL_CREATE_ENTRIES_OFFICES="CREATE TABLE ${OfficesDataContract.OfficeDataEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
-            "$COLUMN_NAME_LAT REAL, " +
-            "$COLUMN_NAME_LONG REAL, " +
             "$COLUMN_NAME_NAME TEXT, "  +
-            "$COLUMN_NAME_TYPE TEXT, " +
-            "$COLUMN_NAME_ADDRESS TEXT " +
+             "$COLUMN_NAME_ADDRESS TEXT " +
+             "$COLUMN_NAME_TYPE TEXT, " +
+             "$COLUMN_NAME_LAT REAL, " +
+             "$COLUMN_NAME_LONG REAL, " +
             ") "
 
     //statements, that deletes the table

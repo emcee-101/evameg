@@ -12,10 +12,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import de.egovt.evameg.utility.DbHelper
 import de.egovt.evameg.R
-import de.egovt.evameg.utility.DBDataStructures
 import de.egovt.evameg.databinding.ActivityProfileBinding
+import de.egovt.evameg.utility.DB.DbHelper
+import de.egovt.evameg.utility.UserProfileData
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -84,7 +84,7 @@ class ProfileActivity : AppCompatActivity() {
        val textViewPostalCode: TextView = findViewById(R.id.textView_postalCode)
        val textViewStreet: TextView = findViewById(R.id.textView_street)
 
-        var userProfileData = DBDataStructures(
+        var userProfileData = UserProfileData(
             editTextFirstName.text.toString(),
             editTextLastName.text.toString(),
             editTextDateOfBirth.text.toString(),

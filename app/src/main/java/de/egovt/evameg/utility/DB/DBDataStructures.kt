@@ -6,7 +6,7 @@ import org.osmdroid.views.overlay.Marker
 
 interface DataStructure {}
 
-data class UserProfileData (var firstName:String, var lastName:String, var dateOfBirth: String, var wohnort: String, var postalCode: String, var street: String) : DataStructure {
+data class UserProfileData (var firstName:String = "", var lastName:String = "", var dateOfBirth: String = "", var wohnort: String = "", var postalCode: String = "", var street: String = "") : DataStructure {
     var id: Int=0
 }
 

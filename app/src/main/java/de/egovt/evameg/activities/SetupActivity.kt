@@ -13,8 +13,8 @@ import de.egovt.evameg.Fragments.setup.ScreenSlidePageFragment2
 import de.egovt.evameg.MainActivity
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.SettingsStorage
-import de.egovt.evameg.utility.back
-import de.egovt.evameg.utility.customFragmentStateAdapter
+import de.egovt.evameg.utility.UI.back
+import de.egovt.evameg.utility.UI.customFragmentStateAdapter
 
 
 class SetupActivity : AppCompatActivity() {

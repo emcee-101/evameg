@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
-import de.egovt.evameg.utility.cont
+import de.egovt.evameg.utility.UI.cont
 
 class ScreenSlidePageFragment1 : Fragment()  {
 
