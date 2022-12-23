@@ -84,6 +84,7 @@ private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure
 
             var userProfileData= UserProfileData(
 
+                // TODO MAKE COMMUNINDEX AVAILABLE FROM THE QUERY ON AND THUS GENERIC-ISH
                 data.getString(data.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME)),
                 data.getString(data.getColumnIndex(COLUMN_NAME_USER_LASTNAME)),
                 data.getString(data.getColumnIndex(COLUMN_NAME_DATE_OF_BIRTH)),
@@ -179,6 +180,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         var list: MutableList<UserProfileData> =ArrayList()
         val db= this.readableDatabase
+
+        // TODO ADD CORRECT QUERY WITH VALUES TO BE ASKED FOR
         val query="SELECT * FROM $TABLE_NAME ORDER BY ${BaseColumns._ID} DESC LIMIT 1" //vorher nach Ids sortiert absteigend limit 1 , mit nachnamen*/
         //limit vor order by ?
         val result=db.rawQuery(query,null)//statt where and order by in selection args?
@@ -213,7 +216,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         val db = this.readableDatabase
 
-        // TODO update to corret query
+        // TODO update to correct query
         val officesCursor:Cursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
 
         return mapOutValues(officesCursor, "office") as Array<Office>
