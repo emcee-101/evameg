@@ -1,7 +1,9 @@
 package de.egovt.evameg.utility
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
@@ -22,9 +24,7 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.TABL
 
 
 
-
-
-private fun mapValues(data:DataStructure):ContentValues {
+private fun mapInValues(data:DataStructure):ContentValues {
 
     var values = ContentValues()
 
@@ -51,6 +51,57 @@ private fun mapValues(data:DataStructure):ContentValues {
         Log.w("DB", "unrecognized Data is trying to be inserted into the function")
 
     }
+
+    return values
+}
+
+private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure>? {
+
+    var values:MutableList<DataStructure>?
+
+    // CREATE VARIABLE AS TYPE OF QUERY
+    when (type){
+
+        // if "profile" is the type, make the internal type of values a array of UserProfileData and so on....
+        "profile" -> {
+            values = arrayOf<UserProfileData>() as MutableList<DataStructure>
+        }
+
+        "office" -> {
+            values = arrayOf<Office>() as MutableList<DataStructure>
+        }
+
+        else -> {
+            Log.w("DB", "unrecognised type was tried to be read from the data")
+            return null!!
+        }
+    }
+
+    // iterate the cursor to read the data
+    if(data.moveToFirst()){
+
+        do {
+
+            var userProfileData= UserProfileData(
+
+                data.getString(data.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME)),
+                data.getString(data.getColumnIndex(COLUMN_NAME_USER_LASTNAME)),
+                data.getString(data.getColumnIndex(COLUMN_NAME_DATE_OF_BIRTH)),
+                data.getString(data.getColumnIndex(COLUMN_NAME_USER_WOHNORT)),
+                data.getString(data.getColumnIndex(COLUMN_NAME_USER_POSTAL_CODE)),
+                data.getString(data.getColumnIndex(COLUMN_NAME_USER_STREET))
+
+            )
+
+            userProfileData.id=data.getString(data.getColumnIndex(BaseColumns._ID)).toInt()
+            values.add(userProfileData)
+
+
+        } while (data.moveToNext())
+
+    }
+    data.close()
+
 
     return values
 }
@@ -95,7 +146,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val db = this.writableDatabase
 
         //new map with values, column names are keys
-        val values = mapValues(userProfileData)
+        val values = mapInValues(userProfileData)
 
         //new row insert,primary key value return
         var result =
@@ -115,7 +166,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val db = this.writableDatabase
 
         //new map with values, column names are keys
-        val values = mapValues(officeData)
+        val values = mapInValues(officeData)
 
         var result = db.insert(OfficesDataContract.OfficeDataEntry.TABLE_NAME, null, values)
 
@@ -123,22 +174,30 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
-    fun readUserData() :MutableList<UserProfileData>{
+    @SuppressLint("Range")
+    fun readUserData() :MutableList<UserProfileData> {
+
         var list: MutableList<UserProfileData> =ArrayList()
         val db= this.readableDatabase
         val query="SELECT * FROM $TABLE_NAME ORDER BY ${BaseColumns._ID} DESC LIMIT 1" //vorher nach Ids sortiert absteigend limit 1 , mit nachnamen*/
         //limit vor order by ?
         val result=db.rawQuery(query,null)//statt where and order by in selection args?
         if (result.moveToLast()){
+
             do {
-                var userProfileData= UserProfileData()
+
+                var userProfileData= UserProfileData(
+
+                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME)),
+                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_LASTNAME)),
+                    result.getString(result.getColumnIndex(COLUMN_NAME_DATE_OF_BIRTH)),
+                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_WOHNORT)),
+                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_POSTAL_CODE)),
+                    result.getString(result.getColumnIndex(COLUMN_NAME_USER_STREET))
+
+                )
+
                 userProfileData.id=result.getString(result.getColumnIndex(BaseColumns._ID)).toInt()
-                userProfileData.firstName=result.getString(result.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME))
-                userProfileData.lastName=result.getString(result.getColumnIndex(COLUMN_NAME_USER_LASTNAME))
-                userProfileData.dateOfBirth=result.getString(result.getColumnIndex(COLUMN_NAME_DATE_OF_BIRTH))
-                userProfileData.wohnort=result.getString(result.getColumnIndex(COLUMN_NAME_USER_WOHNORT))
-                userProfileData.postalCode=result.getString(result.getColumnIndex(COLUMN_NAME_USER_POSTAL_CODE))
-                userProfileData.street=result.getString(result.getColumnIndex(COLUMN_NAME_USER_STREET))
                 list.add(userProfileData)
 
             }while (result.moveToNext())
@@ -149,6 +208,19 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         return list
     }
+
+    fun readOfficeData(ids:Array<String>) : Array<Office> {
+
+        val db = this.readableDatabase
+
+        // TODO update to corret query
+        val officesCursor:Cursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+
+        return mapOutValues(officesCursor, "office") as Array<Office>
+
+    }
+
+
 
 }
 
