@@ -38,24 +38,25 @@ class MapViewFragment(): Fragment() {
 
     // to manage State better
     lateinit var myMap : MapView
+    lateinit var MapIDs : Array<String>
     var myMapPoints : Array<MapPoint> = arrayOf()
 
     // for Permissions
     private lateinit var thisView : View
     private lateinit var momentaryContext : Context
 
-    // Call retFunk and destroy the fragment
-    private lateinit var retFunk:(MapPoint?)-> MapPoint?
+    // Call retFunk and destroy the fragment (FORM COMPONENT)
+    private lateinit var retFunk:(String?)-> String?
     private var funcThere:Boolean = false
 
 
-    // For when the Mapview is used as a Location picker
-    constructor(newMapPoints: Array<MapPoint>, returnFunction: (MapPoint?)-> MapPoint?) : this(){
+    // Gets called like this from the Form Component
+    constructor(newMapIDs:Array<String>, returnFunction: (String?)-> String?) : this(){
 
+        MapIDs = newMapIDs
         retFunk = returnFunction
         funcThere = true
 
-        myMapPoints = newMapPoints
     }
 
     // STANDARD STUFF
@@ -90,9 +91,11 @@ class MapViewFragment(): Fragment() {
         // Set Controls for Map
         val controller = myMap.controller
         controller.setZoom(18.5)
+        myMap.setMultiTouchControls(true)
+
+        // Start Point
         val mapPointFHErfurt = GeoPoint(50.985167884281026, 11.041366689707237)
         controller.setCenter(mapPointFHErfurt)
-        myMap.setMultiTouchControls(true)
 
 
         // todo CHANGE LOOK OF PIN FINALLY
@@ -100,25 +103,48 @@ class MapViewFragment(): Fragment() {
         // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
 
 
-        // Draw the Marker on the Map
+        // Draw the Markers on the Map
         if(myMapPoints.isNotEmpty()){
 
-            // add Point to Map Overlay
-            for(point in myMapPoints){
+            drawMapPoints()
 
-                point.marker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
-                myMap.overlays.add(point.marker)
+        } else {
+
+            if(MapIDs.isNotEmpty()){
+
+                // Read Data from DB and add Markers
+                myMapPoints = readMarkerData(MapIDs)
+
+            } else {
+
+                // Add Standard Marker
+                myMapPoints = arrayOf(MapPoint(50.985167884281026, 11.041366689707237, "FH ERFURT", "1", myMap))
 
             }
-        } else {
-            // Draw Standard Marker
-            myMapPoints = arrayOf(MapPoint(50.985167884281026, 11.041366689707237, "FH ERFURT", "1", myMap))
-            myMapPoints[0].marker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
-            myMap.overlays.add(myMapPoints[0].marker)
+
+            drawMapPoints()
 
         }
 
 
+    }
+
+    private fun drawMapPoints():Boolean{
+
+        // add Point to Map Overlay
+        for(point in myMapPoints){
+
+            point.marker.setOnMarkerClickListener { marker, mapview -> onMarkerClickety(marker, mapview) }
+            myMap.overlays.add(point.marker)
+
+        }
+        return true
+    }
+
+    private fun readMarkerData(IDs : Array<String>):Array<MapPoint>{
+
+        // Example return
+        return arrayOf(MapPoint(0.0,0.0,"Buxtehude","aaa"))
     }
 
     private fun identifyMapPoint(marker: Marker): MapPoint? {
@@ -145,8 +171,8 @@ class MapViewFragment(): Fragment() {
 
                         if(funcThere){
 
-                            // If a Function to Return a Value was given, return a MapPoint? with it
-                            retFunk(myMapPoint)
+                            // If a Function to Return a Value was given, return the ID
+                            retFunk(myMapPoint.id)
                             Log.i("a", "The passed Function was called")
                         } else Log.i("a", "The passed Function was not called since there isnt one")
 
