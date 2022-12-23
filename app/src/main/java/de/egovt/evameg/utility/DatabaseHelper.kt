@@ -23,7 +23,7 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.TABLE_NAME
 
 
-
+// Map the Values for Input in DB to their collumns
 private fun mapInValues(data:DataStructure):ContentValues {
 
     var values = ContentValues()
@@ -55,6 +55,7 @@ private fun mapInValues(data:DataStructure):ContentValues {
     return values
 }
 
+// Map the Values for Output out of the DB to their collumns
 private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure>? {
 
     var values:MutableList<DataStructure>?
@@ -82,7 +83,8 @@ private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure
 
         do {
 
-            var userProfileData= UserProfileData(
+
+            var userProfileData = UserProfileData(
 
                 // TODO MAKE COMMUNINDEX AVAILABLE FROM THE QUERY ON AND THUS GENERIC-ISH
                 data.getString(data.getColumnIndex(COLUMN_NAME_USER_FIRSTNAME)),
@@ -94,7 +96,7 @@ private fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure
 
             )
 
-            userProfileData.id=data.getString(data.getColumnIndex(BaseColumns._ID)).toInt()
+            userProfileData.id = data.getString(data.getColumnIndex(BaseColumns._ID)).toInt()
             values.add(userProfileData)
 
 
