@@ -1,7 +1,6 @@
 package de.egovt.evameg.activities
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 
 
 import android.os.Bundle
@@ -13,10 +12,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import de.egovt.evameg.utility.DbHelper
 import de.egovt.evameg.R
-import de.egovt.evameg.utility.UserProfileData
 import de.egovt.evameg.databinding.ActivityProfileBinding
+import de.egovt.evameg.utility.DB.DbHelper
+import de.egovt.evameg.utility.UserProfileData
 
 
 class ProfileActivity : AppCompatActivity() {

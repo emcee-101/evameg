@@ -1,4 +1,4 @@
-package de.egovt.evameg.utility
+package de.egovt.evameg.utility.UI
 
 import android.util.Log
 import androidx.fragment.app.Fragment
