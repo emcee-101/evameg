@@ -28,8 +28,8 @@ class MapViewFragment(): Fragment() {
 
     // to manage State better
     lateinit var myMap : MapView
-    lateinit var MapIDs : Array<String>
-    var myMapPoints : Array<Office> = arrayOf()
+    var MapIDs : Array<String> = arrayOf()
+    var myMapPoints : List<Office> = listOf()
 
     // for Permissions
     private lateinit var thisView : View
@@ -108,7 +108,7 @@ class MapViewFragment(): Fragment() {
             } else {
 
                 // Add Standard Marker
-                myMapPoints = arrayOf(Office("0", "FH", "Altonare Strass", "School", 50.985167884281026, 11.041366689707237, myMap))
+                myMapPoints = listOf(Office("0", "FH", "Altonare Strass", "School", 50.985167884281026, 11.041366689707237, myMap))
 
             }
 
@@ -131,10 +131,11 @@ class MapViewFragment(): Fragment() {
         return true
     }
 
-    private fun readMarkerData(IDs : Array<String>):Array<Office>{
+    private fun readMarkerData(IDs : Array<String>):List<Office>{
 
+        val db = DbHelper(context)
+        return db.readOfficeData(IDs)
 
-        return arrayOf(Office("2","Buxtehude Main Office","aaa", "odd", 0.0,0.0,))
     }
 
     private fun identifyMapPoint(marker: Marker): Office? {

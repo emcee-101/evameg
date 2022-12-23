@@ -146,6 +146,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         const val DATABASE_VERSION = 2
         const val DATABASE_NAME = "EVAMEG_DATA_DB"
 
+        // TODO FIX MEMORY LEAK, OUR SHIP IS FLOODING WITH WATER, WE ARE SINKING AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHH HEEEEEEEEEEEEEEEEEELP!!!!!!!!!!!!
         private var instance: DbHelper? = null
 
         //Accessing database
@@ -212,6 +213,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         return list
     }
 
+    // TODO test this function fully - it isnt necesssary atm and does not keep the app from running
     fun readOfficeData(ids:Array<String>) : List<Office> {
 
         val db = this.readableDatabase
