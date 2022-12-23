@@ -1,7 +1,6 @@
 package de.egovt.evameg.activities
 
 import android.app.AlertDialog
-import android.app.ProgressDialog.show
 
 
 import android.os.Bundle
@@ -15,7 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import de.egovt.evameg.utility.DbHelper
 import de.egovt.evameg.R
-import de.egovt.evameg.utility.UserProfileData
+import de.egovt.evameg.utility.DBDataStructures
 import de.egovt.evameg.databinding.ActivityProfileBinding
 
 
@@ -85,7 +84,7 @@ class ProfileActivity : AppCompatActivity() {
        val textViewPostalCode: TextView = findViewById(R.id.textView_postalCode)
        val textViewStreet: TextView = findViewById(R.id.textView_street)
 
-        var userProfileData = UserProfileData(
+        var userProfileData = DBDataStructures(
             editTextFirstName.text.toString(),
             editTextLastName.text.toString(),
             editTextDateOfBirth.text.toString(),

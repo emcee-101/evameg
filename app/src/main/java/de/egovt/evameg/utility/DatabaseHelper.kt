@@ -1,6 +1,5 @@
 package de.egovt.evameg.utility
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -8,6 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 import android.util.Log
 import android.widget.Toast
+import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_ADDRESS
+import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_LAT
+import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_LONG
+import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_NAME
+import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_FIRSTNAME
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_LASTNAME
@@ -16,69 +20,66 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_WOHNORT
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.TABLE_NAME
 
-private const val Tag="DataBaseHelper"
-fun logging(){
-    Log.e(Tag, "ERROR: a serious error like an app crash")
-    Log.w(Tag, "WARN: warns about the potential for serious errors")
-    Log.i(Tag, "INFO: reporting technical information, such as an operation succeeding")
-    Log.d(Tag, "DataBaseHelper hat die DB : USER_DATS_TABLE erzeugt.")
-    Log.v(Tag, "VERBOSE: more verbose than DEBUG logs")
 
-}
 
-//contract, that defines table name and column names
-object UserProfileDataContract{
-    object UserProfileDataEntry: BaseColumns {
-        const val TABLE_NAME = "USER_DATA_TABLE"
-        const val COLUMN_NAME_USER_FIRSTNAME = "firstname"
-        const val COLUMN_NAME_USER_LASTNAME = "lastname"
-        const val COLUMN_NAME_DATE_OF_BIRTH = "date_of_birth"
-        const val COLUMN_NAME_USER_WOHNORT= "wohnort"
-        const val COLUMN_NAME_USER_POSTAL_CODE = "postal_code"
-        const val COLUMN_NAME_USER_STREET = "street"
+
+
+private fun mapValues(data:DataStructure):ContentValues {
+
+    var values = ContentValues()
+
+
+    if(data is UserProfileData){
+
+        values.put(COLUMN_NAME_USER_FIRSTNAME, data.firstName)
+        values.put(COLUMN_NAME_USER_LASTNAME, data.lastName)
+        values.put(COLUMN_NAME_DATE_OF_BIRTH, data.dateOfBirth)
+        values.put(COLUMN_NAME_USER_WOHNORT, data.wohnort)
+        values.put(COLUMN_NAME_USER_POSTAL_CODE, data.postalCode)
+        values.put(COLUMN_NAME_USER_STREET, data.street)
+
+    } else if (data is Office){
+
+        values.put(COLUMN_NAME_LAT, data.latitude)
+        values.put(COLUMN_NAME_LONG, data.longitude)
+        values.put(COLUMN_NAME_NAME, data.name)
+        values.put(COLUMN_NAME_TYPE, data.type)
+        values.put(COLUMN_NAME_ADDRESS, data.address)
+
+    } else {
+
+        Log.w("DB", "unrecognized Data is trying to be inserted into the function")
+
     }
 
+    return values
 }
-
-
-//statement,that creates the table
-private const val SQL_CREATE_ENTRIES="CREATE TABLE ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} (" +
-        "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
-        "$COLUMN_NAME_USER_FIRSTNAME TEXT, " +
-        "$COLUMN_NAME_USER_LASTNAME TEXT, " +
-        "$COLUMN_NAME_DATE_OF_BIRTH 'DATE', "  +
-        "$COLUMN_NAME_USER_WOHNORT TEXT, " +
-        "$COLUMN_NAME_USER_POSTAL_CODE INTEGER, " +
-        "$COLUMN_NAME_USER_STREET TEXT) "
-
-//statement, that deletes the table
-private const val SQL_DELETE_ENTRIES="DROP TABLE IF EXISTS ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME}"
 
 
 class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase) {
 
-        db?.execSQL(SQL_CREATE_ENTRIES)
-        logging()
+        db.execSQL(SQL_CREATE_ENTRIES_USER)
+        db.execSQL(SQL_CREATE_ENTRIES_OFFICES)
+        Log.i("db", "Created the Tables in the DB")
 
     }
 
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
 
-        db.execSQL(SQL_DELETE_ENTRIES)
+        db.execSQL(SQL_DELETE_ENTRIES_USER)
+        db.execSQL(SQL_DELETE_ENTRIES_OFFICES)
         onCreate(db)
 
 
     }
 
 
-
-
     companion object {
-        const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = "UserProfileData.db"
+        const val DATABASE_VERSION = 2
+        const val DATABASE_NAME = "EVAMEG_DATA_DB"
 
         private var instance: DbHelper? = null
 
@@ -89,16 +90,12 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
     fun insertUserData(userProfileData: UserProfileData) {
+
         //writing in database
         val db = this.writableDatabase
+
         //new map with values, column names are keys
-        var values = ContentValues()
-        values.put(COLUMN_NAME_USER_FIRSTNAME, userProfileData.firstName)
-        values.put(COLUMN_NAME_USER_LASTNAME, userProfileData.lastName)
-        values.put(COLUMN_NAME_DATE_OF_BIRTH, userProfileData.dateOfBirth)
-        values.put(COLUMN_NAME_USER_WOHNORT, userProfileData.wohnort)
-        values.put(COLUMN_NAME_USER_POSTAL_CODE, userProfileData.postalCode)
-        values.put(COLUMN_NAME_USER_STREET, userProfileData.street)
+        val values = mapValues(userProfileData)
 
         //new row insert,primary key value return
         var result =
@@ -110,7 +107,22 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         }
     }
-    @SuppressLint("Range")
+
+
+    fun insertOfficeData(officeData: Office) {
+
+        //writing in database
+        val db = this.writableDatabase
+
+        //new map with values, column names are keys
+        val values = mapValues(officeData)
+
+        var result = db.insert(OfficesDataContract.OfficeDataEntry.TABLE_NAME, null, values)
+
+        //TODO verify this somehow
+    }
+
+
     fun readUserData() :MutableList<UserProfileData>{
         var list: MutableList<UserProfileData> =ArrayList()
         val db= this.readableDatabase
@@ -140,50 +152,3 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 }
 
-
-
-/*alt:
-
-fun getUserData () {
-    val db = this.readableDatabase
-    val projection = arrayOf(
-        BaseColumns._ID,
-        COLUMN_NAME_USER_FIRSTNAME,
-        COLUMN_NAME_USER_LASTNAME,
-        COLUMN_NAME_DATE_OF_BIRTH,
-        COLUMN_NAME_USER_WOHNORT,
-        COLUMN_NAME_USER_POSTAL_CODE,
-        COLUMN_NAME_USER_STREET
-    )
-    val selection = "${COLUMN_NAME_USER_LASTNAME}=?"
-    val selectionArgs = arrayOf("Nachname")
-    val sortOrder = "$COLUMN_NAME_USER_FIRSTNAME DESC"
-
-    val cursor = db.query(
-        UserProfileDataContract.UserProfileDataEntry.TABLE_NAME,  //table for query
-        projection,                              //column array which will hopefully returned
-        selection,                                 //columns for where clausel
-        selectionArgs,                             //values for where clausel
-        null,                               //would group the rows
-        null,                              // would row groups filter
-        sortOrder
-    )
-}
-}
-
-
-    val userIds = mutableListOf<Long>()
-        with(cursor) {
-            while (cursor.moveToNext()) {
-                val user= getLong(getColumnIndexOrThrow(BaseColumns._ID))
-                userIds.add(user)
-            }
-        }
-        cursor.close()
-        db.close()
-    }
-
-    override fun onDestroy(){
-    dbHelper.close()
-    super.onDestroy()
-}*/

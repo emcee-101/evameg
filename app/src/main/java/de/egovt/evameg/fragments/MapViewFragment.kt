@@ -12,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
+import de.egovt.evameg.utility.MapPoint
+import de.egovt.evameg.utility.Office
 import de.egovt.evameg.utility.activityIsPermissionGiven
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -20,26 +22,14 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
 
-data class MapPoint (val latitude:Double, val longitude:Double, val name:String, val id:String){
 
-    constructor(latitude:Double, longitude:Double, name:String, id:String, map:MapView) : this(latitude,  longitude,  name,  id) {
-        marker = Marker(map)
-        val location = GeoPoint(latitude, longitude)
-        marker.position = location
-        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-        marker.title = name
-
-    }
-
-    lateinit var marker:Marker
-}
 
 class MapViewFragment(): Fragment() {
 
     // to manage State better
     lateinit var myMap : MapView
     lateinit var MapIDs : Array<String>
-    var myMapPoints : Array<MapPoint> = arrayOf()
+    var myMapPoints : Array<Office> = arrayOf()
 
     // for Permissions
     private lateinit var thisView : View
@@ -118,7 +108,7 @@ class MapViewFragment(): Fragment() {
             } else {
 
                 // Add Standard Marker
-                myMapPoints = arrayOf(MapPoint(50.985167884281026, 11.041366689707237, "FH ERFURT", "1", myMap))
+                myMapPoints = arrayOf(Office(50.985167884281026, 11.041366689707237, "FH ERFURT", "1", myMap))
 
             }
 
@@ -141,19 +131,19 @@ class MapViewFragment(): Fragment() {
         return true
     }
 
-    private fun readMarkerData(IDs : Array<String>):Array<MapPoint>{
+    private fun readMarkerData(IDs : Array<String>):Array<Office>{
 
         // Example return
-        return arrayOf(MapPoint(0.0,0.0,"Buxtehude","aaa"))
+        return arrayOf(Office(0.0,0.0,"Buxtehude","aaa"))
     }
 
-    private fun identifyMapPoint(marker: Marker): MapPoint? {
+    private fun identifyMapPoint(marker: Marker): Office? {
         return myMapPoints.find { it.marker == marker }
     }
 
     private fun onMarkerClickety(marker:Marker, map: MapView):Boolean{
 
-        val myMapPoint:MapPoint? = identifyMapPoint(marker)
+        val myMapPoint:Office? = identifyMapPoint(marker)
 
         if (myMapPoint != null) {
             Log.i("a", "Point with ID of ${myMapPoint.id} was clicked")
