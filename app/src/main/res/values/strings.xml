@@ -18,6 +18,11 @@
     <string name="profile_builder_return_en">cancel</string>
     <string name="profile_builder_toast_success_en">data inserted</string>
 
+    //ProfileActivity strings deutsch
+    <string name="builder_profile_activity_title_de">Daten bearbeiten</string>
+    <string name="profile_builder_return_de">zurück</string>
+    <string name="profile_builder_toast_success_de">Daten hinzugefügt</string>
+
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -34,4 +39,13 @@
     <string name="postal_code">postal code:</string>
     <string name="street">street:</string>
     <string name="User_id">ID:</string>
+
+    //activity_profile.xml strings deutsch
+    <string name="vorname">Vorname:</string>
+    <string name="nachname">Nachnamename:</string>
+    <string name="geburtstag">Geburtstag:</string>
+    <string name="wohnort">Wohnort:</string>
+    <string name="postleitzahl">PLZ:</string>
+    <string name="straße">Straße:</string>
+    // User_id siehe activity_profile.xml
 </resources>
