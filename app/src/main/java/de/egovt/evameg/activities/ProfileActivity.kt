@@ -96,15 +96,15 @@ class ProfileActivity : AppCompatActivity() {
 
 
        with(builder) {
-           setTitle("Daten bearbeiten")
-           setPositiveButton("Ok") { dialog, which ->
+           setTitle(R.string.builder_profile_activity_title_en)
+           setPositiveButton(R.string.profile_builder_ok) { dialog, which ->
                textViewFirstName.text=editTextFirstName.text.toString()
                textViewLastName.text=editTextLastName.text.toString()
                textViewDateOfBirth.text=editTextDateOfBirth.text.toString()
                textViewWohnort.text=editTextWohnort.text.toString()
                textViewPostalCode.text=editTextPostalCode.text.toString()
                textViewStreet.text=editTextStreet.text.toString()
-//userProfilData und TextView tauschen?
+
                userProfileData.firstName=textViewFirstName.text.toString()
                userProfileData.lastName=textViewLastName.text.toString()
                userProfileData.dateOfBirth=textViewDateOfBirth.text.toString()
@@ -112,13 +112,13 @@ class ProfileActivity : AppCompatActivity() {
                userProfileData.postalCode=textViewPostalCode.text.toString()
                userProfileData.street=textViewStreet.text.toString()
 
-               Toast.makeText(context, "Data inserted", Toast.LENGTH_SHORT).show()
+               Toast.makeText(context, R.string.profile_builder_toast_success_en, Toast.LENGTH_SHORT).show()
                db.insertUserData(userProfileData)
 
            }
 
 
-           setNegativeButton("cancel") { dialog, which ->
+           setNegativeButton(R.string.profile_builder_return_en) { dialog, which ->
                    Log.d("Main", "Negative button clicked")
                }
                setView(dialogLayout)

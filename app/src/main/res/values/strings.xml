@@ -11,7 +11,13 @@
     <string name="welcome_alert_no_text">As the Data will be needed for almost every functionality of the App, you will be asked again for this.</string>
     <string name="welcome_alert_yes_caption">Scan failed</string>
     <string name="welcome_alert_yes_text">Manually input data?</string>
-    <string name="title_activity_profile">ProfileActivity</string>
+    //ProfileActivity strings english
+    <string name="title_activity_profile_en">ProfileActivity</string>
+    <string name="builder_profile_activity_title_en">Edit data</string>
+    <string name="profile_builder_ok">Ok</string>
+    <string name="profile_builder_return_en">cancel</string>
+    <string name="profile_builder_toast_success_en">data inserted</string>
+
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -19,4 +25,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_temp">temp</string>
     <string name="required">Required</string>
+
+    //activity_profile.xml strings english
+    <string name="firstname">Firstname:</string>
+    <string name="lastname">Lastname:</string>
+    <string name="birthday">Birth date:</string>
+    <string name="domicile">domicile:</string>
+    <string name="postal_code">postal code:</string>
+    <string name="street">street:</string>
+    <string name="User_id">ID:</string>
 </resources>
