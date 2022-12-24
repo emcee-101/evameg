@@ -11,7 +11,7 @@
         android:layout_above="@+id/edit_lastName"
         android:layout_marginBottom="23dp"
         android:autofillHints=""
-        android:hint="Vorname"
+        android:hint="@string/alertDialog_firstname_hint"
         android:inputType="text"
         android:minHeight="48dp" />
 
@@ -22,7 +22,7 @@
         android:layout_above="@+id/edit_dateOfBirth"
         android:layout_marginBottom="11dp"
         android:autofillHints=""
-        android:hint="Nachname"
+        android:hint="@string/alertDialog_lastname_hint"
         android:inputType="text"
         android:minHeight="48dp" />
 
@@ -33,7 +33,7 @@
         android:layout_above="@+id/edit_wohnort"
         android:layout_marginBottom="1dp"
         android:autofillHints=""
-        android:hint="Geburtstag"
+        android:hint="@string/alertDialog_birth_date_hint"
         android:inputType="date"
         android:minHeight="48dp" />
 
@@ -44,7 +44,7 @@
         android:layout_above="@+id/edit_postalCode"
         android:layout_marginBottom="11dp"
         android:autofillHints=""
-        android:hint="Wohnort"
+        android:hint="@string/alertDialog_domicil_hint"
         android:inputType="text"
         android:minHeight="48dp" />
 
@@ -55,7 +55,7 @@
         android:layout_above="@+id/edit_street"
         android:layout_marginBottom="11dp"
         android:autofillHints=""
-        android:hint="Postleitzahl"
+        android:hint="@string/alertDialog_postal_code_hint"
         android:inputType="number"
         android:minHeight="48dp" />
 
@@ -66,7 +66,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="-3dp"
         android:autofillHints=""
-        android:hint="Straße"
+        android:hint="@string/alertDialog_street_hint"
         android:inputType="textPostalAddress"
         android:minHeight="48dp" />
 

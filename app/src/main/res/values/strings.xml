@@ -11,6 +11,7 @@
     <string name="welcome_alert_no_text">As the Data will be needed for almost every functionality of the App, you will be asked again for this.</string>
     <string name="welcome_alert_yes_caption">Scan failed</string>
     <string name="welcome_alert_yes_text">Manually input data?</string>
+
     //ProfileActivity strings english
     <string name="title_activity_profile_en">ProfileActivity</string>
     <string name="builder_profile_activity_title_en">Edit data</string>
@@ -48,4 +49,14 @@
     <string name="postleitzahl">PLZ:</string>
     <string name="straße">Straße:</string>
     // User_id siehe activity_profile.xml
+
+    //layout_dialog_popup.xml strings english
+    <string name="alertDialog_firstname_hint">Firstname</string>
+    <string name="alertDialog_lastname_hint">Lastname</string>
+    <string name="alertDialog_birth_date_hint">Birth date</string>
+    <string name="alertDialog_domicil_hint">Domicile</string>
+    <string name="alertDialog_postal_code_hint">Postal code</string>
+    <string name="alertDialog_street_hint">Street</string>
+
+
 </resources>
