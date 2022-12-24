@@ -200,7 +200,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
         val query="SELECT ${queryObjects.joinToString(separator = ",")} " +
-                "FROM ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} DESC LIMIT 1"
+                "FROM ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} ORDER BY ${BaseColumns._ID} DESC LIMIT 1"
 
         Log.i("DB", "SQL call with following query is executed: $query")
 
