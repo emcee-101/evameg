@@ -96,7 +96,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
        with(builder) {
-           setTitle(R.string.builder_profile_activity_title_en)
+           setTitle(R.string.builder_profile_activity_title)
            setPositiveButton(R.string.profile_builder_ok) { dialog, which ->
                textViewFirstName.text=editTextFirstName.text.toString()
                textViewLastName.text=editTextLastName.text.toString()
@@ -112,13 +112,13 @@ class ProfileActivity : AppCompatActivity() {
                userProfileData.postalCode=textViewPostalCode.text.toString()
                userProfileData.street=textViewStreet.text.toString()
 
-               Toast.makeText(context, R.string.profile_builder_toast_success_en, Toast.LENGTH_SHORT).show()
+               Toast.makeText(context, R.string.profile_builder_toast_success, Toast.LENGTH_SHORT).show()
                db.insertUserData(userProfileData)
 
            }
 
 
-           setNegativeButton(R.string.profile_builder_return_en) { dialog, which ->
+           setNegativeButton(R.string.profile_builder_return) { dialog, which ->
                    Log.d("Main", "Negative button clicked")
                }
                setView(dialogLayout)
