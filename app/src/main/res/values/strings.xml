@@ -1,7 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">EVamEg</string>
     <string name="welcome_message">Welcome to EVamEg!</string>
-    <string name="welcome_button">Next</string>
+    <string name="welcome_button" >Next</string>
     <string name="back_button">Back</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -12,7 +12,7 @@
     <string name="welcome_alert_yes_caption">Scan failed</string>
     <string name="welcome_alert_yes_text">Manually input data?</string>
 
-    //ProfileActivity strings english
+    <!-- ProfileActivity strings english -->
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="builder_profile_activity_title">Edit data</string>
     <string name="profile_builder_ok">Ok</string>
@@ -28,7 +28,7 @@
     <string name="title_activity_temp">temp</string>
     <string name="required">Required</string>
 
-    //activity_profile.xml strings english
+    <!-- activity_profile.xml strings english -->
     <string name="firstname">Firstname:</string>
     <string name="lastname">Lastname:</string>
     <string name="birthday">Birth date:</string>
@@ -38,13 +38,13 @@
     <string name="User_id">ID:</string>
 
 
-    //layout_dialog_popup.xml strings english
-    <string name="alertDialog_firstname_hint">Firstname</string>
-    <string name="alertDialog_lastname_hint">Lastname</string>
-    <string name="alertDialog_birth_date_hint">Birth date</string>
-    <string name="alertDialog_domicil_hint">Domicile</string>
-    <string name="alertDialog_postal_code_hint">Postal code</string>
-    <string name="alertDialog_street_hint">Street</string>
+     <!-- layout_dialog_popup.xml strings english  -->
+     <string name="alertDialog_firstname_hint">Firstname</string>
+     <string name="alertDialog_lastname_hint">Lastname</string>
+     <string name="alertDialog_birth_date_hint">Birth date</string>
+     <string name="alertDialog_domicil_hint">Domicile</string>
+     <string name="alertDialog_postal_code_hint">Postal code</string>
+     <string name="alertDialog_street_hint">Street</string>
 
 
-</resources>
+ </resources>
