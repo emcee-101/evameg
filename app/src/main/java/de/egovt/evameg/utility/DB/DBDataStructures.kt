@@ -7,7 +7,7 @@ import org.osmdroid.views.overlay.Marker
 interface DataStructure {}
 
 data class UserProfileData (var firstName:String = "", var lastName:String = "", var dateOfBirth: String = "", var wohnort: String = "", var postalCode: String = "", var street: String = "") : DataStructure {
-    var id: Int=0
+    var id: Int=1 //Autoincrement hinzufügen?
 }
 
 data class Office (val id:String, val name:String, val address:String, val type:String, val latitude:Double, val longitude:Double)  : DataStructure {

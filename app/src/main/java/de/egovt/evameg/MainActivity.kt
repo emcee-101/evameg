@@ -10,6 +10,7 @@ import de.egovt.evameg.activities.ProfileActivity
 import de.egovt.evameg.activities.SetupActivity
 import de.egovt.evameg.databinding.ActivityMainBinding
 import de.egovt.evameg.fragments.MapViewFragment
+import de.egovt.evameg.fragments.Profile
 import de.egovt.evameg.utility.SettingsStorage
 
 class MainActivity : AppCompatActivity() {
@@ -41,7 +42,8 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.home -> replaceFragment(Home())
                 R.id.mapview -> replaceFragment(MapViewFragment())
-                R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
+                //R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
+                R.id.profile ->replaceFragment(Profile())
                 else -> {}
             }
             true
