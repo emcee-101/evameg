@@ -12,8 +12,8 @@
     <string name="welcome_alert_yes_caption">Scan failed</string>
     <string name="welcome_alert_yes_text">Manually input data?</string>
 
-    <!-- ProfileActivity strings english -->
-    <string name="title_activity_profile">ProfileActivity</string>
+    <!-- Profile Fragment strings english -->
+    <string name="title_fragment_profile">Profile Fragment</string>
     <string name="builder_profile_activity_title">Edit data</string>
     <string name="profile_builder_ok">Ok</string>
     <string name="profile_builder_return">cancel</string>
