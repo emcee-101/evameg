@@ -32,8 +32,10 @@ class NewApplication : AppCompatActivity() {
         appList.adapter = appListAdapter
         appList.setOnItemClickListener { parent, _, position, _ ->
             val selectedItem = parent.getItemAtPosition(position) as String
-            //textView.text = "Printing out $selectedItem"
-            startActivity(Intent(this, FormActivity::class.java))
+            val intent = Intent(this, FormActivity::class.java)
+            intent.putExtra("mot_id", applicationsList[selectedItem])
+            intent.putExtra("mot_string", selectedItem)
+            startActivity(intent)
         }
 
 
