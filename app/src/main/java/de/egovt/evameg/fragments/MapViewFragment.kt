@@ -23,7 +23,13 @@ import org.osmdroid.views.overlay.Marker
 
 
 
-
+/**
+ * A Fragment that displays a Map with Markers.
+ *
+ * Is the map of the App. Implemented with OSMDroid. Also queries the Offices when passed IDs (constrcutor 2).
+ *
+ * @constructor Creates a Map with 1 Office.
+ */
 class MapViewFragment(): Fragment() {
 
     // to manage State better
@@ -40,7 +46,12 @@ class MapViewFragment(): Fragment() {
     private var funcThere:Boolean = false
 
 
-    // Gets called like this from the Form Component
+
+    /**
+     * Secondary Constructor for usage of Fragment as Picker for Locations.
+     *
+     * Calls the primary Constructor, but also adds some IDs and a return Function to the Fragment, so that a selection process can happen.
+     */
     constructor(newMapIDs:Array<String>, returnFunction: (String?)-> String?) : this(){
 
         MapIDs = newMapIDs
@@ -67,7 +78,9 @@ class MapViewFragment(): Fragment() {
 
     }
 
-    // Set up Map
+    /**
+     * Sets up Main Configuration for the Map and checks if IDs were given in the constructor.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -119,6 +132,11 @@ class MapViewFragment(): Fragment() {
 
     }
 
+    /**
+     * Draws the GeoPoints of the Offices in "myMapPoints" and adds Clicklisteners
+     *
+     * @return bool true if ran sucessfully
+     */
     private fun drawMapPoints():Boolean{
 
         // add Point to Map Overlay
@@ -131,6 +149,11 @@ class MapViewFragment(): Fragment() {
         return true
     }
 
+    /**
+     * Calls Database to read the Data for if the given IDs, if they are provided
+     *
+     * @return list of offices to later be added to the map
+     */
     private fun readMarkerData(IDs : Array<String>):List<Office>{
 
         val db = DbHelper(context)
@@ -142,6 +165,11 @@ class MapViewFragment(): Fragment() {
         return myMapPoints.find { it.marker == marker }
     }
 
+    /**
+     * Click Listeners for markers refer to this function
+     *
+     * @return bool with true if ran sucessfully
+     */
     private fun onMarkerClickety(marker:Marker, map: MapView):Boolean{
 
         val myMapPoint:Office? = identifyMapPoint(marker)
@@ -176,7 +204,11 @@ class MapViewFragment(): Fragment() {
         return true
     }
 
-
+    /**
+     * Checks if Permissions necessary for the Map are given and requests them if needed
+     *
+     * @return bool value with true being the value returned if all ran sucessfully
+     */
     private fun checkMapPermissions(): Boolean {
 
         val neededPermissions = arrayOf(

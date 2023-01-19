@@ -16,10 +16,19 @@ import de.egovt.evameg.utility.SettingsStorage
 import de.egovt.evameg.utility.UI.back
 import de.egovt.evameg.utility.UI.customFragmentStateAdapter
 
-
+/**
+ * Activity that is displayed the first time the App is run.
+ *
+ * Displays swipeable fragments found in the evameg/fragments/setup directory
+ *
+ */
 class SetupActivity : AppCompatActivity() {
 
 
+    /**
+     * Sets up the ViewPager2 to display the fragments and handles presses of the "Back" Button.
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -56,7 +65,10 @@ class SetupActivity : AppCompatActivity() {
         startActivity(referrer)
     }
 
-
+    /**
+     * Set Value that remembers if this was ran before to true, so that it doesnt get displayed next time.
+     *
+     */
     private fun onLeaving(){
 
         // set Value to indicate complete app Setup to true
