@@ -113,10 +113,6 @@ class MapViewFragment(): Fragment() {
 
 
 
-        // todo CHANGE LOOK OF PIN FINALLY
-        // change look startMarker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
-        // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
-
         // request Data from db
         if(type != ""){
 
