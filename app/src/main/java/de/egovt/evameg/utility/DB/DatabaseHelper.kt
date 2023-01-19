@@ -37,12 +37,10 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         db.execSQL(SQL_CREATE_ENTRIES_OFFICES)
         Log.i("db", "Created the Tables in the DB")
 
-        // add Testdata to show for testing
-        for(office : Office in testOffices){
 
-            insertOfficeData(office)
+        insertOfficeData(testOffices, db)
+        insertUserData(testPerson, db)
 
-        }
 
     }
 
@@ -58,7 +56,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
     companion object {
-        const val DATABASE_VERSION = 2
+        const val DATABASE_VERSION = 4
         const val DATABASE_NAME = "EVAMEG_DATA_DB"
 
         // TODO FIX MEMORY LEAK, OUR SHIP IS FLOODING WITH WATER, WE ARE SINKING AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHH HEEEEEEEEEEEEEEEEEELP!!!!!!!!!!!!
@@ -70,10 +68,15 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
 
-    fun insertUserData(userProfileData: UserProfileData) {
+    fun insertUserData(userProfileData: UserProfileData, db_ref: SQLiteDatabase? = null) {
 
-        //writing in database
-        val db = this.writableDatabase
+        var db : SQLiteDatabase
+
+        // enable to optionally pass a DB in (useful for testdata onCreate of a new DB)
+        if(db_ref == null)
+            db = this.writableDatabase
+        else
+            db = db_ref
 
         //new map with values, column names are keys
         val values = mapInValues(userProfileData)
@@ -90,15 +93,24 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
-    fun insertOfficeData(officeData: Office) {
+    fun insertOfficeData(officeData: List<Office>, db_ref: SQLiteDatabase? = null) {
 
-        //writing in database
-        val db = this.writableDatabase
+        var db : SQLiteDatabase
 
-        //new map with values, column names are keys
-        val values = mapInValues(officeData)
+        // enable to optionally pass a DB in (useful for testdata onCreate of a new DB)
+        if(db_ref == null)
+            db = this.writableDatabase
+        else
+            db = db_ref
 
-        var result = db.insert(OfficesDataContract.OfficeDataEntry.TABLE_NAME, null, values)
+        for(instance:Office in officeData){
+
+            val values = mapInValues(instance)
+
+            var result = db.insert(OfficesDataContract.OfficeDataEntry.TABLE_NAME, null, values)
+
+        }
+
 
         //TODO verify this somehow
     }

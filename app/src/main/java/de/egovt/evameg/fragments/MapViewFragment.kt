@@ -110,9 +110,7 @@ class MapViewFragment(): Fragment() {
         controller.setZoom(18.5)
         myMap.setMultiTouchControls(true)
 
-        // Start Point
-        val mapPointFHErfurt = GeoPoint(50.985167884281026, 11.041366689707237)
-        controller.setCenter(mapPointFHErfurt)
+
 
 
         // todo CHANGE LOOK OF PIN FINALLY
@@ -143,6 +141,8 @@ class MapViewFragment(): Fragment() {
         // draw em
         drawMapPoints()
 
+        // Start Point
+        controller.setCenter(myMapPoints[0].marker.position)
 
     }
 
@@ -161,6 +161,7 @@ class MapViewFragment(): Fragment() {
             mapPoint.marker.position = location
             mapPoint.marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             mapPoint.marker.title = mapPoint.name
+            mapPoint.marker.icon = context?.getDrawable(R.drawable.marker_graphics)
 
         }
         return mapPoints

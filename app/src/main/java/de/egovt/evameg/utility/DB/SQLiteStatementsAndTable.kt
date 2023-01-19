@@ -53,8 +53,8 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 
      const val SQL_CREATE_ENTRIES_OFFICES="CREATE TABLE ${OfficesDataContract.OfficeDataEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
-            "$COLUMN_NAME_NAME TEXT, "  +
-             "$COLUMN_NAME_ADDRESS TEXT " +
+            "$COLUMN_NAME_NAME TEXT, " +
+             "$COLUMN_NAME_ADDRESS TEXT, " +
              "$COLUMN_NAME_TYPE TEXT, " +
              "$COLUMN_NAME_LAT REAL, " +
              "$COLUMN_NAME_LONG REAL " +

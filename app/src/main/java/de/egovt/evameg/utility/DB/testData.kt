@@ -1,6 +1,7 @@
 package de.egovt.evameg.utility.DB
 
 import de.egovt.evameg.utility.Office
+import de.egovt.evameg.utility.UserProfileData
 
 
 val testOffices = listOf<Office>(
@@ -11,3 +12,5 @@ val testOffices = listOf<Office>(
     Office("Ausländerbehörde Erfurt", "Bürgermeister-Wagner-Straße 1, 99084 Erfurt", "auslaenderamt", 50.974665, 11.037730)
 
 )
+
+val testPerson = UserProfileData("Robert", "Käsemann", "07.08.1987", "Solingen", "42651", "Kaiser-Wilhelm Strasse 3")
