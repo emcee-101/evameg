@@ -37,6 +37,13 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         db.execSQL(SQL_CREATE_ENTRIES_OFFICES)
         Log.i("db", "Created the Tables in the DB")
 
+        // add Testdata to show for testing
+        for(office : Office in testOffices){
+
+            insertOfficeData(office)
+
+        }
+
     }
 
 
@@ -119,6 +126,23 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         db.close()
 
         return list
+    }
+
+    /**
+     * Return All Offices from DB
+     *
+     * @return list of found offices
+     */
+    fun readOfficeData() : List<Office> {
+
+        // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
+        // -> val id:String, val name:String, val address:String, val type:String, val latitude:Double, val longitude:Double
+        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_NAME,  COLUMN_NAME_ADDRESS, COLUMN_NAME_TYPE,  COLUMN_NAME_LAT, COLUMN_NAME_LONG)
+
+        val query="SELECT ${ queryObjects.joinToString(separator = ",") } FROM ${ OfficesDataContract.OfficeDataEntry.TABLE_NAME } "
+
+        return runOfficeQuery(query)
+
     }
 
     /**

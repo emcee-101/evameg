@@ -13,9 +13,9 @@ data class UserProfileData (var firstName:String = "", var lastName:String = "",
     var id: Int=1 //Autoincrement hinzufügen?
 }
 
-data class Office (val id:String, val name:String, val address:String, val type:String, val latitude:Double, val longitude:Double)  : DataStructure {
+data class Office (val name:String, val address:String, val type:String, val latitude:Double, val longitude:Double)  : DataStructure {
 
-    constructor(id:String, name:String, address:String, type:String, latitude:Double, longitude:Double, map: MapView):this(id, name, address, type, latitude, longitude){
+    constructor(name:String, address:String, type:String, latitude:Double, longitude:Double, map: MapView):this(name, address, type, latitude, longitude){
 
         marker = Marker(map)
         val location = GeoPoint(latitude, longitude)
@@ -25,6 +25,7 @@ data class Office (val id:String, val name:String, val address:String, val type:
 
     }
 
+    var id: Int=1
     lateinit var marker: Marker
 }
 
@@ -122,7 +123,8 @@ fun mapOutValues(data: Cursor, type: String) : MutableList<DataStructure> {
                 "office" -> {
 
                     // BaseColumns._ID, COLUMN_NAME_NAME, ADDRESS, COLUMN_NAME_TYPE, COLUMN_NAME_LAT, COLUMN_NAME_LONG
-                    val officeData = Office(data.getString(0), data.getString(1), data.getString(2), data.getString(3), data.getDouble(4), data.getDouble(5))
+                    val officeData = Office(data.getString(1), data.getString(2), data.getString(3), data.getDouble(4), data.getDouble(5))
+                    officeData.id = data.getInt(0)
 
                     values.add(officeData)
                 }

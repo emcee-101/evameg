@@ -33,8 +33,9 @@ import org.osmdroid.views.overlay.Marker
 class MapViewFragment(): Fragment() {
 
     // to manage State better
-    lateinit var myMap : MapView
-    var MapIDs : Array<String> = arrayOf()
+    private lateinit var myMap : MapView
+    private var mapIDs : Array<String> = arrayOf()
+    var type : String = ""
     var myMapPoints : List<Office> = listOf()
 
     // for Permissions
@@ -42,7 +43,7 @@ class MapViewFragment(): Fragment() {
     private lateinit var momentaryContext : Context
 
     // Call retFunk and destroy the fragment (FORM COMPONENT)
-    private lateinit var retFunk:(String?)-> String?
+    private lateinit var retFunk:(Int)-> Int
     private var funcThere:Boolean = false
 
 
@@ -52,9 +53,22 @@ class MapViewFragment(): Fragment() {
      *
      * Calls the primary Constructor, but also adds some IDs and a return Function to the Fragment, so that a selection process can happen.
      */
-    constructor(newMapIDs:Array<String>, returnFunction: (String?)-> String?) : this(){
+    constructor(newMapIDs:Array<String>, returnFunction: (Int)-> Int) : this(){
 
-        MapIDs = newMapIDs
+        mapIDs = newMapIDs
+        retFunk = returnFunction
+        funcThere = true
+
+    }
+
+    /**
+     * Tertiary Constructor for usage of Fragment as Picker for Locations.
+     *
+     * Calls the primary Constructor, but also adds a type for queriying the DB for fitting Offices
+     */
+    constructor(type:String, returnFunction: (Int)-> Int) : this(){
+
+        this.type = type
         retFunk = returnFunction
         funcThere = true
 
@@ -105,31 +119,51 @@ class MapViewFragment(): Fragment() {
         // change look startMarker.setIcon(getResources().getDrawable(R.drawable.ic_launcher));
         // https://osmdroid.github.io/osmdroid/Markers,-Lines-and-Polygons.html
 
+        // request Data from db
+        if(type != ""){
 
-        // Draw the Markers on the Map
-        if(myMapPoints.isNotEmpty()){
+            myMapPoints = readMarkerData(type)
 
-            drawMapPoints()
+
+        } else if(mapIDs.isNotEmpty()){
+
+            myMapPoints = readMarkerData(mapIDs)
+
 
         } else {
 
-            if(MapIDs.isNotEmpty()){
+            myMapPoints = readMarkerData()
 
-                // Read Data from DB and add Markers
-                myMapPoints = readMarkerData(MapIDs)
-
-            } else {
-
-                // Add Standard Marker
-                myMapPoints = listOf(Office("0", "FH", "Altonare Strass", "School", 50.985167884281026, 11.041366689707237, myMap))
-
-            }
-
-            drawMapPoints()
 
         }
 
+        // add markers to data
+        processOfficesForDisplay(myMapPoints)
 
+        // draw em
+        drawMapPoints()
+
+
+    }
+
+    /**
+     * Adds necessary information to Office, so that they can be displayed by OSMDroid as Markers
+     *
+     * @param mapPoints List of Offices without the marker attribute declared
+     * @return List of Processed offices
+     */
+    private fun processOfficesForDisplay(mapPoints : List<Office>):List<Office>{
+
+        for(mapPoint : Office in mapPoints) {
+
+            mapPoint.marker = Marker(myMap)
+            val location = GeoPoint(mapPoint.latitude, mapPoint.longitude)
+            mapPoint.marker.position = location
+            mapPoint.marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            mapPoint.marker.title = mapPoint.name
+
+        }
+        return mapPoints
     }
 
     /**
@@ -150,6 +184,18 @@ class MapViewFragment(): Fragment() {
     }
 
     /**
+     * Calls Database to read all Offices
+     *
+     * @return list of offices to later be added to the map
+     */
+    private fun readMarkerData():List<Office>{
+
+        val db = DbHelper(context)
+        return db.readOfficeData()
+
+    }
+
+    /**
      * Calls Database to read the Data for if the given IDs, if they are provided
      *
      * @return list of offices to later be added to the map
@@ -158,6 +204,18 @@ class MapViewFragment(): Fragment() {
 
         val db = DbHelper(context)
         return db.readOfficeData(IDs)
+
+    }
+
+    /**
+     * Calls Database to read Offices of given type
+     *
+     * @return list of offices to later be added to the map
+     */
+    private fun readMarkerData(type : String):List<Office>{
+
+        val db = DbHelper(context)
+        return db.readOfficeData(type)
 
     }
 
