@@ -17,23 +17,28 @@ class NewApplication : AppCompatActivity() {
         binding = ActivityNewApplicationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val applicationsList = mapOf(
-            getString(R.string.register_new_residence)              to "register_new_residence",
-            getString(R.string.new_id_card)   to "new_id_card",
-            getString(R.string.new_passport)         to "new_passport",
-            getString(R.string.extend_passport)         to "extend_passport",
-            getString(R.string.register_marriage)            to "register_marriage")
-        val appListAdapter : ArrayAdapter<String> = ArrayAdapter(
+        val applicationsList = arrayOf(
+            R.string.register_new_residence,
+            R.string.new_id_card,
+            R.string.new_passport,
+            R.string.extend_passport,
+            R.string.register_marriage,
+            R.string.driving_licence_replacement)
+
+        val applicationDict = mutableMapOf<String, Int>()
+        applicationsList.forEach { item -> applicationDict[getString(item)] = item }
+        println(applicationDict)
+        val appDictAdapter : ArrayAdapter<String> = ArrayAdapter(
             this,android.R.layout.simple_list_item_1,
-            applicationsList.keys.toList()
+            applicationDict.keys.toList()
         )
-        binding.applicationList.adapter = appListAdapter;
+        binding.applicationList.adapter = appDictAdapter;
         val appList: ListView = findViewById(R.id.applicationList)
-        appList.adapter = appListAdapter
+        appList.adapter = appDictAdapter
         appList.setOnItemClickListener { parent, _, position, _ ->
             val selectedItem = parent.getItemAtPosition(position) as String
             val intent = Intent(this, FormActivity::class.java)
-            intent.putExtra("mot_id", applicationsList[selectedItem])
+            intent.putExtra("mot_id", applicationDict[selectedItem])
             intent.putExtra("mot_string", selectedItem)
             startActivity(intent)
         }
@@ -45,7 +50,7 @@ class NewApplication : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                appListAdapter.filter.filter(newText)
+                appDictAdapter.filter.filter(newText)
                 return false
             }
         })

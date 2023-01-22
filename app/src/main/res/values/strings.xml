@@ -24,4 +24,10 @@
     <string name="new_passport">Reisepass beantragen</string>
     <string name="extend_passport">Reisepass verlängern</string>
     <string name="register_marriage">Heirat beantragen</string>
+    <string name="office_location">Office Location</string>
+    <string name="body_height">Body Height</string>
+    <string name="eye_color">Eye Color</string>
+    <string name="partner_fullname">Partner Full Name</string>
+    <string name="submit">Submit</string>
+    <string name="driving_licence_replacement">Lost driving licence replacement</string>
 </resources>
