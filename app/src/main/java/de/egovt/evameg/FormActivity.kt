@@ -2,6 +2,7 @@ package de.egovt.evameg
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -45,7 +46,7 @@ class FormActivity : AppCompatActivity() {
     }
     private fun addEditText(hint : String){
         val editLinearLayout = findViewById<LinearLayout>(R.id.container)
-        val editTextLayout = TextInputLayout(this)
+        val editTextLayout = TextInputLayout( ContextThemeWrapper(this, R.style.TextInputLayout),null,0)
         editTextLayout.layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT)
