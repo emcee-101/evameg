@@ -27,6 +27,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_temp">temp</string>
     <string name="required">Required</string>
+    <string name="register_new_residence">Register new residence address</string>
+    <string name="new_id_card">New ID card</string>
+    <string name="new_passport">New Passport</string>
+    <string name="extend_passport">Extend Passport</string>
+    <string name="register_marriage">Register marriage</string>
+    <string name="office_location">Office Location</string>
+    <string name="body_height">Body Height</string>
+    <string name="eye_color">Eye Color</string>
+    <string name="partner_fullname">Partner Full Name</string>
+    <string name="submit">Submit</string>
+    <string name="driving_licence_replacement">Lost driving licence replacement</string>
 
     <!-- activity_profile.xml strings english -->
     <string name="firstname">Firstname:</string>
