@@ -16,9 +16,14 @@ import de.egovt.evameg.R
 import de.egovt.evameg.utility.DB.DbHelper
 import de.egovt.evameg.utility.UserProfileData
 
-
+/**
+ * A Fragment that displays the user profile
+ *
+ *  Queries firstname, lastname, date of birth, domicile, postal code and street over the ID.
+ *
+ */
 class Profile : Fragment() {
-    // TODO: Rename and change types of parameters
+
 
     // for Permissions
     private lateinit var thisProfileView : View
@@ -26,31 +31,13 @@ class Profile : Fragment() {
 
 
 
-    /*private lateinit var textViewId: TextView
-    private lateinit var textViewFirstName: TextView
-    private lateinit var textViewLastName: TextView
-    private lateinit var textViewDateOfBirth: TextView
-    private lateinit var textViewWohnort: TextView
-    private lateinit var textViewPostalCode: TextView
-    private lateinit var textViewStreet: TextView*/
-    //private var param1: String? = null
-    // private var param2: String? = null
-
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }*/
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        thisProfileView = inflater.inflate(R.layout.activity_profile, container, false)// thisProfileView=Inflater. ... R.layout.activityProfile
+        thisProfileView = inflater.inflate(R.layout.activity_profile, container, false)
         return thisProfileView
 
     }
@@ -62,7 +49,9 @@ class Profile : Fragment() {
     }
 
 
-
+    /**
+     * button that opens layout dialog popup, where users can input their user data.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val dataEditButton: Button = thisProfileView.findViewById(R.id.button_edit_Data)
@@ -71,7 +60,9 @@ class Profile : Fragment() {
         }
     }
 
-
+    /**
+     reads user data, return it in textview
+     */
     override fun onResume() {
         super.onResume()
         var db = DbHelper(momentaryProfileContext)
@@ -98,6 +89,11 @@ class Profile : Fragment() {
             }
         }
     }
+
+    /**
+     * user insert data in edit text fields which is transformed in text view, then saved as user profile data.
+     * if success, inserted in db.
+     */
     fun showEditTextDialog() {
 
         val builder = AlertDialog.Builder(momentaryProfileContext)
@@ -120,13 +116,6 @@ class Profile : Fragment() {
         val textViewPostalCode: TextView = thisProfileView.findViewById(R.id.textView_postalCode)
         val textViewStreet: TextView = thisProfileView.findViewById(R.id.textView_street)
 
-        /*textViewId=thisProfileView.findViewById(R.id.textViewId)
-        textViewFirstName=thisProfileView.findViewById(R.id.textView_firstName)
-        textViewLastName=thisProfileView.findViewById(R.id.textView_lastName)
-        textViewDateOfBirth=thisProfileView.findViewById(R.id.textView_dateOfBirth)
-        textViewWohnort=thisProfileView.findViewById(R.id.textView_wohnort)
-        textViewPostalCode=thisProfileView.findViewById(R.id.textView_postalCode)
-         textViewStreet=thisProfileView.findViewById(R.id.textView_street)*/
 
 
 
