@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.home -> replaceFragment(Home())
                 R.id.mapview -> replaceFragment(MapViewFragment())
-                //R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
                 R.id.profile ->replaceFragment(Profile())
                 else -> {}
             }

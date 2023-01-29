@@ -14,6 +14,11 @@ import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_L
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_LONG
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_NAME
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_FIRSTNAME
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_LASTNAME
@@ -35,6 +40,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         db.execSQL(SQL_CREATE_ENTRIES_USER)
         db.execSQL(SQL_CREATE_ENTRIES_OFFICES)
+        db.execSQL(SQL_CREATE_ENTRIES_PROPOSAL)
         Log.i("db", "Created the Tables in the DB")
 
 
@@ -49,6 +55,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         db.execSQL(SQL_DELETE_ENTRIES_USER)
         db.execSQL(SQL_DELETE_ENTRIES_OFFICES)
+        db.execSQL(SQL_DELETE_ENTRIES_PROPOSAL)
         onCreate(db)
 
 
@@ -108,6 +115,28 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
             val values = mapInValues(instance)
 
             var result = db.insert(OfficesDataContract.OfficeDataEntry.TABLE_NAME, null, values)
+
+        }
+
+
+        //TODO verify this somehow
+    }
+
+    fun insertProposalData(proposalData: List<ProposalData>, db_ref: SQLiteDatabase? = null) {
+
+        var db : SQLiteDatabase
+
+        // enable to optionally pass a DB in (useful for testdata onCreate of a new DB)
+        if(db_ref == null)
+            db = this.writableDatabase
+        else
+            db = db_ref
+
+        for(instance:ProposalData in proposalData){
+
+            val values = mapInValues(proposalData)
+
+            var result = db.insert(ProposalDataContract.ProposalDataEntry.TABLE_NAME, null, values)
 
         }
 
@@ -220,7 +249,31 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         return list
     }
 
+    fun readProposalData() : MutableList<ProposalData> {
 
+        val db = this.readableDatabase
+
+
+        // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
+        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_PROPOSAL_NAME,
+            COLUMN_NAME_CATEGORY,
+            COLUMN_NAME_DATE,
+            COLUMN_NAME_STATUS,
+            COLUMN_NAME_OFFICE_ID)
+
+        val query="SELECT ${queryObjects.joinToString(separator = ",")} " +
+                "FROM ${ProposalDataContract.ProposalDataEntry.TABLE_NAME} ORDER BY ${BaseColumns._ID} DESC LIMIT 1"//limitierung anpassen?
+
+        Log.i("DB", "SQL call with following query is executed: $query")
+
+        val resultCursor = db.rawQuery(query,null)
+
+        val list = mapOutValues(resultCursor, "proposal") as MutableList<ProposalData>
+
+        db.close()
+
+        return list
+    }
 
 }
 
