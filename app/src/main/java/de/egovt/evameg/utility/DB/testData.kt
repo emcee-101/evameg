@@ -1,6 +1,7 @@
 package de.egovt.evameg.utility.DB
 
 import de.egovt.evameg.utility.Office
+import de.egovt.evameg.utility.ProposalData
 import de.egovt.evameg.utility.UserProfileData
 
 
@@ -14,3 +15,6 @@ val testOffices = listOf<Office>(
 )
 
 val testPerson = UserProfileData("Robert", "Käsemann", "07.08.1987", "Solingen", "42651", "Kaiser-Wilhelm Strasse 3")
+
+//val testProposal = ProposalData("Heiratsantrag"," Standesamt","12.12.2023","bearbeitet")
+

@@ -16,7 +16,7 @@ import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_N
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE
-import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
+//import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
@@ -122,7 +122,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         //TODO verify this somehow
     }
 
-    fun insertProposalData(proposalData: List<ProposalData>, db_ref: SQLiteDatabase? = null) {
+    fun insertProposalData(proposalData: ProposalData, db_ref: SQLiteDatabase? = null) {
 
         var db : SQLiteDatabase
 
@@ -132,13 +132,12 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         else
             db = db_ref
 
-        for(instance:ProposalData in proposalData){
 
-            val values = mapInValues(proposalData)
+        val values = mapInValues(proposalData)
 
-            var result = db.insert(ProposalDataContract.ProposalDataEntry.TABLE_NAME, null, values)
+        var result = db.insert(ProposalDataContract.ProposalDataEntry.TABLE_NAME, null, values)
 
-        }
+
 
 
         //TODO verify this somehow
@@ -255,11 +254,9 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
         // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
-        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_PROPOSAL_NAME,
-            COLUMN_NAME_CATEGORY,
-            COLUMN_NAME_DATE,
-            COLUMN_NAME_STATUS,
-            COLUMN_NAME_OFFICE_ID)
+        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_PROPOSAL_NAME, COLUMN_NAME_CATEGORY, COLUMN_NAME_DATE, COLUMN_NAME_STATUS
+            //, COLUMN_NAME_OFFICE_ID
+            )
 
         val query="SELECT ${queryObjects.joinToString(separator = ",")} " +
                 "FROM ${ProposalDataContract.ProposalDataEntry.TABLE_NAME} ORDER BY ${BaseColumns._ID} DESC LIMIT 1"//limitierung anpassen?
