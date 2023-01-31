@@ -43,7 +43,7 @@ class MapViewFragment(): Fragment() {
     private lateinit var momentaryContext : Context
 
     // Call retFunk and destroy the fragment (FORM COMPONENT)
-    private lateinit var retFunk:(Int)-> Int
+    private lateinit var retFunk:(Int)-> Unit
     private var funcThere:Boolean = false
 
 
@@ -53,7 +53,7 @@ class MapViewFragment(): Fragment() {
      *
      * Calls the primary Constructor, but also adds some IDs and a return Function to the Fragment, so that a selection process can happen.
      */
-    constructor(newMapIDs:Array<String>, returnFunction: (Int)-> Int) : this(){
+    constructor(newMapIDs:Array<String>, returnFunction: (Int)-> Unit) : this(){
 
         mapIDs = newMapIDs
         retFunk = returnFunction
@@ -66,7 +66,7 @@ class MapViewFragment(): Fragment() {
      *
      * Calls the primary Constructor, but also adds a type for queriying the DB for fitting Offices
      */
-    constructor(type:String, returnFunction: (Int)-> Int) : this(){
+    constructor(type:String, returnFunction: (Int) -> Unit) : this(){
 
         this.type = type
         retFunk = returnFunction

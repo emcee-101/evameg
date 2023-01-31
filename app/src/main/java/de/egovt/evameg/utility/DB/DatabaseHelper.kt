@@ -198,7 +198,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_NAME,  COLUMN_NAME_ADDRESS, COLUMN_NAME_TYPE,  COLUMN_NAME_LAT, COLUMN_NAME_LONG)
 
         val query="SELECT ${ queryObjects.joinToString(separator = ",") } FROM ${ OfficesDataContract.OfficeDataEntry.TABLE_NAME } " +
-                "WHERE $COLUMN_NAME_TYPE = $type"
+                "WHERE $COLUMN_NAME_TYPE = \'$type\'"
 
         return runOfficeQuery(query)
 
