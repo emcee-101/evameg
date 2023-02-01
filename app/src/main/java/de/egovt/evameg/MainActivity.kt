@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         // saved value across rebuilds and restarts
         if (!notFirstStart) {
-// todo remember this !
+
             startActivity(Intent(this, SetupActivity::class.java))
 
         }
