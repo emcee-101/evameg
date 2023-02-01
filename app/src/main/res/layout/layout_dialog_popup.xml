@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -64,11 +64,10 @@
         android:id="@+id/edit_street"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="19dp"
         android:autofillHints=""
         android:hint="@string/alertDialog_street_hint"
         android:inputType="textPostalAddress"
         android:minHeight="48dp" />
 
-</RelativeLayout>
+</TableLayout>
