@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,10 +20,11 @@ import com.prof.rssparser.Parser
 import com.squareup.picasso.Picasso
 import de.egovt.evameg.R
 import de.egovt.evameg.activities.NewApplication
+import de.egovt.evameg.activities.simpleWebView
 import kotlinx.coroutines.launch
 import java.nio.charset.Charset
 
-data class ItemsViewModel(val text: String?, val image: String?) {
+data class ItemsViewModel(val text: String?, val image: String?, val link : String?) {
 }
 
 
@@ -58,18 +59,25 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // New Form logic
         val newApplication = thisView.findViewById<FloatingActionButton>(R.id.new_application)
         newApplication.setOnClickListener {
             startActivity(Intent(activity, NewApplication::class.java))
         }
 
+
+        thisView.findViewById<TextView>(R.id.home_textView).text = "Amtsneuigkeiten"
+
         myRubbishBin = thisView.findViewById(R.id.recycler_home)
         myRubbishBin.layoutManager = LinearLayoutManager(momentaryContext)
+
 
         rssReader().start()
 
 
     }
+
+
 
     inner class rssReader : ViewModel() {
 
@@ -79,7 +87,7 @@ class Home : Fragment() {
 
             parser = Parser.Builder()
                 .context(momentaryContext)
-                .charset(Charset.forName("ISO-8859-7"))
+                .charset(Charset.forName("UTF-8"))
                 .cacheExpirationMillis(24L * 60L * 60L * 1000L) // one day
                 .build()
 
@@ -92,7 +100,7 @@ class Home : Fragment() {
 
                     for(article : Article in channel.articles ){
 
-                        recyclerViewData.add(ItemsViewModel(article.title, article.image))
+                        recyclerViewData.add(ItemsViewModel(article.title, article.image, article.link))
 
                         //Log.i("aaaa", "added an article to list of articles")
                         //Log.i("aaaa", "The image is: ${article.image}")
@@ -123,9 +131,10 @@ class Home : Fragment() {
             // inflates the card_view_design view
             // that is used to hold list item
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_view, parent, false)
+                .inflate(R.layout.home_card_view, parent, false)
 
-            return ViewHolder(view)
+
+            return ViewHolder(view, true)
         }
 
         // binds the list items to a view
@@ -133,10 +142,16 @@ class Home : Fragment() {
 
             val ItemsViewModel = mList[position]
 
+            // Display Image as 50x50
             Picasso.with(momentaryContext).load(ItemsViewModel.image).resize(50, 50).into(holder.imageView);
 
             // sets the text to the textview from our itemHolder class
             holder.textView.text = ItemsViewModel.text
+
+            holder.positionInArray = position
+
+            holder.link = ItemsViewModel.link
+
 
         }
 
@@ -146,11 +161,33 @@ class Home : Fragment() {
         }
 
         // Holds the views for adding it to image and text
-        inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView), View.OnClickListener {
+
             val imageView: ImageView = itemView.findViewById(R.id.imageview)
             val textView: TextView = itemView.findViewById(R.id.textView)
+            var link: String? = null
+            var positionInArray : Int = 0
+
+            constructor(ItemView: View, listenerRequested : Boolean) : this(ItemView){
+
+                if(listenerRequested) ItemView.setOnClickListener(this)
+
+            }
+
+            // switch visibility of expanded text
+            override fun onClick(p0: View?) {
+
+                val referToWeb : Intent = Intent(momentaryContext, simpleWebView::class.java)
+                referToWeb.putExtra("url_", link)
+                startActivity(referToWeb)
+
+            }
+
         }
+
     }
+
+
 
 }
 
