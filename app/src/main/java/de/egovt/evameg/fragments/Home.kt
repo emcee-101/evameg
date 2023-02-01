@@ -1,37 +1,42 @@
 package de.egovt.evameg.Fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.prof.rssparser.Article
+import com.prof.rssparser.Parser
 import de.egovt.evameg.R
 import de.egovt.evameg.activities.NewApplication
+import kotlinx.coroutines.launch
+import java.nio.charset.Charset
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+data class ItemsViewModel(val text: String?, val image: String?) {
+}
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Home.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class Home : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     private lateinit var thisView : View
+    private lateinit var parser : Parser
+    private lateinit var momentaryContext : Context
+    private val recyclerViewData = ArrayList<ItemsViewModel>()
+    private lateinit var myRubbishBin : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -43,25 +48,12 @@ class Home : Fragment() {
         return thisView
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Home.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Home().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        momentaryContext = context
+
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -70,5 +62,93 @@ class Home : Fragment() {
             startActivity(Intent(activity, NewApplication::class.java))
         }
 
+        myRubbishBin = thisView.findViewById(R.id.recycler_home)
+        myRubbishBin.layoutManager = LinearLayoutManager(momentaryContext)
+
+        rssReader().start()
+
+
     }
+
+    inner class rssReader : ViewModel() {
+
+        private val url = "https://www.erfurt.de/ef/de/service/rss/buergerbeteiligung"
+
+        fun start(){
+
+            parser = Parser.Builder()
+                .context(momentaryContext)
+                .charset(Charset.forName("ISO-8859-7"))
+                .cacheExpirationMillis(24L * 60L * 60L * 1000L) // one day
+                .build()
+
+            viewModelScope.launch {
+                try {
+                    val channel = parser.getChannel(url)
+                    // Do something with your data
+
+                    Log.i("aaaa", "Your Rss feed dear sir or madam - title is ${channel.title}")
+
+                    for(article : Article in channel.articles ){
+
+                        recyclerViewData.add(ItemsViewModel(article.title, article.image))
+
+                        Log.i("aaaa", "added an article to list of articles")
+                    }
+
+                    // This will pass the ArrayList to our Adapter
+                    val adapter = CustomAdapter(recyclerViewData)
+
+                    // Setting the Adapter with the recyclerview
+                    myRubbishBin.adapter = adapter
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    // Handle the exception
+                }
+            }
+
+        }
+
+
+    }
+
+    inner class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+
+        // create new views
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            // inflates the card_view_design view
+            // that is used to hold list item
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.card_view, parent, false)
+
+            return ViewHolder(view)
+        }
+
+        // binds the list items to a view
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+            val ItemsViewModel = mList[position]
+
+            // todo holder.imageView.setImageResource(ItemsViewModel.image)
+
+            // sets the text to the textview from our itemHolder class
+            holder.textView.text = ItemsViewModel.text
+
+        }
+
+        // return the number of the items in the list
+        override fun getItemCount(): Int {
+            return mList.size
+        }
+
+        // Holds the views for adding it to image and text
+        inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+            val imageView: ImageView = itemView.findViewById(R.id.imageview)
+            val textView: TextView = itemView.findViewById(R.id.textView)
+        }
+    }
+
 }
+
+
