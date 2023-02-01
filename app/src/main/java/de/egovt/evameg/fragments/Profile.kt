@@ -15,6 +15,7 @@ import android.widget.Toast
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.DB.DbHelper
 import de.egovt.evameg.utility.UserProfileData
+import de.egovt.evameg.utility.UI.ProfileEditor
 
 /**
  * A Fragment that displays the user profile
@@ -28,6 +29,17 @@ class Profile : Fragment() {
     // for Permissions
     private lateinit var thisProfileView : View
     private lateinit var momentaryProfileContext : Context
+    private lateinit var editor : ProfileEditor
+
+    private var profile : UserProfileData? = null
+
+    private var textViewId: TextView? = null
+    private var textViewFirstName: TextView? = null
+    private var textViewLastName: TextView? = null
+    private var textViewDateOfBirth: TextView? = null
+    private var textViewWohnort: TextView? = null
+    private var textViewPostalCode: TextView? = null
+    private var textViewStreet: TextView? = null
 
 
 
@@ -54,6 +66,9 @@ class Profile : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        editor = ProfileEditor(momentaryProfileContext, layoutInflater)
+
         val dataEditButton: Button = thisProfileView.findViewById(R.id.button_edit_Data)
         dataEditButton.setOnClickListener{
             showEditTextDialog()
@@ -65,101 +80,44 @@ class Profile : Fragment() {
      */
     override fun onResume() {
         super.onResume()
-        var db = DbHelper(momentaryProfileContext)
-        val textViewId: TextView = thisProfileView.findViewById(R.id.textViewId)
-        val textViewFirstName: TextView = thisProfileView.findViewById(R.id.textView_firstName)
-        val textViewLastName: TextView = thisProfileView.findViewById(R.id.textView_lastName)
-        val textViewDateOfBirth: TextView = thisProfileView.findViewById(R.id.textView_dateOfBirth)
-        val textViewWohnort: TextView = thisProfileView.findViewById(R.id.textView_wohnort)
-        val textViewPostalCode: TextView = thisProfileView.findViewById(R.id.textView_postalCode)
-        val textViewStreet: TextView = thisProfileView.findViewById(R.id.textView_street)
-        var data=db.readUserData()
-        when {
-            data.isNotEmpty() -> {
-                for (i in 0..(data.size - 1)) {
 
-                    textViewId.append(data[i].id.toString())
-                    textViewFirstName.append(data[i].firstName)
-                    textViewLastName.append(data[i].lastName)
-                    textViewDateOfBirth.append(data[i].dateOfBirth)
-                    textViewWohnort.append(data[i].wohnort)
-                    textViewPostalCode.append(data[i].postalCode)
-                    textViewStreet.append(data[i].street)
-                }
-            }
-        }
+        textViewId = thisProfileView.findViewById(R.id.textViewId)
+        textViewFirstName = thisProfileView.findViewById(R.id.textView_firstName)
+        textViewLastName = thisProfileView.findViewById(R.id.textView_lastName)
+        textViewDateOfBirth = thisProfileView.findViewById(R.id.textView_dateOfBirth)
+        textViewWohnort = thisProfileView.findViewById(R.id.textView_wohnort)
+        textViewPostalCode = thisProfileView.findViewById(R.id.textView_postalCode)
+        textViewStreet = thisProfileView.findViewById(R.id.textView_street)
+
+        refreshStrings()
+
     }
 
     /**
      * user insert data in edit text fields which is transformed in text view, then saved as user profile data.
      * if success, inserted in db.
      */
-    fun showEditTextDialog() {
+    private fun showEditTextDialog() {
 
-        val builder = AlertDialog.Builder(momentaryProfileContext)
-        val inflater: LayoutInflater = layoutInflater
-        val dialogLayout: View = inflater.inflate(R.layout.layout_dialog_popup, null)
-        val editTextFirstName: EditText = dialogLayout.findViewById(R.id.edit_firstName)
-        val editTextLastName: EditText = dialogLayout.findViewById(R.id.edit_lastName)
-        val editTextDateOfBirth: EditText = dialogLayout.findViewById(R.id.edit_dateOfBirth)
-        val editTextWohnort: EditText = dialogLayout.findViewById(R.id.edit_wohnort)
-        val editTextPostalCode: EditText = dialogLayout.findViewById(R.id.edit_postalCode)
-        val editTextStreet: EditText = dialogLayout.findViewById(R.id.edit_street)
+        // call refresh after Dialog ended
+        editor.showDataDialog { refreshStrings() }
+    }
+
+    private fun refreshStrings() {
 
         var db = DbHelper(momentaryProfileContext)
 
-        val textViewId: TextView = thisProfileView.findViewById(R.id.textViewId)
-        val textViewFirstName: TextView = thisProfileView.findViewById(R.id.textView_firstName)
-        val textViewLastName: TextView = thisProfileView.findViewById(R.id.textView_lastName)
-        val textViewDateOfBirth: TextView = thisProfileView.findViewById(R.id.textView_dateOfBirth)
-        val textViewWohnort: TextView = thisProfileView.findViewById(R.id.textView_wohnort)
-        val textViewPostalCode: TextView = thisProfileView.findViewById(R.id.textView_postalCode)
-        val textViewStreet: TextView = thisProfileView.findViewById(R.id.textView_street)
+        profile = db.readUserData()[0]
 
 
+        textViewId?.text =          profile!!.id.toString()
+        textViewFirstName?.text =   profile!!.firstName
+        textViewLastName?.text =    profile!!.lastName
+        textViewDateOfBirth?.text = profile!!.dateOfBirth
+        textViewWohnort?.text =     profile!!.wohnort
+        textViewPostalCode?.text =  profile!!.postalCode
+        textViewStreet?.text =      profile!!.street
 
-
-        var userProfileData = UserProfileData(
-            editTextFirstName.text.toString(),
-            editTextLastName.text.toString(),
-            editTextDateOfBirth.text.toString(),
-            editTextWohnort.text.toString(),
-            editTextPostalCode.text.toString(), //oder hinter toString().toInt?
-            editTextStreet.text.toString()
-
-        )
-
-
-        with(builder) {
-            setTitle(R.string.builder_profile_activity_title)
-            setPositiveButton(R.string.profile_builder_ok) { dialog, which ->
-                textViewFirstName.text=editTextFirstName.text.toString()
-                textViewLastName.text=editTextLastName.text.toString()
-                textViewDateOfBirth.text=editTextDateOfBirth.text.toString()
-                textViewWohnort.text=editTextWohnort.text.toString()
-                textViewPostalCode.text=editTextPostalCode.text.toString()
-                textViewStreet.text=editTextStreet.text.toString()
-
-                userProfileData.firstName=textViewFirstName.text.toString()
-                userProfileData.lastName=textViewLastName.text.toString()
-                userProfileData.dateOfBirth=textViewDateOfBirth.text.toString()
-                userProfileData.wohnort=textViewWohnort.text.toString()
-                userProfileData.postalCode=textViewPostalCode.text.toString()
-                userProfileData.street=textViewStreet.text.toString()
-
-                Toast.makeText(context, R.string.profile_builder_toast_success, Toast.LENGTH_SHORT).show()
-                db.insertUserData(userProfileData)
-
-            }
-
-
-            setNegativeButton(R.string.profile_builder_return) { dialog, which ->
-                Log.d("Main", "Negative button clicked")
-            }
-            setView(dialogLayout)
-            show()
-        }
     }
-
-
 }
+
