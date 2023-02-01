@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prof.rssparser.Article
 import com.prof.rssparser.Parser
+import com.squareup.picasso.Picasso
 import de.egovt.evameg.R
 import de.egovt.evameg.activities.NewApplication
 import kotlinx.coroutines.launch
@@ -72,7 +73,7 @@ class Home : Fragment() {
 
     inner class rssReader : ViewModel() {
 
-        private val url = "https://www.erfurt.de/ef/de/service/rss/buergerbeteiligung"
+        private val url = "https://www.erfurt.de/ef/de/service/rss/medien"
 
         fun start(){
 
@@ -93,7 +94,9 @@ class Home : Fragment() {
 
                         recyclerViewData.add(ItemsViewModel(article.title, article.image))
 
-                        Log.i("aaaa", "added an article to list of articles")
+                        //Log.i("aaaa", "added an article to list of articles")
+                        //Log.i("aaaa", "The image is: ${article.image}")
+
                     }
 
                     // This will pass the ArrayList to our Adapter
@@ -130,7 +133,7 @@ class Home : Fragment() {
 
             val ItemsViewModel = mList[position]
 
-            // todo holder.imageView.setImageResource(ItemsViewModel.image)
+            Picasso.with(momentaryContext).load(ItemsViewModel.image).resize(50, 50).into(holder.imageView);
 
             // sets the text to the textview from our itemHolder class
             holder.textView.text = ItemsViewModel.text
