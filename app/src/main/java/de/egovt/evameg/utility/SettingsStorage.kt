@@ -32,5 +32,15 @@ class SettingsStorage {
 
     }
 
+    fun writeString(key: String, value: String){
 
+        this.getPreferences()!!.edit().putString(key, value).apply()
+
+    }
+
+    fun readString(key: String): String? {
+
+        return this.getPreferences()!!.getString(key, "")
+
+    }
 }

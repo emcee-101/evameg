@@ -12,6 +12,7 @@ import de.egovt.evameg.Fragments.setup.ScreenSlidePageFragment1
 import de.egovt.evameg.Fragments.setup.ScreenSlidePageFragment2
 import de.egovt.evameg.MainActivity
 import de.egovt.evameg.R
+import de.egovt.evameg.fragments.setup.ScreenSlidePageFragment3
 import de.egovt.evameg.utility.SettingsStorage
 import de.egovt.evameg.utility.UI.back
 import de.egovt.evameg.utility.UI.customFragmentStateAdapter
@@ -40,6 +41,7 @@ class SetupActivity : AppCompatActivity() {
         val myAdapter = customFragmentStateAdapter(supportFragmentManager, lifecycle)
 
         myAdapter.addFragment(ScreenSlidePageFragment1())
+        myAdapter.addFragment(ScreenSlidePageFragment3(application, application))
         myAdapter.addFragment(ScreenSlidePageFragment2())
 
         // Prepare Slider

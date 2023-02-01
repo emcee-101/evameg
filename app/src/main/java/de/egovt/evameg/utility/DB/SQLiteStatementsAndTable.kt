@@ -82,7 +82,7 @@ const val SQL_CREATE_ENTRIES_PROPOSAL="CREATE TABLE ${ProposalDataContract.Propo
         "$COLUMN_NAME_PROPOSAL_NAME TEXT, " +
         "$COLUMN_NAME_CATEGORY TEXT, " +
         "$COLUMN_NAME_DATE 'DATE', " +
-        "$COLUMN_NAME_STATUS TEXT, " +
+        "$COLUMN_NAME_STATUS TEXT " +
        // "$COLUMN_NAME_OFFICE_ID ID " +
         ") "
 

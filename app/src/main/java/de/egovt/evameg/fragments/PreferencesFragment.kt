@@ -31,7 +31,7 @@ class PreferencesFragment() : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.preferences, rootKey)
         languages = findPreference("languages_dd")
 
-        val vals : Array<CharSequence> = arrayOf("\uD83C\uDDE9\uD83C\uDDEASE GERMANN LANGUAGE","\uD83C\uDDFA\uD83C\uDDF8plain ol' american")
+        val vals : Array<CharSequence> = arrayOf("\uD83C\uDDE9\uD83C\uDDEA Deutsch", "\uD83C\uDDFA\uD83C\uDDF8 English")
         languages?.entries  = vals
         languages?.entryValues = arrayOf("de","en")
 
