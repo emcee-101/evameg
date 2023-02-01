@@ -11,8 +11,9 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="-139dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,8 +41,8 @@
                         android:id="@+id/textView7"
                         android:layout_width="64dp"
                         android:layout_height="40dp"
-                        android:layout_weight="1"
                         android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
                         android:text="@string/firstname"
                         android:textAlignment="viewStart"
                         android:textColor="#52A855"
@@ -53,11 +54,11 @@
                         android:layout_width="140dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
+                        android:autofillHints=" "
                         android:hint="UserVorname"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"
-                        android:autofillHints=" " />
+                        tools:viewBindingType="TextView" />
 
 
                 </LinearLayout>
@@ -71,8 +72,8 @@
                         android:id="@+id/textView14"
                         android:layout_width="64dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
                         android:text="@string/lastname"
                         android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
@@ -84,11 +85,11 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:autofillHints=" "
                         android:hint="NachnameUser"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"
-                        android:autofillHints=" " />
+                        tools:viewBindingType="TextView" />
 
                 </LinearLayout>
 
@@ -101,8 +102,8 @@
                         android:id="@+id/textView16"
                         android:layout_width="64dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
                         android:text="@string/birthday"
                         android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
@@ -114,11 +115,11 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:autofillHints=" "
                         android:hint="Birthday"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"
-                        android:autofillHints=" "/>
+                        tools:viewBindingType="TextView" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -130,8 +131,8 @@
                         android:id="@+id/textView18"
                         android:layout_width="64dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
                         android:text="@string/domicile"
                         android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
@@ -143,11 +144,11 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:autofillHints=" "
                         android:hint="WohnortUser"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"
-                        android:autofillHints=" "/>
+                        tools:viewBindingType="TextView" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -189,8 +190,8 @@
                         android:id="@+id/textView22"
                         android:layout_width="64dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
                         android:text="@string/street"
                         android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
@@ -202,11 +203,11 @@
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:autofillHints=" "
                         android:hint="StraßeUser"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"
-                        android:autofillHints=" "/>
+                        tools:viewBindingType="TextView" />
 
                 </LinearLayout>
 
@@ -219,24 +220,24 @@
                         android:id="@+id/textView5"
                         android:layout_width="64dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:layout_marginLeft="11dp"
+                        android:layout_weight="1"
                         android:text="@string/User_id"
                         android:textAlignment="viewStart"
                         android:textColor="#4CAF50"
                         android:textSize="20sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textViewId"
                         android:layout_width="140dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:autofillHints=" "
                         android:hint="IDUser"
                         android:textColor="#8E8B8B"
                         android:textSize="20sp"
-                        tools:viewBindingType="TextView"
-                        android:autofillHints=" "/>
+                        tools:viewBindingType="TextView" />
 
                 </LinearLayout>
 
@@ -265,7 +266,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.634"
                 app:srcCompat="@drawable/ic_baseline_account_circle_grey" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

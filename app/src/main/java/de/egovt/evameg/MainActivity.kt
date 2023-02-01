@@ -7,9 +7,9 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.Fragments.Home
 import de.egovt.evameg.activities.SetupActivity
+import de.egovt.evameg.activities.test_activity
 import de.egovt.evameg.databinding.ActivityMainBinding
 import de.egovt.evameg.fragments.MapViewFragment
-import de.egovt.evameg.fragments.PreferencesFragment
 import de.egovt.evameg.fragments.Profile
 import de.egovt.evameg.utility.SettingsStorage
 
@@ -42,9 +42,8 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.home -> replaceFragment(Home())
                 R.id.mapview -> replaceFragment(MapViewFragment())
-                //R.id.profile -> startActivity(Intent(this, ProfileActivity::class.java))
                 R.id.profile ->replaceFragment(Profile())
-                else -> {replaceFragment(PreferencesFragment())}
+                else -> {startActivity(Intent(this, test_activity::class.java))}
             }
             true
         }

@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">EVamEg</string>
     <string name="welcome_message">Welcome to EVamEg!</string>
-    <string name="welcome_button" >Next</string>
+    <string name="welcome_button">Next</string>
     <string name="back_button">Back</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -27,6 +27,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_temp">temp</string>
     <string name="required">Required</string>
+    <string name="register_new_residence">Register new residence address</string>
+    <string name="new_id_card">New ID card</string>
+    <string name="new_passport">New Passport</string>
+    <string name="extend_passport">Extend Passport</string>
+    <string name="register_marriage">Register marriage</string>
+    <string name="office_location">Office Location</string>
+    <string name="body_height">Body Height</string>
+    <string name="eye_color">Eye Color</string>
+    <string name="partner_fullname">Partner Full Name</string>
+    <string name="submit">Submit</string>
+    <string name="driving_licence_replacement">Lost driving licence replacement</string>
 
     <!-- activity_profile.xml strings english -->
     <string name="firstname">Firstname:</string>
@@ -38,13 +49,13 @@
     <string name="User_id">ID:</string>
 
 
-     <!-- layout_dialog_popup.xml strings english  -->
-     <string name="alertDialog_firstname_hint">Firstname</string>
-     <string name="alertDialog_lastname_hint">Lastname</string>
-     <string name="alertDialog_birth_date_hint">Birth date</string>
-     <string name="alertDialog_domicil_hint">Domicile</string>
-     <string name="alertDialog_postal_code_hint">Postal code</string>
-     <string name="alertDialog_street_hint">Street</string>
+    <!-- layout_dialog_popup.xml strings english  -->
+    <string name="alertDialog_firstname_hint">Firstname</string>
+    <string name="alertDialog_lastname_hint">Lastname</string>
+    <string name="alertDialog_birth_date_hint">Birth date</string>
+    <string name="alertDialog_domicil_hint">Domicile</string>
+    <string name="alertDialog_postal_code_hint">Postal code</string>
+    <string name="alertDialog_street_hint">Street</string>
 
 
- </resources>
+</resources>

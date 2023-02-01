@@ -6,6 +6,11 @@ import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_L
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_LONG
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_NAME
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE
+//import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_FIRSTNAME
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_LASTNAME
@@ -40,6 +45,18 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
         }
     }
 
+    object ProposalDataContract{
+        object ProposalDataEntry: BaseColumns {
+            const val TABLE_NAME = "PROPOSAL_DATA_TABLE"
+            const val COLUMN_NAME_PROPOSAL_NAME = "proposal_name"
+            const val COLUMN_NAME_CATEGORY = "category"
+            const val COLUMN_NAME_DATE = "date"
+            const val COLUMN_NAME_STATUS= "status"
+            //const val COLUMN_NAME_OFFICE_ID = "office_id"
+
+        }
+    }
+
 
     //statement,that creates the table
      const val SQL_CREATE_ENTRIES_USER="CREATE TABLE ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} (" +
@@ -53,14 +70,23 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 
      const val SQL_CREATE_ENTRIES_OFFICES="CREATE TABLE ${OfficesDataContract.OfficeDataEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
-            "$COLUMN_NAME_NAME TEXT, "  +
-             "$COLUMN_NAME_ADDRESS TEXT " +
+            "$COLUMN_NAME_NAME TEXT, " +
+             "$COLUMN_NAME_ADDRESS TEXT, " +
              "$COLUMN_NAME_TYPE TEXT, " +
              "$COLUMN_NAME_LAT REAL, " +
              "$COLUMN_NAME_LONG REAL " +
             ") "
 
+const val SQL_CREATE_ENTRIES_PROPOSAL="CREATE TABLE ${ProposalDataContract.ProposalDataEntry.TABLE_NAME} (" +
+        "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
+        "$COLUMN_NAME_PROPOSAL_NAME TEXT, " +
+        "$COLUMN_NAME_CATEGORY TEXT, " +
+        "$COLUMN_NAME_DATE 'DATE', " +
+        "$COLUMN_NAME_STATUS TEXT, " +
+       // "$COLUMN_NAME_OFFICE_ID ID " +
+        ") "
+
     //statements, that deletes the table
      const val SQL_DELETE_ENTRIES_USER="DROP TABLE IF EXISTS ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME}"
      const val SQL_DELETE_ENTRIES_OFFICES="DROP TABLE IF EXISTS ${OfficesDataContract.OfficeDataEntry.TABLE_NAME}"
-
+     const val SQL_DELETE_ENTRIES_PROPOSAL="DROP TABLE IF EXISTS ${ProposalDataContract.ProposalDataEntry.TABLE_NAME}"
