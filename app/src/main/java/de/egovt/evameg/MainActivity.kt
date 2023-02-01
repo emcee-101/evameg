@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             R.id.settings_panel_overflow -> {
 
                 Log.i("aaaa", "Settings called")
-                replaceFragment(PreferencesFragment() as Fragment)
+                replaceFragment(PreferencesFragment(this) as Fragment)
                 true
             }
             else -> {Log.d("helphelphelp", "Unknown Option registered"); false}
