@@ -56,6 +56,8 @@
     <string name="alertDialog_domicil_hint">Domicile</string>
     <string name="alertDialog_postal_code_hint">Postal code</string>
     <string name="alertDialog_street_hint">Street</string>
+    <string name="settings">Settings</string>
+    <string name="todo">TODO</string>
 
 
 </resources>
