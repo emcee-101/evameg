@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.DB.DbHelper
@@ -30,7 +31,7 @@ import org.osmdroid.views.overlay.Marker
  *
  * @constructor Creates a Map with 1 Office.
  */
-class MapViewFragment(): Fragment() {
+class MapViewFragment(): DialogFragment() {
 
     // to manage State better
     private lateinit var myMap : MapView
