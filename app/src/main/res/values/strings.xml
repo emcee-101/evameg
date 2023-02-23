@@ -65,4 +65,14 @@
 
     <!-- Home Fragment strings english -->
     <string name="office_rss_title">Office News</string>
+
+    <!-- Preferences Fragment strings en -->
+    <string name="preference_category_1">Interface</string>
+    <string name="pref_dark_mode">Dark Mode</string>
+    <string name="pref_languages">Languages</string>
+    <string name="pref_languages_summary">Change the language of the App.</string>
+    <string name="pref_feedback">Feedback</string>
+    <string name="pref_feedback_more">Send Feedback</string>
+    <string name="pref_feedback_summary">Request new functionality or tell us if there is an error.</string>
+    <string name="pref_misc">Misc</string>
 </resources>

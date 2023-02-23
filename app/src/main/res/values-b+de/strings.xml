@@ -40,9 +40,20 @@
     <string name="alertDialog_domicil_hint">Wohnort</string>
     <string name="alertDialog_postal_code_hint">Postleitzahl</string>
     <string name="alertDialog_street_hint">Straße</string>
+    <string name="settings">Einstellungen</string>
+    <string name="todo">TODO</string>
 
     <!-- Map Fragment strings de -->
     <string name="map_question">Möchten sie mit der Terminbuchung fortfahren?</string>
     <string name="office_rss_title">Amtsneuigkeiten</string>
 
+    <!-- Preferences Fragment strings de -->
+    <string name="preference_category_1">Oberfläche</string>
+    <string name="pref_dark_mode">Dark Mode</string>
+    <string name="pref_languages">Sprachen</string>
+    <string name="pref_languages_summary">Ändern sie die Anzeigesprache der App.</string>
+    <string name="pref_feedback">Feedback</string>
+    <string name="pref_feedback_more">Feedback versenden</string>
+    <string name="pref_feedback_summary">Neue Funktionen vorschlagen oder Fehler melden.</string>
+    <string name="pref_misc">Anderes</string>
 </resources>
