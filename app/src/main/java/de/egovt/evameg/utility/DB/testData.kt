@@ -16,5 +16,5 @@ val testOffices = listOf<Office>(
 
 val testPerson = UserProfileData("Robert", "Käsemann", "07.08.1987", "Solingen", "42651", "Kaiser-Wilhelm Strasse 3")
 
-//val testProposal = ProposalData("Heiratsantrag"," Standesamt","12.12.2023","bearbeitet")
+val testProposal = ProposalData("Heiratsantrag"," Standesamt","12.12.2023","bearbeitet", "1")
 

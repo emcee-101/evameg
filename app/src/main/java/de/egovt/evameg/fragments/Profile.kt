@@ -22,6 +22,8 @@ import de.egovt.evameg.utility.UI.ProfileEditor
  *
  *  Queries firstname, lastname, date of birth, domicile, postal code and street over the ID.
  *
+ *  @author Celina Ludwigs
+ *
  */
 class Profile : Fragment() {
 

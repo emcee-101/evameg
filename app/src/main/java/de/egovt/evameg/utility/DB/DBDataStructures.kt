@@ -29,7 +29,7 @@ data class Office (val name:String, val address:String, val type:String, val lat
     lateinit var marker: Marker
 }
 
-data class ProposalData (var proposalName:String = "", var category:String = "", var date: String = "", var status: String = "", //var officeId: String = "",
+data class ProposalData (var proposalName:String = "", var category:String = "", var date: String = "", var status: String = "", var officeId: String = "",
  ) : DataStructure {
 
     var id: Int = 1
@@ -40,6 +40,8 @@ data class ProposalData (var proposalName:String = "", var category:String = "",
      *
      * @param data to be inserted, either a Profile or a Office 0r a Proposal
      * @return the insertable data for the SQLLite DB in ContentValues format
+     *
+     * @author Celina Ludwings, Niklas Herzog
      */
     fun mapInValues(data: DataStructure): ContentValues {
 
@@ -69,10 +71,8 @@ data class ProposalData (var proposalName:String = "", var category:String = "",
             values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.category)
             values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.date)
             values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.status)
-            /*values.put(
-                ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME,
-                data.officeId
-            )*/
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.officeId)
+
 
 
         } else {
@@ -90,6 +90,8 @@ data class ProposalData (var proposalName:String = "", var category:String = "",
      * @param data returned from the db as a cursor
      * @param type of data - can be "profile" or "office" or "proposal"
      * @return List of the wanted DataStructure
+     *
+     * @author Celina Ludwings, Niklas Herzog
      */
     fun mapOutValues(data: Cursor, type: String): MutableList<DataStructure> {
 

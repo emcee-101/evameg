@@ -30,6 +30,8 @@ class ProfileEditor() {
         /**
          * user insert data in edit text fields which is transformed in text view, then saved as user profile data.
          * if success, inserted in db.
+         * @param callback to return data once inserted and acknowledged
+         *
          */
         public fun showDataDialog(callback : ()->Unit) {
 

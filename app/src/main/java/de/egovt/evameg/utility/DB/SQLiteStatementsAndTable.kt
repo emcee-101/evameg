@@ -8,6 +8,7 @@ import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_N
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
 //import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS
@@ -52,7 +53,7 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
             const val COLUMN_NAME_CATEGORY = "category"
             const val COLUMN_NAME_DATE = "date"
             const val COLUMN_NAME_STATUS= "status"
-            //const val COLUMN_NAME_OFFICE_ID = "office_id"
+            const val COLUMN_NAME_OFFICE_ID = "office_id"
 
         }
     }
@@ -83,7 +84,7 @@ const val SQL_CREATE_ENTRIES_PROPOSAL="CREATE TABLE ${ProposalDataContract.Propo
         "$COLUMN_NAME_CATEGORY TEXT, " +
         "$COLUMN_NAME_DATE 'DATE', " +
         "$COLUMN_NAME_STATUS TEXT " +
-       // "$COLUMN_NAME_OFFICE_ID ID " +
+        "$COLUMN_NAME_OFFICE_ID ID " +
         ") "
 
     //statements, that deletes the table

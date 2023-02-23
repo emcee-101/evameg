@@ -82,7 +82,11 @@ class Home : Fragment() {
     }
 
 
-
+    /**
+     * RSS Parser
+     *
+     * @author Niklas Herzog
+     */
     inner class rssReader : ViewModel() {
 
         private val url = "https://www.erfurt.de/ef/de/service/rss/medien"
@@ -128,6 +132,11 @@ class Home : Fragment() {
 
     }
 
+    /**
+     * Adapter for Recycler View
+     *
+     * @author Niklas Herzog
+     */
     inner class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
         // create new views
@@ -190,8 +199,6 @@ class Home : Fragment() {
         }
 
     }
-
-
 
 }
 

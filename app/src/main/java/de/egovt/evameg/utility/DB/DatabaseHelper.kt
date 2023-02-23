@@ -16,6 +16,7 @@ import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_N
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE
+import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
 //import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS
@@ -65,7 +66,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
     companion object {
-        const val DATABASE_VERSION = 4
+        const val DATABASE_VERSION = 5
         const val DATABASE_NAME = "EVAMEG_DATA_DB"
 
         // TODO FIX MEMORY LEAK, OUR SHIP IS FLOODING WITH WATER, WE ARE SINKING AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHH HEEEEEEEEEEEEEEEEEELP!!!!!!!!!!!!
@@ -76,7 +77,14 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
-
+    /**
+     * Add user Date to User DB
+     *
+     * @param userProfileData object to be insertedd
+     * @param db_ref is an optional value that can be used if the reference to the SQLliteDB if that is known
+     *
+     * @author Celina Ludwigs, Niklas Herzog
+     */
     fun insertUserData(userProfileData: UserProfileData, db_ref: SQLiteDatabase? = null) {
 
         var db : SQLiteDatabase
@@ -101,7 +109,14 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         }
     }
 
-
+    /**
+     * Add Offices to Office DB
+     *
+     * @param list of offices to be inserted
+     * @param db_ref is an optional value that can be used if the reference to the SQLliteDB if that is known
+     *
+     * @author Niklas Herzog
+     */
     fun insertOfficeData(officeData: List<Office>, db_ref: SQLiteDatabase? = null) {
 
         var db : SQLiteDatabase
@@ -120,8 +135,6 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         }
 
-
-        //TODO verify this somehow
     }
 
     fun insertProposalData(proposalData: ProposalData, db_ref: SQLiteDatabase? = null) {
@@ -141,12 +154,16 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
 
-
-        //TODO verify this somehow
     }
 
 
-
+    /**
+     * Return last User entry in DB
+     *
+     * @return list with 1 user entry
+     *
+     * @author Celina Ludwigs, Niklas Herzog
+     */
     fun readUserData() : MutableList<UserProfileData> {
 
         val db = this.readableDatabase
@@ -174,6 +191,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
      * Return All Offices from DB
      *
      * @return list of found offices
+     *
+     * @author Niklas Herzog
      */
     fun readOfficeData() : List<Office> {
 
@@ -192,6 +211,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
      *
      * @param type of Office
      * @return list of found offices
+     *
+     * @author Niklas Herzog
      */
     fun readOfficeData(type:String) : List<Office> {
 
@@ -211,6 +232,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
      *
      * @param ids of Offices to be inquired about
      * @return list of found offices
+     *
+     * @author Niklas Herzog
      */
     fun readOfficeData(ids:Array<String>) : List<Office> {
 
@@ -234,6 +257,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
      *
      * @param query to be ran
      * @return list of found offices
+     *
+     * @author Niklas Herzog
      */
     private fun runOfficeQuery(query : String) : List<Office> {
 
@@ -256,12 +281,11 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
         // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
-        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_PROPOSAL_NAME, COLUMN_NAME_CATEGORY, COLUMN_NAME_DATE, COLUMN_NAME_STATUS
-            //, COLUMN_NAME_OFFICE_ID
+        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_PROPOSAL_NAME, COLUMN_NAME_CATEGORY, COLUMN_NAME_DATE, COLUMN_NAME_STATUS, COLUMN_NAME_OFFICE_ID
             )
 
         val query="SELECT ${queryObjects.joinToString(separator = ",")} " +
-                "FROM ${ProposalDataContract.ProposalDataEntry.TABLE_NAME} ORDER BY ${BaseColumns._ID} DESC LIMIT 1"//limitierung anpassen?
+                "FROM ${ProposalDataContract.ProposalDataEntry.TABLE_NAME} ORDER BY ${BaseColumns._ID} DESC"
 
         Log.i("DB", "SQL call with following query is executed: $query")
 
