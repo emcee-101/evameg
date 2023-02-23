@@ -30,6 +30,8 @@ import org.osmdroid.views.overlay.Marker
  * Is the map of the App. Implemented with OSMDroid. Also queries the Offices when passed IDs (constrcutor 2).
  *
  * @constructor Creates a Map with 1 Office.
+ *
+ * @author Niklas Herzog
  */
 class MapViewFragment(): DialogFragment() {
 
@@ -53,6 +55,10 @@ class MapViewFragment(): DialogFragment() {
      * Secondary Constructor for usage of Fragment as Picker for Locations.
      *
      * Calls the primary Constructor, but also adds some IDs and a return Function to the Fragment, so that a selection process can happen.
+     *
+     * @param newMapIDs A array of IDs that are to be displayed on the Mapview.
+     *
+     * @param returnFunction A callback to which the chosen value (Database ID as a Int) can be transmitted.
      */
     constructor(newMapIDs:Array<String>, returnFunction: (Int)-> Unit) : this(){
 
@@ -66,6 +72,10 @@ class MapViewFragment(): DialogFragment() {
      * Tertiary Constructor for usage of Fragment as Picker for Locations.
      *
      * Calls the primary Constructor, but also adds a type for queriying the DB for fitting Offices
+     *
+     * @param type The kind of type of Office that is going to be displayed on the Mapview (like "Standesamt")
+     *
+     * @param returnFunction A callback to which the chosen value (Database ID as a Int) can be transmitted.
      */
     constructor(type:String, returnFunction: (Int) -> Unit) : this(){
 

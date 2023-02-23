@@ -11,6 +11,12 @@ import de.egovt.evameg.R
 import de.egovt.evameg.utility.DB.DbHelper
 import de.egovt.evameg.utility.UserProfileData
 
+
+/**
+ * Dialog that is shown when User Data is inserted in the Database.
+ *
+ * @author Celina Ludwigs, Niklas Herzog
+ */
 class ProfileEditor() {
 
         private lateinit var inflater : LayoutInflater

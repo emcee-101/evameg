@@ -5,6 +5,12 @@ import android.content.Context
 import android.content.SharedPreferences
 
 
+
+/**
+ * Handles Key Value Store.
+ *
+ * @author Niklas Herzog
+ */
 class SettingsStorage {
 
     private val KEY_VALUE_STORE_FILE_NAME = "settings_kv"

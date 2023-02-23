@@ -18,7 +18,14 @@ import de.egovt.evameg.R
 import de.egovt.evameg.utility.SettingsStorage
 import java.util.*
 
-
+/**
+ * Fragment integrated in Setup Activity.
+ *
+ * Includes a chooser for the language this app is supposed to use.
+ *
+ * @author Niklas Herzog
+ *
+ */
 class ScreenSlidePageFragment3() : Fragment() {
 
     lateinit var momentaryContext : Context

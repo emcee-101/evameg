@@ -6,6 +6,11 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 
 
+/**
+ * Handles Permissions.
+ *
+ * @author Niklas Herzog
+ */
 fun activityAskForPermissions(activity: Activity, permissions:Array<String>):Boolean{
 
     // TODO add handling when permission was not given, maybe a alertbox

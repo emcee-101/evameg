@@ -9,7 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import de.egovt.evameg.MainActivity
 import de.egovt.evameg.R
 
-
+/**
+ * A Webview using the Android System Webview component. Is used for the articles of the RSS feed.
+ *
+ * @author Niklas Herzog
+ *
+ */
 class simpleWebView : AppCompatActivity() {
 
     private var webView: WebView? = null

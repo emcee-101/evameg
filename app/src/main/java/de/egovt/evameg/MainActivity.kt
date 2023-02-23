@@ -17,6 +17,13 @@ import de.egovt.evameg.fragments.PreferencesFragment
 import de.egovt.evameg.fragments.Profile
 import de.egovt.evameg.utility.SettingsStorage
 
+/**
+ * Activity that displays the fragments for the App.
+ * Also checks if this is the first launch and refers to the SetupActivity if that is the case.
+ *
+ * @author Niklas Herzog, Mohammad Zidane
+ *
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -28,6 +35,9 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    /**
+     *  Overflow menu function that refers to Preferences Screen
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
         return when (item.itemId) {
@@ -41,20 +51,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun checkIfNotFirstLaunch():Boolean{
 
+        // CHECK IN KEY VALUE STORE IF FIRST START
+        val sets = SettingsStorage()
+        sets.KeyValueStore(application)
+        return sets.getBool("notFirstStart")
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // CHECK IN KEY VALUE STORE IF FIRST START
-        val sets = SettingsStorage()
-        sets.KeyValueStore(application)
-        val notFirstStart:Boolean = sets.getBool("notFirstStart")
-        Log.i("This is not the first start: ", notFirstStart.toString())
-
-        // saved value across rebuilds and restarts
-        if (!notFirstStart) {
+        // if NOT NOT first launch - its confusing but the double negation was necessary
+        if (!checkIfNotFirstLaunch()) {
 
             startActivity(Intent(this, SetupActivity::class.java))
 

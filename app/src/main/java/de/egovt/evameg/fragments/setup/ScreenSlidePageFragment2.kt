@@ -17,6 +17,14 @@ import de.egovt.evameg.utility.UI.ProfileEditor
 
 import de.egovt.evameg.utility.UI.back
 
+/**
+ * Fragment integrated in Setup Activity.
+ *
+ * Includes a dialog for asking if the user wants to create a profile or not.
+ *
+ * @author Niklas Herzog
+ *
+ */
 class ScreenSlidePageFragment2 : Fragment() {
 
     lateinit var momentaryContext : Context

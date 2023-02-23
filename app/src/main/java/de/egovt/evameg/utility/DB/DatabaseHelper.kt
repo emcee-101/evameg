@@ -33,6 +33,8 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
  * Handles everything Database related.
  *
  * @param context of Fragment or Activity running it
+ *
+ * @author Celina Ludwigs, Niklas Herzog
  */
 class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 

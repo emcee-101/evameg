@@ -7,6 +7,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 
+
+/**
+ * State Adapter for Setup Activity and the View Holder2 there.
+ *
+ * @author Niklas Herzog
+ */
 class customFragmentStateAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     private val fragmentList: ArrayList<Fragment> = ArrayList()

@@ -13,7 +13,12 @@ import androidx.preference.PreferenceManager
 import de.egovt.evameg.R
 import java.util.*
 
-
+/**
+ * Used for app settings like language.
+ *
+ * @author Niklas Herzog
+ *
+ */
 class PreferencesFragment() : PreferenceFragmentCompat() {
 
     var languages:DropDownPreference? = null

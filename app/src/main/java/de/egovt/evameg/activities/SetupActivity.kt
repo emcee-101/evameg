@@ -22,6 +22,7 @@ import de.egovt.evameg.utility.UI.customFragmentStateAdapter
  *
  * Displays swipeable fragments found in the evameg/fragments/setup directory
  *
+ * @author Niklas Herzog
  */
 class SetupActivity : AppCompatActivity() {
 

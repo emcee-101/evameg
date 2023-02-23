@@ -9,6 +9,12 @@ import androidx.fragment.app.Fragment
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.UI.cont
 
+/**
+ * Fragment integrated in Setup Activity.
+ *
+ * @author Niklas Herzog
+ *
+ */
 class ScreenSlidePageFragment1 : Fragment()  {
 
     override fun onCreateView(

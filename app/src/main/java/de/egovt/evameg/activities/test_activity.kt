@@ -10,7 +10,9 @@ import androidx.fragment.app.FragmentTransaction
 import de.egovt.evameg.fragments.MapViewFragment
 
 /**
- * To test integration of the map in another activity.
+ * To test integration of the map in another activity. Not to be used in final App.
+ *
+ * @author Niklas Herzog
  */
 class test_activity : AppCompatActivity() {
 
