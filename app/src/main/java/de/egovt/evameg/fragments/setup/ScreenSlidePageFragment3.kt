@@ -13,9 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.SettingsStorage
+import de.egovt.evameg.utility.UI.back
+import de.egovt.evameg.utility.UI.cont
 import java.util.*
 
 /**
@@ -55,6 +58,13 @@ class ScreenSlidePageFragment3() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         spinningDoctor = view.findViewById(R.id.spinner3)
+
+        // continue to next fragment object
+        val contButton: Button? = getView()?.findViewById(R.id.welcome_button_lang_yes)
+        contButton?.setOnClickListener { cont(activity?.findViewById(R.id.viewPagerSetup)) }
+
+        val backButton: Button? = getView()?.findViewById(R.id.welcome_button_lang_no)
+        backButton?.setOnClickListener { back(activity?.findViewById(R.id.viewPagerSetup)) }
 
 
         val adapter : ArrayAdapter<String> = ArrayAdapter(momentaryContext, android.R.layout.simple_spinner_item, options)

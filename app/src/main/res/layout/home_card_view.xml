@@ -29,7 +29,7 @@
             android:layout_marginTop="4dp"
             android:text="Item"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/imageview"
             app:layout_constraintTop_toTopOf="parent" />
 
