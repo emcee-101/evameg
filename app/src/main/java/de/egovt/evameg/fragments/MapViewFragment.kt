@@ -249,8 +249,7 @@ class MapViewFragment(): DialogFragment() {
                 .setCancelable(true)
                 .setTitle(myMapPoint.name)
 
-                // TODO add further information to Dialog
-                .setMessage("OMG ES FUNCITONIERT OMGOMGOMG")
+                .setMessage(R.string.map_question)
                 .setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
                     run {
 
@@ -260,6 +259,7 @@ class MapViewFragment(): DialogFragment() {
                             retFunk(myMapPoint.id)
                             Log.i("a", "The passed Function was called")
                         } else Log.i("a", "The passed Function was not called since there isnt one")
+                        // todo add fragment for TERMINE
 
                     }
                 }

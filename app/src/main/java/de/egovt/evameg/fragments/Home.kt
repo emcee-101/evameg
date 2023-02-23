@@ -27,7 +27,11 @@ import java.nio.charset.Charset
 data class ItemsViewModel(val text: String?, val image: String?, val link : String?) {
 }
 
-
+/**
+ * A Fragment that displays a RSS feed and a button to refer to forms.
+ *
+ * @author Niklas Herzog, Mohammad Zidane
+ */
 class Home : Fragment() {
 
     private lateinit var thisView : View
@@ -66,7 +70,7 @@ class Home : Fragment() {
         }
 
 
-        thisView.findViewById<TextView>(R.id.home_textView).text = "Amtsneuigkeiten"
+        thisView.findViewById<TextView>(R.id.home_textView).text = getString(R.string.office_rss_title)
 
         myRubbishBin = thisView.findViewById(R.id.recycler_home)
         myRubbishBin.layoutManager = LinearLayoutManager(momentaryContext)

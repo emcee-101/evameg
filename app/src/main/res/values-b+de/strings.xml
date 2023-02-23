@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="welcome_message">Willkommen zu EVamEg!</string>
+    <!-- Setup Fragment strings deutsch -->
+    <string name="app_name">EVamEg</string>
+    <string name="welcome_message">Wilkommen in EVamEg!</string>
+    <string name="welcome_button">Weiter</string>
+    <string name="back_button">Zurück</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="ask_scan">Möchten sie Daten von ihrem E-Personalausweis einlesen?</string>
+    <string name="info_scan">Diese Daten sind für die spätere Verwendung dieser App nötig und sie werden wieder danach gefragt werden sie einzulesen.</string>
+    <string name="welcome_alert_no_caption">Sind sie sich sicher?</string>
+    <string name="welcome_alert_no_text">Da diese Daten für fast alle Funktionalitäten der App vonnöten sind werden sie wieder danach gefragt werden.</string>
+    <string name="welcome_alert_yes_caption">Einlesen fehlgeschlagen.</string>
+    <string name="welcome_alert_yes_text">Möchten sie ihre Daten manuell eingeben?</string>
 
     <!-- Profile Fragment strings deutsch -->
     <string name="title_fragment_profile">ProfileActivity</string>
@@ -29,6 +41,8 @@
     <string name="alertDialog_postal_code_hint">Postleitzahl</string>
     <string name="alertDialog_street_hint">Straße</string>
 
-
+    <!-- Map Fragment strings de -->
+    <string name="map_question">Möchten sie mit der Terminbuchung fortfahren?</string>
+    <string name="office_rss_title">Amtsneuigkeiten</string>
 
 </resources>
