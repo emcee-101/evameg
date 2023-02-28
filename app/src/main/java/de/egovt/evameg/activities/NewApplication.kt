@@ -9,6 +9,9 @@ import android.widget.SearchView
 import de.egovt.evameg.R
 import de.egovt.evameg.databinding.ActivityNewApplicationBinding
 
+/**
+ * @author Mohammad Zidane
+ */
 class NewApplication : AppCompatActivity() {
 
     lateinit var binding: ActivityNewApplicationBinding
@@ -22,6 +25,8 @@ class NewApplication : AppCompatActivity() {
             R.string.register_new_residence,
             R.string.new_id_card,
             R.string.new_passport,
+            R.string.new_aufenthaltstitel,
+            R.string.apply_ElektronischeLohnsteuerkarte,
             R.string.extend_passport,
             R.string.register_marriage,
             R.string.driving_licence_replacement)
@@ -33,7 +38,7 @@ class NewApplication : AppCompatActivity() {
             this,android.R.layout.simple_list_item_1,
             applicationDict.keys.toList()
         )
-        binding.applicationList.adapter = appDictAdapter;
+        binding.applicationList.adapter = appDictAdapter
         val appList: ListView = findViewById(R.id.applicationList)
         appList.adapter = appDictAdapter
         appList.setOnItemClickListener { parent, _, position, _ ->
