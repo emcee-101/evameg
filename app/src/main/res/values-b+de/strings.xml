@@ -56,4 +56,51 @@
     <string name="pref_feedback_more">Feedback versenden</string>
     <string name="pref_feedback_summary">Neue Funktionen vorschlagen oder Fehler melden.</string>
     <string name="pref_misc">Anderes</string>
+
+    <!-- History Fragment strings en -->
+    <string name="applicationBeingProcessedDesc">Dieser Antrag wird bearbeitet, dies kann einige Jahre dauern. Wir werden Sie kontaktieren, falls wir weitere Informationen benötigen</string>
+    <string name="applicationCompleteDesc">Dieser Antrag wurde bearbeitet und als abgeschlossen markiert, es sind keine weiteren Maßnahmen erforderlich</string>
+    <string name="show_more_info">Weitere Informationen anzeigen</string>
+    <string name="status_since">Status seit</string>
+    <string name="status">Status</string>
+    <string name="complete">Fertig</string>
+    <string name="processing">Bearbeitung</string>
+
+    <!-- NewApplication Activity de -->
+    <string name="new_aufenthaltstitel">Neuer Aufenthaltstitel</string>
+    <string name="apply_ElektronischeLohnsteuerkarte">Elektronische Lohnsteuerkarte beantragen</string>
+    <string name="driving_licence_replacement">Führerscheinersatz beantragen</string>
+
+    <!-- Formularaktivität de -->
+    <string name="tax_id">Ihre Steuernummer</string>
+    <string name="employeeID">Mitarbeiter-ID</string>
+    <string name="old_passport_number">Alte Passnummer (optional)</string>
+    <string name="partner_birthdate">Geburtsdatum des Partners</string>
+    <string name="partner_tax_id">Steuernummer des Partners</string>
+    <string name="passport_number">Passnummer</string>
+    <string name="new_street_address">Neue Straßenadresse</string>
+    <string name="new_postal_code">Postleitzahl</string>
+    <string name="city">Stadt</string>
+    <string name="state">Bundesland/Province</string>
+    <string name="country">Land</string>
+    <string name="driver_license_id">Führerschein-ID</string>
+    <string name="driver_license_expiry_date">Ablaufdatum des Führerscheins</string>
+    <string name="applicationSentMsg">Antrag erfolgreich gesendet, die Status können Sie im Verlauf abrufen</string>
+    <string name="submitApplicationPromptMsg">Dieser Antrag wird digital signiert als:\n%s, geb. %s\n\nHiermit bestätige ich, dass alle von mir angegebenen Daten korrekt sind. Ich erkenne an, dass die Angabe falsche Informationen zu hohen Bußgeldern, Bürokratiehölle und anderen unvorhersehbaren Konsequenzen führen wird.</string>
+    <string name="submitApplicationPromptTitle">Antrag absenden?</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="signedInAs">Angemeldet als:\n%s</string>
+    <string name="location_standesamt">Standort der Registrierung</string>
+    <string name="location_finanzamt">Standort der Finanzamt</string>
+    <string name="location_sozialamt">Standort der Sozialamt</string>
+    <string name="location_foreigners_office">Standort der Ausländerbehörde</string>
+    <string name="body_height">Größe</string>
+    <string name="eye_color">Augenfarbe</string>
+    <string name="partner_fullname">Vollständiger Name des Partners</string>
+    <string name="submit">Senden</string>
+    <string name="register_new_residence">Neue Wohnadresse registrieren</string>
+    <string name="new_id_card">Neuer Personalausweis</string>
+    <string name="new_passport">Neuer Reisepass</string>
+    <string name="extend_passport">Reisepass verlängern</string>
+    <string name="register_marriage">Heirat Registrieren</string>
 </resources>
