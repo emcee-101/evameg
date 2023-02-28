@@ -16,9 +16,6 @@ import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_N
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE
-import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
-//import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
-import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_FIRSTNAME
@@ -66,7 +63,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
     companion object {
-        const val DATABASE_VERSION = 7
+        const val DATABASE_VERSION = 8
         const val DATABASE_NAME = "EVAMEG_DATA_DB"
 
         // TODO FIX MEMORY LEAK, OUR SHIP IS FLOODING WITH WATER, WE ARE SINKING AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHH HEEEEEEEEEEEEEEEEEELP!!!!!!!!!!!!
@@ -137,6 +134,14 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     }
 
+    /**
+     * Add Porposal to DB
+     *
+     * @param list of proposals to be inserted
+     * @param db_ref is an optional value that can be used if the reference to the SQLliteDB if that is known
+     *
+     * @author Celina Ludwigs
+     */
     fun insertProposalData(proposalData: ProposalData, db_ref: SQLiteDatabase? = null) {
 
         var db : SQLiteDatabase
@@ -275,13 +280,21 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         return list
     }
 
+
+    /**
+     * Read all Proposals
+     *
+     * @return list of found proposal
+     *
+     * @author Celina Ludwigs
+     */
     fun readProposalData() : MutableList<ProposalData> {
 
         val db = this.readableDatabase
 
 
         // NEEDS TO MATCH THE CONSTRUCTOR OF THE OBJECT IT IS SUPPOSED TO REACH
-        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_PROPOSAL_NAME, COLUMN_NAME_CATEGORY, COLUMN_NAME_DATE, COLUMN_NAME_STATUS, COLUMN_NAME_OFFICE_ID
+        val queryObjects : Array<String> = arrayOf("rowid", COLUMN_NAME_CATEGORY, COLUMN_NAME_DATE, COLUMN_NAME_STATUS
             )
 
         val query="SELECT ${queryObjects.joinToString(separator = ",")} " +

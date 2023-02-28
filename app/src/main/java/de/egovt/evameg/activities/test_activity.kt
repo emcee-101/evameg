@@ -36,6 +36,7 @@ class test_activity : AppCompatActivity() {
         val db :DbHelper = DbHelper(this)
 
         testText.text = db.readProposalData().count().toString()
+        //testText.text = db.readProposalData()[0].category
 
         /*
         placeHolderForMap = findViewById<FrameLayout>(de.egovt.evameg.R.id.placeholder)

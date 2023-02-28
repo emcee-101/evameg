@@ -8,9 +8,6 @@ import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_N
 import de.egovt.evameg.utility.OfficesDataContract.OfficeDataEntry.COLUMN_NAME_TYPE
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE
-import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
-//import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID
-import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME
 import de.egovt.evameg.utility.ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_DATE_OF_BIRTH
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_FIRSTNAME
@@ -53,11 +50,9 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
     object ProposalDataContract{
         object ProposalDataEntry: BaseColumns {
             const val TABLE_NAME = "PROPOSAL_DATA_TABLE"
-            const val COLUMN_NAME_PROPOSAL_NAME = "proposal_name"
             const val COLUMN_NAME_CATEGORY = "category"
             const val COLUMN_NAME_DATE = "date"
             const val COLUMN_NAME_STATUS= "status"
-            const val COLUMN_NAME_OFFICE_ID = "office_id"
 
         }
     }
@@ -88,13 +83,9 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 
 const val SQL_CREATE_ENTRIES_PROPOSAL="CREATE TABLE ${ProposalDataContract.ProposalDataEntry.TABLE_NAME} (" +
         "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
-        "$COLUMN_NAME_PROPOSAL_NAME TEXT, " +
         "$COLUMN_NAME_CATEGORY TEXT, " +
         "$COLUMN_NAME_DATE 'DATE', " +
-        "$COLUMN_NAME_STATUS TEXT, " +
-        "$COLUMN_NAME_OFFICE_ID INTEGER, " +
-        "FOREIGN KEY ($COLUMN_NAME_OFFICE_ID) REFERENCES ${OfficesDataContract.OfficeDataEntry.TABLE_NAME}(${BaseColumns._ID})" +
-        //Column in der man die Daten aus dem Antrag als Text abspeichert für Zukünftige Änderungen
+        "$COLUMN_NAME_STATUS TEXT " +
         ") "
 
 /**

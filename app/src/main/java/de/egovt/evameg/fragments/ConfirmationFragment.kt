@@ -110,7 +110,7 @@ class ConfirmationFragment(): Fragment() {
     private fun goAhead(){
 
         val db : DbHelper = DbHelper(curContext)
-        db.insertProposalData(ProposalData(getString(R.string.date), "date", "$chosenDateFinal ${options[chosenOption]}", "confirmed", officeID.toString()))
+        db.insertProposalData(ProposalData( getString(R.string.date2), "$chosenDateFinal ${options[chosenOption]}", "pending"))
 
         if(activity is MainActivity){
             (activity as MainActivity).replaceFragment(Home())
