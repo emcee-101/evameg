@@ -102,7 +102,7 @@ class ConfirmationFragment(): Fragment() {
     }
 
     private fun setDate(year:Int, month:Int, day:Int){
-        chosenDateFinal = "${day}.${month}.${year}"
+        chosenDateFinal = "${day}.${month + 1}.${year}"
         date.text = chosenDateFinal
 
     }
