@@ -18,15 +18,15 @@ __EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag ents
 
 
 ### Features:
-- Behördenmap mit Terminerstellfunktion
-- Formulare ausfüllen und abschicken (Backend wird lediglich simuliert)
-- Suchfunktion für Anliegen für die Formulare oder passende Ämter vorgeschlagen werden
-- Profile um Daten nur einmal eingeben zu müssen
+- __Behördenmap__ mit Terminerstellfunktion
+- __Formulare__ ausfüllen und abschicken (Backend wird lediglich simuliert)
+- __Suchfunktion__ für Anliegen für die Formulare oder passende Ämter vorgeschlagen werden
+- __Profile__ um Daten nur einmal eingeben zu müssen
 
 
 ### Technologien:
-- Kotlin
-- Android Studio
+- __Kotlin__
+- __Android Studio__
 - Gitlab (this one right here)
 - Open Street Maps and OSMDroid
 - SQLite Open Helper
@@ -37,12 +37,14 @@ __EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag ents
 - "master" Branch clonen / herunterladen, in Android Studio öffnen, kompilieren und fertig!
 
 
+## Zusätzliche Dokumentation
+
 ### Navigationsgraph der App:
 
-- ![Link](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_Flowchart_Navigationgraph.drawio.png)
+- ![__Link__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_Flowchart_Navigationgraph.drawio.png)
 
 
 ### Datenbank-ER-Modell der App:
 
-- ![Link](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_ER-Modell.drawio.png)
+- ![__Link__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_ER-Modell.drawio.png)
 
