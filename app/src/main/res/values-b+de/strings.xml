@@ -62,6 +62,15 @@
     <string name="pref_feedback_summary">Neue Funktionen vorschlagen oder Fehler melden.</string>
     <string name="pref_misc">Anderes</string>
 
+        <!-- Confirmation Fragment strings en -->
+    <string name="confirm">Bestätigen</string>
+    <string name="confirm_time">Bitte wählen sie eine Zeit:</string>
+    <string name="confirm_data">Sie wählten folgende Option:</string>
+    <string name="confirm_date">Bitte wählen sie ein Datum:</string>
+    <string name="date">Datum einstellen</string>
+    <string name="date2">Datum</string>
+
+
     <!-- History Fragment strings en -->
     <string name="applicationBeingProcessedDesc">Dieser Antrag wird bearbeitet, dies kann einige Jahre dauern. Wir werden Sie kontaktieren, falls wir weitere Informationen benötigen</string>
     <string name="applicationCompleteDesc">Dieser Antrag wurde bearbeitet und als abgeschlossen markiert, es sind keine weiteren Maßnahmen erforderlich</string>
