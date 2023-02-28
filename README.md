@@ -48,3 +48,12 @@ __EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag ents
 
 - ![__Link__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_ER-Modell.drawio.png)
 
+
+### Bekannte Fehler:
+
+- Sprachenänderungen werden nicht sofort übernommen
+- das Einstellungsmenu aufzurufen nachdem man bereits einmal die Sprache geändert hat kann zu einem Crah führen
+- Dark Mode und Feedback im Einstellungsmenü haben keinen Effekt
+- das betätigen des "Zurück"-Knopfes führt den Nutzer immer zu den zuvor betätigten Aktionen
+- wird man von der App auf ein Fragment verwiesen kann es sein, dass das BottomNavigationMenu noch bei der alten Option bleibt
+
