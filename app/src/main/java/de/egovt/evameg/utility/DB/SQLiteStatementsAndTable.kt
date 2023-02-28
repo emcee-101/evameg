@@ -19,8 +19,12 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_STREET
 import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLUMN_NAME_USER_WOHNORT
 
+/**
+ * userProfilData, OfficesData and ProposalData contracts, that define table names and column names
+ *
+ * @author Celina Ludwigs, Niklas Herzog
+ */
 
-//contract, that defines table name and column names
     object UserProfileDataContract{
         object UserProfileDataEntry: BaseColumns {
             const val TABLE_NAME = "USER_DATA_TABLE"
@@ -58,13 +62,17 @@ import de.egovt.evameg.utility.UserProfileDataContract.UserProfileDataEntry.COLU
         }
     }
 
+/**
+ * userProfilData, OfficesData and ProposalData statements,which create the tables
+ *
+ * @author Celina Ludwigs, Niklas Herzog
+ */
 
-    //statement,that creates the table
      const val SQL_CREATE_ENTRIES_USER="CREATE TABLE ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
             "$COLUMN_NAME_USER_FIRSTNAME TEXT, " +
             "$COLUMN_NAME_USER_LASTNAME TEXT, " +
-            "$COLUMN_NAME_DATE_OF_BIRTH 'DATE', "  +
+            "$COLUMN_NAME_DATE_OF_BIRTH 'DATE', "  +         //'DATE' not existing, but it works
             "$COLUMN_NAME_USER_WOHNORT TEXT, " +
             "$COLUMN_NAME_USER_POSTAL_CODE INTEGER, " +
             "$COLUMN_NAME_USER_STREET TEXT) "
@@ -84,10 +92,15 @@ const val SQL_CREATE_ENTRIES_PROPOSAL="CREATE TABLE ${ProposalDataContract.Propo
         "$COLUMN_NAME_CATEGORY TEXT, " +
         "$COLUMN_NAME_DATE 'DATE', " +
         "$COLUMN_NAME_STATUS TEXT " +
-        "$COLUMN_NAME_OFFICE_ID ID " +
+        "$COLUMN_NAME_OFFICE_ID INTEGER " +
         ") "
 
-    //statements, that deletes the table
+/**
+ * userProfilData, OfficesData and ProposalData statements, which delete the tables
+ *
+ * @author Celina Ludwigs, Niklas Herzog
+ */
+
      const val SQL_DELETE_ENTRIES_USER="DROP TABLE IF EXISTS ${UserProfileDataContract.UserProfileDataEntry.TABLE_NAME}"
      const val SQL_DELETE_ENTRIES_OFFICES="DROP TABLE IF EXISTS ${OfficesDataContract.OfficeDataEntry.TABLE_NAME}"
      const val SQL_DELETE_ENTRIES_PROPOSAL="DROP TABLE IF EXISTS ${ProposalDataContract.ProposalDataEntry.TABLE_NAME}"
