@@ -29,6 +29,11 @@
     <string name="title_activity_temp">temp</string>
     <string name="required">Required</string>
 
+    <!-- fragments name -->
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="mapview">Map</string>
+    <string name="profile">Profile</string>
 
 
     <!-- activity_profile.xml strings english -->
@@ -90,6 +95,8 @@
     <string name="new_aufenthaltstitel">New residence permit</string>
     <string name="apply_ElektronischeLohnsteuerkarte">Apply for Income Tax E-Card</string>
     <string name="driving_licence_replacement">Lost driving licence replacement</string>
+    <string name="searchTerm">Search</string>
+
 
     <!-- Form activity en -->
     <string name="tax_id">Your Tax ID</string>
@@ -123,5 +130,6 @@
     <string name="new_passport">New Passport</string>
     <string name="extend_passport">Extend Passport</string>
     <string name="register_marriage">Register marriage</string>
+
 
 </resources>

@@ -32,6 +32,11 @@
     <string name="street">Straße:</string>
     <string name="User_id">ID:</string>
 
+    <!-- fragmente  -->
+    <string name="home">Startseite</string>
+    <string name="history">Verlauf</string>
+    <string name="mapview">Karte</string>
+    <string name="profile">Profil</string>
 
     <!-- layout_dialog_popup.xml strings deutsch  -->
     <string name="alertDialog_firstname_hint">Vorname</string>
@@ -70,6 +75,7 @@
     <string name="new_aufenthaltstitel">Neuer Aufenthaltstitel</string>
     <string name="apply_ElektronischeLohnsteuerkarte">Elektronische Lohnsteuerkarte beantragen</string>
     <string name="driving_licence_replacement">Führerscheinersatz beantragen</string>
+    <string name="searchTerm">Suche</string>
 
     <!-- Formularaktivität de -->
     <string name="tax_id">Ihre Steuernummer</string>
