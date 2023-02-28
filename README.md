@@ -39,10 +39,10 @@ __EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag ents
 
 ### Navigationsgraph der App:
 
-![Link](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_Flowchart_Navigationgraph.drawio.png)
+- ![Link](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_Flowchart_Navigationgraph.drawio.png)
 
 
 ### Datenbank-ER-Modell der App:
 
-![Link](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_ER-Modell.drawio.png)
+- ![Link](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_ER-Modell.drawio.png)
 
