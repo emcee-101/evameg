@@ -30,6 +30,7 @@ __EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag ents
 - Gitlab (this one right here)
 - Open Street Maps and OSMDroid
 - SQLite Open Helper
+- Picasso
 - ... and more
 
 
@@ -39,21 +40,19 @@ __EVAmeG__ ist eine __E-Government App__, die den deutschen Behördenalltag ents
 
 ## Zusätzliche Dokumentation
 
-### Navigationsgraph der App:
+### Links:
 
-- ![__Link__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_Flowchart_Navigationgraph.drawio.png)
+- ![__Präsentationsfolien für die App__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/tree/master/DOC/presentations)
 
+- ![__Navigationsgraph der App__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_Flowchart_Navigationgraph.drawio.png)
 
-### Datenbank-ER-Modell der App:
-
-- ![__Link__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_ER-Modell.drawio.png)
+- ![__Datenbank-ER-Modell der App__](https://git.ai.fh-erfurt.de/team-evameg/evameg/-/blob/master/DOC/graphics/evameg_ER-Modell.drawio.png)
 
 
 ### Bekannte Fehler:
 
 - Sprachenänderungen werden nicht sofort übernommen
-- das Einstellungsmenu aufzurufen nachdem man bereits einmal die Sprache geändert hat kann zu einem Crah führen
+- das Einstellungsmenu aufzurufen nachdem man bereits einmal die Sprache geändert hat kann zu einem Crash führen
 - Dark Mode und Feedback im Einstellungsmenü haben keinen Effekt
 - das betätigen des "Zurück"-Knopfes führt den Nutzer immer zu den zuvor betätigten Aktionen
-- wird man von der App auf ein Fragment verwiesen kann es sein, dass das BottomNavigationMenu noch bei der alten Option bleibt
-
+- wird man von der App auf ein Fragment verwiesen, kann es sein, dass das BottomNavigationMenu noch die alte Funktion highlightet
