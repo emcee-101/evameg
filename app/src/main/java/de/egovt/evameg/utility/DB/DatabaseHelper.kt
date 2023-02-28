@@ -66,7 +66,7 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
 
 
     companion object {
-        const val DATABASE_VERSION = 5
+        const val DATABASE_VERSION = 7
         const val DATABASE_NAME = "EVAMEG_DATA_DB"
 
         // TODO FIX MEMORY LEAK, OUR SHIP IS FLOODING WITH WATER, WE ARE SINKING AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHH HEEEEEEEEEEEEEEEEEELP!!!!!!!!!!!!

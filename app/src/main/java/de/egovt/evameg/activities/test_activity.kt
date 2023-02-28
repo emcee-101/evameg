@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import de.egovt.evameg.fragments.MapViewFragment
+import de.egovt.evameg.utility.DB.DbHelper
+
 
 /**
  * To test integration of the map in another activity. Not to be used in final App.
@@ -27,8 +29,15 @@ class test_activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(de.egovt.evameg.R.layout.test_activity)
 
+
         testButton = findViewById<Button>(de.egovt.evameg.R.id.test_button)
         testText = findViewById<TextView>(de.egovt.evameg.R.id.testText)
+
+        val db :DbHelper = DbHelper(this)
+
+        testText.text = db.readProposalData().count().toString()
+
+        /*
         placeHolderForMap = findViewById<FrameLayout>(de.egovt.evameg.R.id.placeholder)
 
         testButton.setOnClickListener {
@@ -36,7 +45,7 @@ class test_activity : AppCompatActivity() {
             dispatchMap("standesamt")
 
         }
-
+        */
     }
 
     private fun dispatchMap(type:String){

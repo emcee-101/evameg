@@ -68,10 +68,10 @@ data class ProposalData (var proposalName:String = "", var category:String = "",
         } else if (data is ProposalData) {
 
             values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.proposalName)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.category)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.date)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.status)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.officeId)
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY, data.category)
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE, data.date)
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS, data.status)
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_OFFICE_ID, data.officeId)
 
 
 
