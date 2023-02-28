@@ -17,8 +17,8 @@
     <!-- Profile Fragment strings english -->
     <string name="title_fragment_profile">Profile Fragment</string>
     <string name="builder_profile_activity_title">Edit data</string>
-    <string name="profile_builder_ok">Ok</string>
-    <string name="profile_builder_return">cancel</string>
+    <string name="profile_builder_ok">OK</string>
+    <string name="profile_builder_return">Cancel</string>
     <string name="profile_builder_toast_success">data inserted</string>
 
 
@@ -28,25 +28,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_temp">temp</string>
     <string name="required">Required</string>
-    <string name="register_new_residence">Register new residence address</string>
-    <string name="new_id_card">New ID card</string>
-    <string name="new_passport">New Passport</string>
-    <string name="extend_passport">Extend Passport</string>
-    <string name="register_marriage">Register marriage</string>
-    <string name="office_location">Office Location</string>
-    <string name="body_height">Body Height</string>
-    <string name="eye_color">Eye Color</string>
-    <string name="partner_fullname">Partner Full Name</string>
-    <string name="submit">Submit</string>
-    <string name="driving_licence_replacement">Lost driving licence replacement</string>
+
+
 
     <!-- activity_profile.xml strings english -->
     <string name="firstname">Firstname:</string>
     <string name="lastname">Lastname:</string>
     <string name="birthday">Birth date:</string>
     <string name="domicile">domicile:</string>
-    <string name="postal_code">postal code:</string>
-    <string name="street">street:</string>
+    <string name="postal_code">Postal Code:</string>
+    <string name="street">Street:</string>
     <string name="User_id">ID:</string>
 
 
@@ -76,10 +67,6 @@
     <string name="pref_feedback_summary">Request new functionality or tell us if there is an error.</string>
     <string name="pref_misc">Misc</string>
 
-    <!-- History Fragment strings en -->
-    <string name="applicationBeingProcessedDesc">This application is being processed, this can take a up to a few years. We will contact you should we require more information</string>
-    <string name="applicationCompleteDesc">This application has been processed and marked as complete, no further actions are needed</string>
-
 
     <!-- Confirmation Fragment strings en -->
     <string name="confirm">Submit</string>
@@ -88,4 +75,53 @@
     <string name="confirm_date">Please choose a date:</string>
     <string name="date">Set Date</string>
     <string name="date2">Date</string>
+
+
+    <!-- History Fragment strings en -->
+    <string name="applicationBeingProcessedDesc">This application is being processed, this can take a few years. We will contact you should we require more information</string>
+    <string name="applicationCompleteDesc">This application has been processed and marked as complete, no further actions are needed</string>
+    <string name="show_more_info">Show more info</string>
+    <string name="status_since">Status since</string>
+    <string name="status">Status</string>
+    <string name="complete">Complete</string>
+    <string name="processing">Processing</string>
+
+    <!-- NewApplication activity en -->
+    <string name="new_aufenthaltstitel">New residence permit</string>
+    <string name="apply_ElektronischeLohnsteuerkarte">Apply for Income Tax E-Card</string>
+    <string name="driving_licence_replacement">Lost driving licence replacement</string>
+
+    <!-- Form activity en -->
+    <string name="tax_id">Your Tax ID</string>
+    <string name="employeeID">Employee ID</string>
+    <string name="old_passport_number">Old Passport Number (optional)</string>
+    <string name="partner_birthdate">Partner\'s Date of Birth</string>
+    <string name="partner_tax_id">Partner\'s Tax ID</string>
+    <string name="passport_number">Passport Number</string>
+    <string name="new_street_address">New Street Address</string>
+    <string name="new_postal_code">Postal Code</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="driver_license_id">Driver License ID</string>
+    <string name="driver_license_expiry_date">Driver License expiry date</string>
+    <string name="applicationSentMsg">Application sent successfully, check status in the History tab</string>
+    <string name="submitApplicationPromptMsg">This Application will be digitally signed as:\n%s, born %s\n\nI hereby confirm that all the data I provided is correct. I acknowledge that providing misleading information will lead to huge fines, bureaucracy hell and other unforeseeable consequences.</string>
+    <string name="submitApplicationPromptTitle">Submit Application?</string>
+    <string name="cancel">Cancel</string>
+    <string name="signedInAs">Signed in as:\n%s</string>
+    <string name="location_standesamt">Registry Location</string>
+    <string name="location_finanzamt">Tax office Location</string>
+    <string name="location_sozialamt">Social Welfare office Location</string>
+    <string name="location_foreigners_office">Foreigners Office Location</string>
+    <string name="body_height">Body Height</string>
+    <string name="eye_color">Eye Color</string>
+    <string name="partner_fullname">Partner\'s Full Name</string>
+    <string name="submit">Submit</string>
+    <string name="register_new_residence">Register new residence address</string>
+    <string name="new_id_card">New ID card</string>
+    <string name="new_passport">New Passport</string>
+    <string name="extend_passport">Extend Passport</string>
+    <string name="register_marriage">Register marriage</string>
+
 </resources>
