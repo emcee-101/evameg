@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import de.egovt.evameg.MainActivity
 import de.egovt.evameg.R
 import de.egovt.evameg.utility.DB.DbHelper
 import de.egovt.evameg.utility.Office
@@ -84,6 +85,9 @@ class MapViewFragment(): DialogFragment() {
         funcThere = true
 
     }
+
+
+
 
     // STANDARD STUFF
     override fun onCreateView(
@@ -259,9 +263,18 @@ class MapViewFragment(): DialogFragment() {
                             // If a Function to Return a Value was given, return the ID
                             retFunk(myMapPoint.id)
                             Log.i("a", "The passed Function was called")
-                        } else Log.i("a", "The passed Function was not called since there isnt one")
-                        // todo add fragment for TERMINE
 
+                        } else {
+
+                            if(activity is MainActivity){
+                                (activity as MainActivity).replaceFragment(ConfirmationFragment(myMapPoint.id))
+                            }
+                        }
+                    }
+                }
+                .setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
+                    run {
+                        dialogInterface.dismiss()
                     }
                 }
                 .create()

@@ -168,7 +168,7 @@ data class ProposalData (var proposalName:String = "", var category:String = "",
                             data.getString(2),
                             data.getString(3),
                             data.getString(4),
-                            //data.getString(5)
+                            data.getString(5)
                         )
                         proposalData.id = data.getInt(0)
 

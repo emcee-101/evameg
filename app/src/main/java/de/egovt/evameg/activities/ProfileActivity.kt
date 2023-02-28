@@ -18,6 +18,14 @@ import de.egovt.evameg.utility.DB.DbHelper
 import de.egovt.evameg.utility.UserProfileData
 
 
+/**
+ * Outdated Activity that displays the user profile
+ *
+ *  Queries firstname, lastname, date of birth, domicile, postal code and street over the ID.
+ *
+ *  @author Celina Ludwigs
+ *
+ */
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
@@ -34,7 +42,9 @@ class ProfileActivity : AppCompatActivity() {
 
 
     }
-
+    /**
+     * button that opens layout dialog popup, where users can input their user data.
+     */
     override fun onStart() {
         super.onStart()
         val dataEditButton: Button = findViewById(R.id.button_edit_Data)
@@ -46,6 +56,9 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * gets Data from Database
+     */
    override fun onResume() {
         super.onResume()
 
@@ -94,7 +107,10 @@ class ProfileActivity : AppCompatActivity() {
 
         )
 
-
+        /**
+         * Input from editText is printed out in textView and saved in Database.
+         *
+         */
        with(builder) {
            setTitle(R.string.builder_profile_activity_title)
            setPositiveButton(R.string.profile_builder_ok) { dialog, which ->
