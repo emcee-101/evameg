@@ -87,4 +87,5 @@
     <string name="confirm_data">You chose the following:</string>
     <string name="confirm_date">Please choose a date:</string>
     <string name="date">Set Date</string>
+    <string name="date2">Date</string>
 </resources>

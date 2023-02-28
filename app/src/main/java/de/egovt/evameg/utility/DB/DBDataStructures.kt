@@ -29,7 +29,7 @@ data class Office (val name:String, val address:String, val type:String, val lat
     lateinit var marker: Marker
 }
 
-data class ProposalData (var proposalName:String = "", var category:String = "", var date: String = "", var status: String = "", var officeId: String = "",
+data class ProposalData (var category:String = "", var date: String = "", var status: String = ""
  ) : DataStructure {
 
     var id: Int = 1
@@ -67,11 +67,9 @@ data class ProposalData (var proposalName:String = "", var category:String = "",
 
         } else if (data is ProposalData) {
 
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.proposalName)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.category)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.date)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.status)
-            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_PROPOSAL_NAME, data.officeId)
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_CATEGORY, data.category)
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_DATE, data.date)
+            values.put(ProposalDataContract.ProposalDataEntry.COLUMN_NAME_STATUS, data.status)
 
 
 
@@ -162,13 +160,12 @@ data class ProposalData (var proposalName:String = "", var category:String = "",
 
                     "proposal" -> {
 
-                        // BaseColumns._ID, COLUMN_NAME_NAME, ADDRESS, COLUMN_NAME_TYPE, COLUMN_NAME_LAT, COLUMN_NAME_LONG
+                        // category, date , status
                         val proposalData = ProposalData(
                             data.getString(1),
                             data.getString(2),
                             data.getString(3),
-                            data.getString(4),
-                            data.getString(5)
+
                         )
                         proposalData.id = data.getInt(0)
 
