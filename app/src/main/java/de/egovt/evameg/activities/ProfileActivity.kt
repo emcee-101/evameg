@@ -26,6 +26,7 @@ import de.egovt.evameg.utility.UserProfileData
  *  @author Celina Ludwigs
  *
  */
+@Deprecated("Use Profile() in /fragments instead", level = DeprecationLevel.HIDDEN)
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 

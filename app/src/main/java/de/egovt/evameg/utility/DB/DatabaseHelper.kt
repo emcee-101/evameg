@@ -1,6 +1,7 @@
 package de.egovt.evameg.utility.DB
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -66,7 +67,8 @@ class DbHelper(var context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME,
         const val DATABASE_VERSION = 8
         const val DATABASE_NAME = "EVAMEG_DATA_DB"
 
-        // TODO FIX MEMORY LEAK, OUR SHIP IS FLOODING WITH WATER, WE ARE SINKING AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHH HEEEEEEEEEEEEEEEEEELP!!!!!!!!!!!!
+
+        @SuppressLint("StaticFieldLeak")
         private var instance: DbHelper? = null
 
         //Accessing database

@@ -57,6 +57,8 @@ class ScreenSlidePageFragment2 : Fragment() {
         val backButton: Button? = getView()?.findViewById(R.id.welcome_button_2_back)
         backButton?.setOnClickListener { back(activity?.findViewById(R.id.viewPagerSetup)) }
 
+
+        // Selection Dialog
         val noButton: Button? = getView()?.findViewById(R.id.welcome_button_3_no)
         noButton?.setOnClickListener {
 

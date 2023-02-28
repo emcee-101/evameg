@@ -53,6 +53,9 @@ class ConfirmationFragment(): Fragment() {
         curContext = context
     }
 
+    /**
+     * Sets up the Fragment.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -93,6 +96,12 @@ class ConfirmationFragment(): Fragment() {
         date.setOnClickListener { datePickerStart( mYear,mMonth, mDay) }
     }
 
+    /**
+     * Display the DatePickerDialog
+     * @param mYear is Year of current date
+     * @param mMonth is Month of current date minus one (Android saves it from 0..11)
+     * @param mDay is Day of current date
+     */
     private fun datePickerStart(mYear:Int,mMonth:Int, mDay:Int):Boolean {
         val dialog : DatePickerDialog = DatePickerDialog(curContext, dateListener(), mYear,mMonth, mDay)
         val c = Calendar.getInstance()
@@ -107,6 +116,9 @@ class ConfirmationFragment(): Fragment() {
 
     }
 
+    /**
+     * Called when User is finished with Input.
+     */
     private fun goAhead(){
 
         val db : DbHelper = DbHelper(curContext)
@@ -120,6 +132,9 @@ class ConfirmationFragment(): Fragment() {
 
     }
 
+    /**
+     * Custom Listener for Selected Items with the Spinner.
+     */
     inner class itemSelector : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
@@ -135,6 +150,9 @@ class ConfirmationFragment(): Fragment() {
 
     }
 
+    /**
+     * Custom Listener for DatePicker.
+     */
     inner class dateListener : DatePickerDialog.OnDateSetListener {
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
             setDate(year, month, dayOfMonth)

@@ -30,7 +30,9 @@ class PreferencesFragment() : PreferenceFragmentCompat() {
 
     }
 
-
+    /**
+     * Display Options and add Listener for Changes
+     */
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -58,7 +60,9 @@ class PreferencesFragment() : PreferenceFragmentCompat() {
 
     }
 
-
+    /**
+     * Change Language
+     */
     private fun changeLang(sharPrefs: SharedPreferences, key: String){
 
         Log.i("aaaa", "Change Lang invoked with following key: $key")

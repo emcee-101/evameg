@@ -74,10 +74,19 @@ class ScreenSlidePageFragment3() : Fragment() {
 
         spinningDoctor.onItemSelectedListener = itemSelector()
 
-        }
+    }
 
-            inner class itemSelector : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+    /**
+     * Custom Listener for Item Selection
+     *
+     * Includes a chooser for the language this app is supposed to use.
+     *
+     * @author Niklas Herzog
+     *
+     */
+    inner class itemSelector : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
                     when(p2){
                         0 -> {changeLang("de")}
@@ -88,30 +97,33 @@ class ScreenSlidePageFragment3() : Fragment() {
 
                 }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {
+        override fun onNothingSelected(p0: AdapterView<*>?) {
 
                 }
 
+        /**
+         * Change the Language according to the selection.
+         *
+         */
+        private fun changeLang(lang : String){
 
-                private fun changeLang(lang : String){
+            Log.i("aaaa", "Change Lang invoked with following lang: $lang")
 
-                    Log.i("aaaa", "Change Lang invoked with following lang: $lang")
+            val locale = Locale(lang)
 
-                    val locale = Locale(lang)
-
-                    Locale.setDefault(locale)
-                    val resources: Resources = requireActivity().resources
-                    val config: Configuration = resources.configuration
-                    config.setLocale(locale)
-                    resources.updateConfiguration(config, resources.getDisplayMetrics())
+            Locale.setDefault(locale)
+            val resources: Resources = requireActivity().resources
+            val config: Configuration = resources.configuration
+            config.setLocale(locale)
+            resources.updateConfiguration(config, resources.getDisplayMetrics())
 
 
 
-                    sharedPrefs = SettingsStorage()
-                    sharedPrefs.KeyValueStore(application)
-                    sharedPrefs.writeString("languages_dd", lang)
+            sharedPrefs = SettingsStorage()
+            sharedPrefs.KeyValueStore(application)
+            sharedPrefs.writeString("languages_dd", lang)
 
-                }
-            }
+        }
+    }
 
 }
