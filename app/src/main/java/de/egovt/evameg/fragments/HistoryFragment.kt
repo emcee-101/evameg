@@ -1,6 +1,5 @@
 package de.egovt.evameg.fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,11 +25,15 @@ data class HistoryData(
     var isExpandable: Boolean = false
 )
 
+/**
+ *
+ * @author Mohammad Zidane
+ */
 class HistoryFragment : Fragment() {
 
     private lateinit var thisView: View
     private val recyclerViewData = ArrayList<HistoryData>()
-    private lateinit var myRubbishBin: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +42,7 @@ class HistoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         initHistoryList().start()
         // Inflate the layout for this fragment
         thisView = inflater.inflate(R.layout.fragment_history, container, false)
@@ -49,17 +52,13 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myRubbishBin = thisView.findViewById(R.id.historyRecyclerView)
-        myRubbishBin.layoutManager = LinearLayoutManager(context)
+        recyclerView = thisView.findViewById(R.id.historyRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
         initHistoryList().start()
 
     }
-    /**
-     * R
-     *
-     * @author Mohammad Zidane
-     */
+
     inner class initHistoryList : ViewModel() {
 
         fun start(){
@@ -69,18 +68,22 @@ class HistoryFragment : Fragment() {
                 try {
                     for(item : ProposalData in historyList ){
                         var historyItemDesc = ""
+                        var statusText = getString(R.string.status) + ": "
+                        val dateText = getString(R.string.status_since) + ": ${item.date}"
                         if (item.status == "complete"){
                             historyItemDesc = getString(R.string.applicationCompleteDesc)
+                            statusText += getString(R.string.complete)
                         }
                         else if (item.status == "processing"){
                             historyItemDesc = getString(R.string.applicationBeingProcessedDesc)
+                            statusText += getString(R.string.processing)
                         }
-                        recyclerViewData.add(HistoryData(item.category, item.date, item.status, historyItemDesc))
+                        recyclerViewData.add(HistoryData(item.category, dateText, statusText, historyItemDesc))
                     }
                     // This will pass the ArrayList to our Adapter
                     val adapter = HistoryAdapter(recyclerViewData)
                     // Setting the Adapter with the recyclerview
-                    myRubbishBin.adapter = adapter
+                    recyclerView.adapter = adapter
                 } catch (e: Exception) {
                     e.printStackTrace()
                     // Handle the exception
@@ -89,11 +92,6 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    /**
-     * Adapter for Recycler View
-     *
-     * @author Mohammad Zidane
-     */
     inner class HistoryAdapter(private val mList: List<HistoryData>) :
         RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
@@ -120,6 +118,7 @@ class HistoryFragment : Fragment() {
 
             val isExpandable: Boolean = historyItem.isExpandable
             holder.itemDescription.visibility = if (isExpandable) View.VISIBLE else View.GONE
+            holder.itemShowMoreText.visibility = if (!isExpandable) View.VISIBLE else View.GONE
 
             holder.constraintLayout.setOnClickListener {
                 isAnyItemExpanded(position)
@@ -160,12 +159,14 @@ class HistoryFragment : Fragment() {
 
             val itemTitle: TextView = itemView.findViewById(R.id.historyItemTitle)
             val itemStatus: TextView = itemView.findViewById(R.id.historyItemStatus)
-            val itemDate: TextView = itemView.findViewById(R.id.historyItemdate)
+            val itemDate: TextView = itemView.findViewById(R.id.historyItemDate)
             val itemDescription: TextView = itemView.findViewById(R.id.historyItemDesc)
+            val itemShowMoreText: TextView = itemView.findViewById(R.id.HistoryShowMoreInfo)
             val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
 
             fun collapseExpandedView(){
                 itemDescription.visibility = View.GONE
+                itemShowMoreText.visibility = View.VISIBLE
             }
 
             constructor(ItemView: View, listenerRequested: Boolean) : this(ItemView) {
@@ -182,9 +183,9 @@ class HistoryFragment : Fragment() {
     }
 
     /**
-     * Calls Database to read Offices of given type
+     * Calls Database to read history (aka proposal) data
      *
-     * @return list of offices to later be added to the map
+     * @return list of entries
      */
     private fun readProposalData():List<ProposalData>{
 
