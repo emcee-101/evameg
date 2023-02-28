@@ -3,6 +3,7 @@ package de.egovt.evameg.activities
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -13,6 +14,8 @@ import com.google.android.material.textfield.TextInputLayout
 import de.egovt.evameg.fragments.MapViewFragment
 
 import de.egovt.evameg.R
+import de.egovt.evameg.utility.DB.DbHelper
+import de.egovt.evameg.utility.ProposalData
 
 class FormActivity : AppCompatActivity() {
 
@@ -40,8 +43,12 @@ class FormActivity : AppCompatActivity() {
                 }
                 addEditText(getString(item))
             }
-
             break
+        }
+        val submitBtn = findViewById<Button>(R.id.submitBtn)
+        submitBtn.setOnClickListener {
+            val proposalData = ProposalData("Heiratsantrag","12.12.2022","complete")
+            insertProposalData(proposalData)
         }
     }
     private fun genericFormLayout(title : String){
@@ -112,11 +119,22 @@ class FormActivity : AppCompatActivity() {
 
     private fun receiveCallback(id:Int, editText: TextInputEditText){
 
-        editText.setText("The chosen location ID is: $id")
+        editText.setText("$id")
         //val ft : FragmentTransaction = supportFragmentManager.beginTransaction()
         //ft.remove(myMapFragment)
         //ft.commit()
 
+    }
+
+    /**
+     * Calls Database to read Offices of given type
+     *
+     * @return list of offices to later be added to the map
+     */
+    private fun insertProposalData(proposalData : ProposalData){
+
+        val db = DbHelper(this)
+        db.insertProposalData(proposalData)
     }
 
 }

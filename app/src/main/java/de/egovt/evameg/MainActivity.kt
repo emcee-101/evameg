@@ -12,6 +12,7 @@ import de.egovt.evameg.Fragments.Home
 import de.egovt.evameg.activities.SetupActivity
 import de.egovt.evameg.activities.test_activity
 import de.egovt.evameg.databinding.ActivityMainBinding
+import de.egovt.evameg.fragments.HistoryFragment
 import de.egovt.evameg.fragments.MapViewFragment
 import de.egovt.evameg.fragments.PreferencesFragment
 import de.egovt.evameg.fragments.Profile
@@ -81,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(Home())
                 R.id.mapview -> replaceFragment(MapViewFragment())
                 R.id.profile ->replaceFragment(Profile())
+                R.id.history ->replaceFragment(HistoryFragment())
                 else -> {startActivity(Intent(this, test_activity::class.java))}
             }
             true

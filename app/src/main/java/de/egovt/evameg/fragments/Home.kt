@@ -146,7 +146,6 @@ class Home : Fragment() {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.home_card_view, parent, false)
 
-
             return ViewHolder(view, true)
         }
 

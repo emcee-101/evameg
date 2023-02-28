@@ -225,6 +225,7 @@ class MapViewFragment(): DialogFragment() {
         val db = DbHelper(context)
         return db.readOfficeData(type)
 
+
     }
 
     private fun identifyMapPoint(marker: Marker): Office? {
